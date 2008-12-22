@@ -1,0 +1,1 @@
+﻿package gameGraphics {		import gameLogic.WandWaiver;		/* Encapsulates the graphical representation of a wand waiver. */		public class WandWaiverG extends GuardG {				public function BagCheckerG(xLoc:Number, yLoc:Number){			super(xLoc, yLoc, new WandWaiver(), new GWandWaiver());		}	}}

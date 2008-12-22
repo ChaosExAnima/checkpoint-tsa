@@ -1,0 +1,1 @@
+﻿package gameGraphics {		import gameLogic.DrugCanine;		public class DrugCanineG extends CanineG {				public function DrugCanineG(xLoc:Number, yLoc:Number) {			super(xLoc, yLoc, new DrugCanine(), new GCanineBeagle(), 3);		}					}}
