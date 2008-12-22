@@ -1,0 +1,1 @@
+﻿package gameGraphics {		import gameLogic.BagChecker;		/* Encapsulates the graphical representation of a bag checker. */		public class BagCheckerG extends GuardG {				public function BagCheckerG(xLoc:Number, yLoc:Number){			super(xLoc, yLoc, new BagChecker(), new GBagChecker());		}	}}

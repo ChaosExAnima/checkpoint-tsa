@@ -1,0 +1,1 @@
+﻿package gameGraphics {		import gameLogic.Clown;		/* Encapsulates the graphical representation of a clown. */		public class ClownG extends MoodUnitG {				public function ClownG(xLoc:Number, yLoc:Number){			super(xLoc, yLoc, new Clown(), new GClown());		}	}}

@@ -1,0 +1,1 @@
+﻿package utilities {//This class contains utility function to use in any classpublic class Utilities {		public static function randRange(min, max):int {		return Math.round(Math.random()*(max-min))+min;	}		public static function gaussDistribution(expected,rho,min,max):int {		return (max-min)/2;	}}}
