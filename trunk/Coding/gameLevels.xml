@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameLevels>
+	<game level="1" password="">
+		<budget>50</budget>
+		<passengers>20</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>10</violationChance>
+		<minViolations>1</minViolations>
+		<securityAlert>0</securityAlert>
+		<offenses>
+			<offense prob="100">knife</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+		</items>
+	</game>
+	<game level="2" password="">
+		<passengers>30</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>10</violationChance>
+		<minViolations>2</minViolations>
+		<securityAlert>0</securityAlert>
+		<offenses>
+			<offense prob="50">knife</offense>
+			<offense prob="50">drug</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+		</items>
+	</game>
+	<game level="3" password="">
+		<passengers>50</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>10</violationChance>
+		<securityAlert>1</securityAlert>
+		<minViolations>3</minViolations>
+		<offenses>
+			<offense prob="50">knife</offense>
+			<offense prob="50">drug</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+		</items>
+	</game>
+	<game level="4" password="">
+		<passengers>60</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>12</violationChance>
+		<securityAlert>2</securityAlert>
+		<minViolations>6</minViolations>
+		<offenses>
+			<offense prob="33">knife</offense>
+			<offense prob="33">drugs</offense>
+			<offense prob="33">guns</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+		</items>
+	</game>
+	<game level="5" password="">
+		<passengers>70</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>15</violationChance>
+		<securityAlert>3</securityAlert>
+		<minViolations>8</minViolations>
+		<offenses>
+			<offense prob="33">knife</offense>
+			<offense prob="33">drugs</offense>
+			<offense prob="33">guns</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="6" password="">
+		<passengers>80</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>20</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>12</minViolations>
+		<offenses>
+			<offense prob="33">knife</offense>
+			<offense prob="33">drugs</offense>
+			<offense prob="33">guns</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="7" password="">
+		<passengers>90</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>15</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="8" password="">
+		<passengers>100</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>15</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="9" password="">
+		<passengers>125</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="10" password="">
+		<passengers>150</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="11" password="">
+		<passengers>150</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="12" password="">
+		<passengers>150</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="13" password="">
+		<passengers>160</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="14" password="">
+		<passengers>160</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="15" password="">
+		<passengers>170</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="16" password="">
+		<passengers>180</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="17" password="">
+		<passengers>190</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="18" password="">
+		<passengers>200</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="19" password="">
+		<passengers>225</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+	<game level="20" password="">
+		<passengers>250</passengers>
+		<passengerCreationRate></passengerCreationRate>
+		<violationChance>25</violationChance>
+		<securityAlert>4</securityAlert>
+		<minViolations>20</minViolations>
+		<offenses>
+			<offense prob="25">knife</offense>
+			<offense prob="25">drugs</offense>
+			<offense prob="25">guns</offense>
+			<offense prob="25">bombs</offense>
+		</offenses>
+		<items>
+			<item>BagChecker</item>
+			<item>WandWaver</item>
+			<item>BombCanine</item>
+			<item>DrugCanine</item>
+			<item>NewLine</item>
+			<item>MetalDectectors</item>
+			<item>Xray</item>
+			<item>Clown</item>
+			<item>TV</item>
+		</items>
+	</game>
+</gameLevels>
