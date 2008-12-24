@@ -13,12 +13,15 @@
 		public function getTorso():MovieClip {
 			var newTorso;
 
-			switch(Utilities.randRange(0,1)) {
+			switch(Utilities.randRange(0,2)) {
 				case 0:
 					newTorso = new torso1();
 					break;
 				case 1:
 					newTorso = new torso2();
+					break;
+				case 2:
+					newTorso = new torso3();
 					break;
 			}
 			
@@ -34,6 +37,10 @@
 			var curShirt:MovieClip = curBody.shirt;
 			var curSkin:MovieClip = curBody.flesh;
 			var curHair:MovieClip = curBody.hair;
+			var curHat:MovieClip;
+			if (curBody.hat) {
+				curHat = curBody.hat;
+			}
 			
 			var shirtColor:Array = PassColor.shirtArray[Utilities.randRange(0, PassColor.shirtArray.length-1)];
 			var skinColor:Array =  PassColor.skinArray[Utilities.randRange(0, PassColor.skinArray.length-1)];
@@ -43,7 +50,10 @@
 				curShirt.transform.colorTransform = new ColorTransform(0,0,0,1,shirtColor[0],shirtColor[1],shirtColor[2],0);
 				curSkin.transform.colorTransform  = new ColorTransform(0,0,0,1, skinColor[0], skinColor[1], skinColor[2],0);
 				curHair.transform.colorTransform  = new ColorTransform(0,0,0,1, hairColor[0], hairColor[1], hairColor[2],0);
-				
+				if (curHat) {
+					curHat.transform.colorTransform = new ColorTransform(0,0,0,1,shirtColor[0],shirtColor[1],shirtColor[2],0);
+				}
+
 				newColors = new Array(
 					[shirtColor[0], shirtColor[1], shirtColor[2]],
 					[ skinColor[0],  skinColor[1],  skinColor[2]],
@@ -52,6 +62,9 @@
 				curShirt.transform.colorTransform = new ColorTransform(0,0,0,1,color[0][0],color[0][1],color[0][2],0);
 				curSkin.transform.colorTransform  = new ColorTransform(0,0,0,1,color[1][0],color[1][1],color[1][2],0);
 				curHair.transform.colorTransform  = new ColorTransform(0,0,0,1,color[2][0],color[2][1],color[2][2],0);
+				if (curHat) {
+					curHat.transform.colorTransform = new ColorTransform(0,0,0,1,color[0][0],color[0][1],color[0][2],0);
+				}
 				newColors = new Array(
 					[color[0][0],color[0][1],color[0][2]],
 					[color[1][0],color[1][1],color[1][2]],
