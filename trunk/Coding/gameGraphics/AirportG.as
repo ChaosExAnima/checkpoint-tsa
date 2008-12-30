@@ -39,7 +39,7 @@
 			
 			new Airport();
 			
-			personMaker = new GraphPassFact();
+			personMaker = new GraphPassFact(this);
 			
 			
 			//this.addChild(lineA);
