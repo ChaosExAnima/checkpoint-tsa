@@ -11,7 +11,7 @@
 
 		// Returns a reference to a randomly chosen new torso type
 		public function getTorso():MovieClip {
-			var newTorso;
+			var newTorso:MovieClip;
 
 			switch(Utilities.randRange(0,2)) {
 				case 0:
