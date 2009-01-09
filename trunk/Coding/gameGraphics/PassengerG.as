@@ -41,14 +41,16 @@
 		private var movingMC:MovieClip;
 		
 		private var myLine:LineG;
-		private var myColor:Array;
-		private var myTorso:MovieClip;
-		private var torsoRef:Torso = new Torso();
+		
+		private var _colors:Array;
+		private var _torso:MovieClip;
 		
 		private var corpWalk:PWalk = new PWalk();
 		private var corpStand:PStand = new PStand();
 		
 		private var _legs:MovieClip;
+		private var _legRef:Legs = new Legs();
+		private var _legColors:Array;
 		
 		private var logicPass:Passenger = null;
 		
@@ -66,18 +68,18 @@
 			corpStand.height = corpStand.height*spriteScale;
 			
 			
-			myTorso = torso;
-			myColor = colors;			
+			_torso = torso;
+			_colors = colors;
+			_legs = _legRef.getStand();
+			_legColors = _legRef.setColor(_legs)
+			
 			x = x_;
 			y = y_;
 			
 			targSpeed = Utilities.randRange(3,7);
 			waitTic = Utilities.randRange(15,25);
 			reroutTic = Utilities.randRange(15,30);
-			
-			_legs = new Legs(targSpeed);
-			_legs.Stand();
-			
+	
 //			movingMC = corpWalk;
 			
 			logicPass = logic;
@@ -86,9 +88,9 @@
 			setLine(line);
 			
 			this.addChild(_legs);
-			this.addChild(myTorso);
+			this.addChild(_torso);
 			//this.addChild(movingMC);
-			//movingMC.addChild(myTorso);			
+			//movingMC.addChild(_torso);			
 			
 			inittedB = true;
 		}
@@ -114,6 +116,8 @@
 		{
 			xSpeed = targSpeed*(xTarg[0] - x)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
 			ySpeed = targSpeed*(yTarg[0] - y)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+//			trace(xSpeed+", "+ySpeed);
+			trace(targSpeed);
 		}
 		
 		public function tStep():void
@@ -198,31 +202,35 @@
 			
 			theta = ((theta/360) - Math.floor(theta/360))*360;
 			theta = Math.ceil(theta/45);
-			if (theta != myTorso.currentFrame) {
-				trace("Theta is "+theta+", currentFrame is "+myTorso.currentFrame);
-	 			myTorso.gotoAndStop(theta);
-			 	myTorso.addFrameScript(myTorso.currentFrame-1, setClip);
+			if (theta != _torso.currentFrame) {
+	 			_torso.gotoAndStop(theta);
+			 	_torso.addFrameScript(_torso.currentFrame-1, setClip);
 			}
-			//trace(_legs._curLegs.cLegs);
-			if (theta != _legs._curLegs.cLegs.currentFrame) {
-				_legs._curLegs.cLegs.gotoAndStop(theta);
-				_legs._curLegs.cFloor.gotoAndStop(theta);
+			if (theta != _legs.currentFrame) {
+				_legs.gotoAndStop(theta);
+				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
 			}
 		}
 		
 		private function setClip():void {
-			myTorso.addFrameScript(myTorso.currentFrame-1, null);
-			torsoRef.setColor(myTorso, myColor);
+			_torso.addFrameScript(_torso.currentFrame-1, null);
+			new Torso().setColor(_torso, _colors);
 		}
+		
+		private function setLegs():void {
+			_legs.addFrameScript(_legs.currentFrame-1, null);
+			_legRef.setColor(_legs, _legColors);
+			_legRef.scaleAnim(_legs, targSpeed);
+		}
+			
 		
 		public function startWalk():void
 		{
-			if (true) {
-//				this.removeChild(movingMC);
-//				movingMC = corpWalk;
-//				this.addChild(movingMC);
-//				movingMC.addChild(myTorso);
-				_legs.Walk();
+			if (_legs is stand1) {
+				this.removeChild(_legs);
+				_legs = _legRef.getWalk();
+				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
+				this.addChildAt(_legs, 0);
 			}
 
 			updateHeading();
@@ -231,12 +239,11 @@
 		
 		public function stopWalk():void
 		{
-			if (true) {
-				/*this.removeChild(movingMC);
-				movingMC = corpStand;
-				this.addChild(movingMC);
-				movingMC.addChild(myTorso);*/
-				_legs.Stand();
+			if (_legs is walk1) {
+				this.removeChild(_legs);
+				_legs = _legRef.getStand();
+				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
+				this.addChildAt(_legs, 0);
 			}
 			
 			updateHeading();
@@ -305,7 +312,6 @@
 		{			
 			trace("killing myself");		
 			this.removeEventListener(Event.ENTER_FRAME, frameEntered);
-			_legs.cleanUp();
 //			corporealForm.graphics.clear();
 			obsolete = true;
 			

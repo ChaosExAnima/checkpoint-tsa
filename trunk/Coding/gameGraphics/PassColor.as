@@ -1,7 +1,13 @@
 ﻿package gameGraphics {
 	public class PassColor {
+		/*	
+			Passenger color definitions. Values are [Red, Green, Blue] values.
+			Color arrays are to be added depending on character art requirements,
+			although fewer arrays, the better.
+		*/
+		
 		public static const shirtArray:Array = new Array(
-			[247, 244, 239],	
+			[247, 244, 239],
 			[180, 196, 209],
 			[ 20,  17,  18],
 			[ 90,  90,  57],
@@ -33,5 +39,11 @@
 			[230, 122,  57], //Orange
 			[115,  82,  65], //Hazel
 			[ 74,  42,  31]);//Dark Brown
+		
+		public static const shoeArray:Array = new Array(
+			[ 43,  43,  46],
+			[ 35,  25,  26],
+			[ 70,  58,  44],
+			[120,  67,  56]);
 	}
 }
