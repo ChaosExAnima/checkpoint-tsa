@@ -1,101 +1,112 @@
 ﻿package gameGraphics {
+	
 	import flash.display.MovieClip;
-	import flash.utils.Timer;
+	import flash.geom.ColorTransform;
 	import flash.events.TimerEvent;
-	import utilities.Utilities;
+	import flash.utils.Timer;
+	import utilities.*;
+	import gameGraphics.PassColor;
 	
 	public class Legs extends MovieClip {
-		private var _stand:MovieClip;
-		private var _walk:MovieClip;
-		private var _speed:uint;
+		private var _wkTime:Timer;
+		private var _legs:MovieClip;
 		private var _curFrame:uint = 1;
-		private var _walkTime:Timer;
-		public var _curLegs:MovieClip;
 		
-		public function Legs(speed:uint):void {
-			_speed = speed*10;
-			_walkTime = new Timer(_speed);
+		public function Legs():void {}
+		
+		public function getStand():MovieClip {
+			return(new stand1());
+		}
+		
+		public function getWalk():MovieClip {
+			return(new walk1());
+		}
+		
+		// Randomly picks a color for the shirt, skin, and hair, then returns the colors as an array
+		public function setColor(legs:MovieClip, color:Array = null):Array {
+			var newColors: Array;
 			
-			switch(Utilities.randRange(0,0)) {
-				case 0:
-					_stand = new PStand();
-					_walk = new PWalk();
-					break;
-			}
-			Stand();
-		}
+			var curBody:MovieClip = dirRef(legs); //Used to get a reference to the body instance
 			
-		public function Stand():void {
-			if (this.numChildren) {
-				if (this.getChildAt(0) == _walk) {
-					this.removeChild(_walk);
-				}
+			var curPants:MovieClip = curBody.pants;
+			var curShoes:MovieClip = curBody.shoes;
+			
+			if (!color) {
+				
+				var pantsColor:Array = PassColor.shirtArray[Utilities.randRange(0, PassColor.shirtArray.length-1)];
+				var shoesColor:Array =  PassColor.shoeArray[Utilities.randRange(0, PassColor.shoeArray.length-1)];
+				
+				curPants.transform.colorTransform = new ColorTransform(0,0,0,1,pantsColor[0],pantsColor[1],pantsColor[2],0);
+				curShoes.transform.colorTransform  = new ColorTransform(0,0,0,1, shoesColor[0], shoesColor[1], shoesColor[2],0);
+
+				newColors = new Array(
+					[pantsColor[0], pantsColor[1], pantsColor[2]],
+					[shoesColor[0], shoesColor[1], shoesColor[2]]);
+			} else {
+				curPants.transform.colorTransform = new ColorTransform(0,0,0,1,color[0][0],color[0][1],color[0][2],0);
+				curShoes.transform.colorTransform  = new ColorTransform(0,0,0,1,color[1][0],color[1][1],color[1][2],0);
+				
+				newColors = new Array(
+					[color[0][0],color[0][1],color[0][2]],
+					[color[1][0],color[1][1],color[1][2]]);
 			}
-			this.addChild(_stand);
-			_curLegs = _stand;
-			//_walkTime.reset();
-			//_walkTime.removeEventListener(TimerEvent.TIMER_COMPLETE, walkFrame);
+			return(newColors);
 		}
 		
-		public function Walk():void {
-			if (this.numChildren) {
-				if (this.getChildAt(0) == _stand) {
-					this.removeChild(_stand);
-				}
+		// Sets walking animation speed to match speed of characters
+		public function scaleAnim(legs:MovieClip, speed:Number):void {
+			if (legs is walk1 == false)
+				return;
+			
+			if (!_wkTime) {
+				_wkTime = new Timer((10-speed)*10);
+				_wkTime.addEventListener(TimerEvent.TIMER, takeStep);
+				_wkTime.start();
 			}
-			this.addChild(_walk);
-			_curLegs = _walk;
-			if (_walkTime) {
-			//_walkTime.addEventListener(TimerEvent.TIMER, walkFrame);
-			//_walkTime.start();
-			}
+			_legs = dirRef(legs);
 		}
 		
-		private function walkFrame(e:TimerEvent):void {
-			var dirLegs:MovieClip = _walk.cLegs.getChildAt(0);
-//			trace("Fired");
-			for(var i:uint = 0; i < dirLegs.numChildren; i++) {
-				var child:MovieClip = dirLegs.getChildAt(i) as MovieClip;
+		private function takeStep(e:TimerEvent) {
+			if (!_legs)
+				return;
+			var legRef:MovieClip = _legs as MovieClip;
+			_curFrame++
+			if (_curFrame>8)
+				_curFrame = 1;
+			for (var i:uint=0;i<legRef.numChildren;i++) {
+				var child:MovieClip = legRef.getChildAt(i) as MovieClip;
 				child.gotoAndStop(_curFrame);
-				//trace("Iteration "+i+"Child ref is "+child);
 			}
-			_curFrame = _curFrame < 8 ? _curFrame++ : 1;
 		}
 		
-		public function cleanUp():void {
-			trace("Cleanup time!");
-			_walkTime.stop();
-			_walkTime.removeEventListener(TimerEvent.TIMER, walkFrame);
-			_walkTime = null;
-		}
-		
+		// Get a reference to the current leg direction
 		private function dirRef(legs:MovieClip):MovieClip {
 			var ref:MovieClip;
 			
 			switch (legs.currentFrame) {
 				case 1:
-					ref = legs.cLegs.south;
+					ref = legs.south;
 					break;
 				case 2:
-					ref = legs.cLegs.southeast;
+					ref = legs.southeast;
 					break;
 				case 3:
-					ref = legs.cLegs.east;
+					ref = legs.east;
 					break;
 				case 4:
-					ref = legs.cLegs.northeast;
+					ref = legs.northeast;
 					break;
 				case 5:
-					ref = legs.cLegs.north;
+					ref = legs.north;
 					break;
 				case 6:
-					ref = legs.cLegs.northwest;
+					ref = legs.northwest;
 					break;
 				case 7:
-					ref = legs.cLegs.west;
+					ref = legs.west;
 					break;
 				case 8:
-					ref = legs.cLegs.southwest;
+					ref = legs.southwest;
 					break;
 				default:
 					ref = legs.south;
