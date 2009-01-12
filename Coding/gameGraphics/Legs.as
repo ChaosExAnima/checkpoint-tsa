@@ -10,6 +10,7 @@
 	public class Legs extends MovieClip {
 		private var _wkTime:Timer;
 		private var _legs:MovieClip;
+		private var _shadow:MovieClip;
 		private var _curFrame:uint = 1;
 		
 		public function Legs():void {}
@@ -26,10 +27,10 @@
 		public function setColor(legs:MovieClip, color:Array = null):Array {
 			var newColors: Array;
 			
-			var curBody:MovieClip = dirRef(legs); //Used to get a reference to the body instance
+			dirRef(legs); //Used to get a reference to the body instance
 			
-			var curPants:MovieClip = curBody.pants;
-			var curShoes:MovieClip = curBody.shoes;
+			var curPants:MovieClip = _legs.pants;
+			var curShoes:MovieClip = _legs.shoes;
 			
 			if (!color) {
 				
@@ -55,7 +56,9 @@
 		
 		// Sets walking animation speed to match speed of characters
 		public function scaleAnim(legs:MovieClip, speed:Number):void {
-			if (legs is walk1 == false)
+			if (legs is walk1)
+				dirRef(legs);
+			else
 				return;
 			
 			if (!_wkTime) {
@@ -63,57 +66,63 @@
 				_wkTime.addEventListener(TimerEvent.TIMER, takeStep);
 				_wkTime.start();
 			}
-			_legs = dirRef(legs);
 		}
 		
 		private function takeStep(e:TimerEvent) {
 			if (!_legs)
 				return;
-			var legRef:MovieClip = _legs as MovieClip;
 			_curFrame++
 			if (_curFrame>8)
 				_curFrame = 1;
-			for (var i:uint=0;i<legRef.numChildren;i++) {
-				var child:MovieClip = legRef.getChildAt(i) as MovieClip;
+			for (var i:uint=0;i<_legs.numChildren;i++) {
+				var child:MovieClip = _legs.getChildAt(i) as MovieClip;
 				child.gotoAndStop(_curFrame);
 			}
+			if (_shadow)
+				gotoAndStop(_curFrame);
 		}
 		
 		// Get a reference to the current leg direction
-		private function dirRef(legs:MovieClip):MovieClip {
-			var ref:MovieClip;
-			
+		private function dirRef(legs:MovieClip):void {
 			switch (legs.currentFrame) {
 				case 1:
-					ref = legs.south;
+					_legs = legs.south;
+					_shadow = legs.s_south;
 					break;
 				case 2:
-					ref = legs.southeast;
+					_legs = legs.southeast;
+					_shadow = legs.s_southeast;
 					break;
 				case 3:
-					ref = legs.east;
+					_legs = legs.east;
+					_shadow = legs.s_east;
 					break;
 				case 4:
-					ref = legs.northeast;
+					_legs = legs.northeast;
+					_shadow = legs.s_northeast;
 					break;
 				case 5:
-					ref = legs.north;
+					_legs = legs.north;
+					_shadow = legs.s_north;
 					break;
 				case 6:
-					ref = legs.northwest;
+					_legs = legs.northwest;
+					_shadow = legs.s_northwest;
 					break;
 				case 7:
-					ref = legs.west;
+					_legs = legs.west;
+					_shadow = legs.s_west;
 					break;
 				case 8:
-					ref = legs.southwest;
+					_legs = legs.southwest;
+					_shadow = legs.s_southwest;
 					break;
 				default:
-					ref = legs.south;
+					_legs = legs.south;
+					_shadow = legs.s_south;
 					trace("ERROR! dirRef function in class gameGraphics.Legs out of bounds! value is: "+legs.currentFrame);
 					break;
 			}
-			return(ref);
 		}
 	}
 }
