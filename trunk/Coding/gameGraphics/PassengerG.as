@@ -45,10 +45,11 @@
 		private var _colors:Array;
 		private var _torso:MovieClip;
 		
-		private var corpWalk:PWalk = new PWalk();
-		private var corpStand:PStand = new PStand();
+//		private var corpWalk:PWalk = new PWalk();
+//		private var corpStand:PStand = new PStand();
 		
 		private var _legs:MovieClip;
+		private var _legsShdw:MovieClip;
 		private var _legRef:Legs = new Legs();
 		private var _legColors:Array;
 		
@@ -57,7 +58,7 @@
 		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array):void
 		{
 			
-			corpWalk.x = spriteOffsetX;
+			/*corpWalk.x = spriteOffsetX;
 			corpWalk.y = spriteOffsetY;
 			corpWalk.width = corpWalk.width*spriteScale;
 			corpWalk.height = corpWalk.height*spriteScale;
@@ -65,7 +66,7 @@
 			corpStand.x = spriteOffsetX;
 			corpStand.y = spriteOffsetY;
 			corpStand.width = corpStand.width*spriteScale;
-			corpStand.height = corpStand.height*spriteScale;
+			corpStand.height = corpStand.height*spriteScale;*/
 			
 			
 			_torso = torso;
@@ -117,7 +118,7 @@
 			xSpeed = targSpeed*(xTarg[0] - x)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
 			ySpeed = targSpeed*(yTarg[0] - y)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
 //			trace(xSpeed+", "+ySpeed);
-			trace(targSpeed);
+//			trace(targSpeed);
 		}
 		
 		public function tStep():void
@@ -221,6 +222,7 @@
 			_legs.addFrameScript(_legs.currentFrame-1, null);
 			_legRef.setColor(_legs, _legColors);
 			_legRef.scaleAnim(_legs, targSpeed);
+//			_legRef.scaleAnim(_legsShdw, targSpeed);
 		}
 			
 		
@@ -228,9 +230,13 @@
 		{
 			if (_legs is stand1) {
 				this.removeChild(_legs);
+//				this.removeChild(_legsShdw);
 				_legs = _legRef.getWalk();
+//				_legsShdw = _legRef.getWalkShdw();
 				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
+//				_legsShdw.addFrameScript(_legs.currentFrame-1, 
 				this.addChildAt(_legs, 0);
+//				this.addChildAt(_legsShdw, 0);
 			}
 
 			updateHeading();
