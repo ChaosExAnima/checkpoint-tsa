@@ -4,6 +4,7 @@
 	import flash.geom.ColorTransform;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import fl.motion.Color;
 	import utilities.*;
 	import gameGraphics.PassColor;
 	
@@ -31,21 +32,32 @@
 			
 			var curPants:MovieClip = _legs.pants;
 			var curShoes:MovieClip = _legs.shoes;
+			var curShadow:MovieClip = _legs.shade;
+			var curColor:Color = new Color();
+			var tintColor:uint;
 			
 			if (!color) {
 				
 				var pantsColor:Array = PassColor.shirtArray[Utilities.randRange(0, PassColor.shirtArray.length-1)];
 				var shoesColor:Array =  PassColor.shoeArray[Utilities.randRange(0, PassColor.shoeArray.length-1)];
+				tintColor = parseInt('0x'+pantsColor[0].toString(16)+pantsColor[1].toString(16)+pantsColor[2].toString(16));
+				
+				curColor.setTint(tintColor, 0.2);
 				
 				curPants.transform.colorTransform = new ColorTransform(0,0,0,1,pantsColor[0],pantsColor[1],pantsColor[2],0);
 				curShoes.transform.colorTransform  = new ColorTransform(0,0,0,1, shoesColor[0], shoesColor[1], shoesColor[2],0);
+				curShadow.transform.colorTransform = curColor;
 
 				newColors = new Array(
 					[pantsColor[0], pantsColor[1], pantsColor[2]],
 					[shoesColor[0], shoesColor[1], shoesColor[2]]);
 			} else {
+				tintColor = parseInt('0x'+color[0][0].toString(16)+color[0][1].toString(16)+color[0][2].toString(16));
+				curColor.setTint(tintColor, 0.1);
+				
 				curPants.transform.colorTransform = new ColorTransform(0,0,0,1,color[0][0],color[0][1],color[0][2],0);
 				curShoes.transform.colorTransform  = new ColorTransform(0,0,0,1,color[1][0],color[1][1],color[1][2],0);
+				curShadow.transform.colorTransform = curColor;
 				
 				newColors = new Array(
 					[color[0][0],color[0][1],color[0][2]],
@@ -87,39 +99,30 @@
 			switch (legs.currentFrame) {
 				case 1:
 					_legs = legs.south;
-					_shadow = legs.s_south;
 					break;
 				case 2:
 					_legs = legs.southeast;
-					_shadow = legs.s_southeast;
 					break;
 				case 3:
 					_legs = legs.east;
-					_shadow = legs.s_east;
 					break;
 				case 4:
 					_legs = legs.northeast;
-					_shadow = legs.s_northeast;
 					break;
 				case 5:
 					_legs = legs.north;
-					_shadow = legs.s_north;
 					break;
 				case 6:
 					_legs = legs.northwest;
-					_shadow = legs.s_northwest;
 					break;
 				case 7:
 					_legs = legs.west;
-					_shadow = legs.s_west;
 					break;
 				case 8:
 					_legs = legs.southwest;
-					_shadow = legs.s_southwest;
 					break;
 				default:
 					_legs = legs.south;
-					_shadow = legs.s_south;
 					trace("ERROR! dirRef function in class gameGraphics.Legs out of bounds! value is: "+legs.currentFrame);
 					break;
 			}
