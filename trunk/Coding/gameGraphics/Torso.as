@@ -6,6 +6,7 @@
 	import gameGraphics.PassColor;
 	
 	public class Torso extends MovieClip {
+		public static var _gender:String = 'male';
 		
 		public function Torso() { }
 
@@ -19,6 +20,7 @@
 					break;
 				case 1:
 					newTorso = new torso2();
+					_gender = 'female';
 					break;
 				case 2:
 					newTorso = new torso3();
@@ -108,6 +110,10 @@
 					break;
 			}
 			return(body);
+		}
+		
+		public function getGender():String {
+			return(_gender);
 		}
 	}
 }
