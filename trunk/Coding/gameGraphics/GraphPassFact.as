@@ -20,10 +20,11 @@
 		
 		public function makePass():PassengerG
 		{
-			var passName:String = _gen.getName(_torsoRef.getGender());
-			var passTorso:MovieClip = _torsoRef.getTorso();
-			var torsoColors:Array = _torsoRef.setColor(passTorso);
 
+			var passTorso:MovieClip = _torsoRef.getTorso();
+			var passName:String = _gen.getName(_torsoRef.getGender());
+			var torsoColors:Array = _torsoRef.setColor(passTorso);
+			
 			var tempLogic:Passenger = pFact.createPassenger();
 			var tempPass:PassengerG = new PassengerG(Utilities.randRange(-10,10),Utilities.randRange(-10,10), tempLogic, pA.lines[tempLogic.getGotoStationNr() - 1], passTorso, torsoColors, passName);
 			

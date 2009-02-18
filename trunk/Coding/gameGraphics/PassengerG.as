@@ -53,6 +53,7 @@
 		private var _legRef:Legs = new Legs();
 		private var _legColors:Array;
 		public var _name:String;
+		private var _toggle:Boolean;
 		
 		private var logicPass:Passenger = null;
 		
@@ -95,13 +96,20 @@
 			//this.addChild(movingMC);
 			//movingMC.addChild(_torso);			
 			
+			this.addEventListener(MouseEvent.CLICK, toggleSelected);
+
 			inittedB = true;
-			
-			_torso.addEventListener(MouseEvent.CLICK, showName);
 		}
 		
-		private function showName(e:MouseEvent):void {
-			trace(_name);
+		private function toggleSelected(e:MouseEvent):void {
+			if (!_toggle) {
+				trace(_name);
+				_legRef.showCircle(_legs, true);
+				_toggle = true;
+			} else {
+				_legRef.showCircle(_legs, false);
+				_toggle = false;
+			}
 		}
 		
 		public function initted():Boolean
