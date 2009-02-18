@@ -52,10 +52,11 @@
 		private var _legsShdw:MovieClip;
 		private var _legRef:Legs = new Legs();
 		private var _legColors:Array;
+		public var _name:String;
 		
 		private var logicPass:Passenger = null;
 		
-		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array):void
+		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array, name:String):void
 		{
 			
 			/*corpWalk.x = spriteOffsetX;
@@ -73,6 +74,7 @@
 			_colors = colors;
 			_legs = _legRef.getStand();
 			_legColors = _legRef.setColor(_legs)
+			_name = name;
 			
 			x = x_;
 			y = y_;
@@ -94,6 +96,12 @@
 			//movingMC.addChild(_torso);			
 			
 			inittedB = true;
+			
+			this.addEventListener(MouseEvent.CLICK, showName);
+		}
+		
+		private function showName(e:MouseEvent):void {
+			trace(_name);
 		}
 		
 		public function initted():Boolean
