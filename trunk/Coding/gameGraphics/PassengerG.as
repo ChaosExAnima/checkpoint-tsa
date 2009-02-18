@@ -97,7 +97,7 @@
 			
 			inittedB = true;
 			
-			this.addEventListener(MouseEvent.CLICK, showName);
+			_torso.addEventListener(MouseEvent.CLICK, showName);
 		}
 		
 		private function showName(e:MouseEvent):void {
@@ -182,8 +182,10 @@
 		
 		public function skipTarg():void
 		{
-			xTarg.shift();
-			yTarg.shift();
+
+			//xTarg.shift();
+			//yTarg.shift();
+			//			BAD SANDY! Check for double-shifts!
 			
 			atTarg();
 		}
