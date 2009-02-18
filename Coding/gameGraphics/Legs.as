@@ -13,6 +13,7 @@
 		private var _legs:MovieClip;
 		private var _shadow:MovieClip;
 		private var _curFrame:uint = 1;
+		public var _selected:Boolean = false;
 		
 		public function Legs():void {}
 		
@@ -63,7 +64,23 @@
 					[color[0][0],color[0][1],color[0][2]],
 					[color[1][0],color[1][1],color[1][2]]);
 			}
+			if (_selected == false) {
+				_legs.selection.visible = false;
+			} else {
+				_legs.selection.visible = true;
+			}
 			return(newColors);
+		}
+		
+		public function showCircle (legs:MovieClip, select:Boolean):void {
+			dirRef(legs);
+			if (select == false) {
+				_legs.selection.visible = false;
+				_selected = false;
+			} else {
+				_legs.selection.visible = true;
+				_selected = true;
+			}
 		}
 		
 		// Sets walking animation speed to match speed of characters
