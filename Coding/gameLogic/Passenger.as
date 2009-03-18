@@ -21,6 +21,7 @@
 		private var prohibObj:ProhibitedObject = null; //the prohibited Object the passenger is carrying. Null if none.
 		private var line:Line = null; //stores the line, the passenger is in, if any.
 		private var secCheck:SecurityCheckUnit = null; //stores the security check unit, the passenger is in, if any.
+		public var conceal:Number = Math.random()*100;
 		public static const OUTOFMOOD:String = "out of mood";
 		public static const OUTOFTIME:String = "out of time";
 		public static const MOVEON:String = "move on";

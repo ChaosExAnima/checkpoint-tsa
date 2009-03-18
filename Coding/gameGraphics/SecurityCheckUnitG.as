@@ -1,1 +1,82 @@
-﻿package gameGraphics {	import utilities.*;	import flash.display.*;	import flash.events.*;	import gameLogic.SecurityCheckUnit;		/* This holds all variables and methods all graphical representations of Security Check Units have in common. 	   Use subclasses of this class to display Security Check Units. */		public class SecurityCheckUnitG extends Sprite{				//private var xLoc:Number;		//private var yLoc:Number;				//Unit form that is displayed by SecurityCheckUnitG		protected var unitForm:MovieClip; //= new CheepieMetalDetectorG();				//Logical security check unit		protected var secCheck:SecurityCheckUnit; // = new CheepieMetalDetector();						public function SecurityCheckUnitG(xLoc:Number, yLoc:Number, secCheck:SecurityCheckUnit, secCheckG:MovieClip) {		    this.x = xLoc;//Utilities.randRange(0,700);			this.y = yLoc;//Utilities.randRange(0,500);			this.secCheck = secCheck;			this.unitForm = secCheckG;						this.addChild(unitForm);			secCheck.setSecCheckG(this);			//this.addEventListener(Event.ENTER_FRAME, frameEntered);			//drawMe();			idle();		}						public function caught():void {			unitForm.gotoAndStop(4);			//unitForm.gotoAndStop("caught");		}				public function go():void {			unitForm.gotoAndStop(3);			//unitForm.gotoAndStop("go");		}				public function checking():void {			unitForm.gotoAndStop(2);			//unitForm.gotoAndStop("checking");		}				public function idle():void {			unitForm.gotoAndStop(1);			//unitForm.gotoAndStop("idle");		}				/*			private function frameEntered(e:Event):void {			drawMe();		}*/				/*		private function drawMe():void {			unitForm.x = xLoc;			unitForm.y = yLoc;		}		*/		//This function shows accuracy, speed and the prohibited units the machine is checking for.		public function showUI():void {								}				public function getLogic():SecurityCheckUnit {			return secCheck;		}				protected function swapUnitForm(swapMc:MovieClip) {			removeChild(unitForm);			unitForm = swapMc;			addChild(unitForm);		}	}}
+﻿package gameGraphics {
+
+	import utilities.*;
+	import flash.display.*;
+	import flash.events.*;
+	import gameLogic.SecurityCheckUnit;
+
+	
+	/* This holds all variables and methods all graphical representations of Security Check Units have in common. 
+	   Use subclasses of this class to display Security Check Units. */
+	
+	public class SecurityCheckUnitG extends Sprite{
+		
+		//private var xLoc:Number;
+		//private var yLoc:Number;
+		
+		//Unit form that is displayed by SecurityCheckUnitG
+		protected var unitForm:MovieClip; //= new CheepieMetalDetectorG();
+		
+		//Logical security check unit
+		protected var secCheck:SecurityCheckUnit; // = new CheepieMetalDetector();
+		
+		
+		public function SecurityCheckUnitG(xLoc:Number, yLoc:Number, secCheck:SecurityCheckUnit, secCheckG:MovieClip) {
+		    this.x = xLoc;//Utilities.randRange(0,700);
+			this.y = yLoc;//Utilities.randRange(0,500);
+			this.secCheck = secCheck;
+			this.unitForm = secCheckG;
+			
+			this.addChild(unitForm);
+			secCheck.setSecCheckG(this);
+			//this.addEventListener(Event.ENTER_FRAME, frameEntered);
+			//drawMe();
+			idle();
+		}
+		
+		
+		public function caught():void {
+			unitForm.gotoAndStop("caught");
+		}
+		
+		public function go():void {
+			unitForm.gotoAndStop("go");
+		}
+		
+		public function checking():void {
+			unitForm.gotoAndStop("checking");
+		}
+		
+		public function idle():void {
+			unitForm.gotoAndStop("idle");
+		}
+		
+		public function get logic():SecurityCheckUnit {
+			return secCheck;
+		}
+		
+		public function getUnitForm():MovieClip
+		{
+			return unitForm;
+		}
+		
+		/*public function reLocate(xLoc:Number, yLoc:Number):void
+		{
+			this.x = xLoc;//Utilities.randRange(0,700);
+			this.y = yLoc;//Utilities.randRange(0,500);
+			//drawMe();
+		}*/
+		
+		public function getProhObjs():Array
+		{
+			return secCheck.getProhObjs();
+		}
+		
+		protected function swapUnitForm(swapMc:MovieClip) {
+			removeChild(unitForm);
+			unitForm = swapMc;
+			addChild(unitForm);
+		}
+		
+	}
+}

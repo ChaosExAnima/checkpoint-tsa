@@ -1,1 +1,92 @@
-﻿package gameData{	import flash.display.Loader;	import flash.display.MovieClip;	import flash.events.*;	import flash.net.URLLoader;	import flash.net.URLRequest;	import flash.xml.*;		public class XMLgameData extends MovieClip	{		public static var loader:URLLoader=new URLLoader();		protected static var ready:Boolean = false;		protected static var gameValues:XML = new XML();					public function XMLgameData()		{			this.loadXML();		}				private function loadXML():void		{						loader.addEventListener(Event.COMPLETE,completeHandler);					var request:URLRequest=new URLRequest('gameLevels.xml');			try 			{				loader.load(request);			} 			catch(error:Error) 			{				trace('Unable to load requested document.');			}		}				private function completeHandler(e:Event):void		{			ready = true;			trace("Data Loaded Successfully");			trace(ready);									XML.ignoreWhitespace = true; 			var gameLevels:XML = new XML(e.target.data);						gameValues = gameLevels;		}				public function getLevel(level:String, attName:String):String		{			//return(this.ready);			var Response:String = "default";				switch (attName){								case "budget":					Response = gameValues.game.(@level == level).budget.text();					break;				case "passengers":					Response = gameValues.game.(@level == level).passengers.text();					break;				case "violationChance":					Response = gameValues.game.(@level == level).violationChance.text();					break;								case "minViolations":					Response = gameValues.game.(@level == level).minViolations.text();					break;								case "securityAlert":					Response = gameValues.game.(@level == level).securityAlert.text();					break;								case "offenses":										Response = "";										for(var i = 0; i < gameValues.game.(@level == level).offenses.offense.length(); i++){												if(i == gameValues.game.(@level == level).offenses.offense.length() - 1){							Response = Response + gameValues.game.(@level == level).offenses.offense[i].text();						}else{							Response = Response + gameValues.game.(@level == level).offenses.offense[i].text() + ", ";						}					}										break;									case "items":										Response = "";										for(var i = 0; i < gameValues.game.(@level == level).items.item.length(); i++){												if(i == gameValues.game.(@level == level).items.item.length() - 1){							Response = Response + gameValues.game.(@level == level).items.item[i].text();						}else{							Response = Response + gameValues.game.(@level == level).items.item[i].text() + ", ";						}					}										break;			}//end of switch										return(Response);					}	}}
+﻿package gameData
+{
+	import flash.display.Loader;
+	import flash.display.MovieClip;
+	import flash.events.*;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.xml.*;
+	
+
+	public class XMLgameData extends MovieClip
+	{
+		public static var loader:URLLoader=new URLLoader();
+		protected static var ready:Boolean = false;
+		protected static var gameValues:XML = new XML();
+			
+		public function XMLgameData()
+		{
+			this.loadXML();
+		}
+		
+		private function loadXML():void
+		{
+			
+			loader.addEventListener(Event.COMPLETE,completeHandler);
+		
+			var request:URLRequest=new URLRequest('gameData/gameLevels.xml');
+			try 
+			{
+				loader.load(request);
+			} 
+			catch(error:Error) 
+			{
+				trace('Unable to load requested document.');
+			}
+		}
+		
+		private function completeHandler(e:Event):void
+		{
+			ready = true;
+			trace("Data Loaded Successfully");
+			trace(ready);
+			
+			
+			XML.ignoreWhitespace = true; 
+			var gameLevels:XML = new XML(e.target.data);
+			
+			gameValues = gameLevels;
+		}
+		
+		public function getLevel(level:uint, attName:String):Array //Um, maybe we should return an array? Just saying
+		{
+			//return(this.ready);
+			var Response:Array = new Array();
+			
+			switch (attName) {
+				case "budget":
+					Response.push(gameValues.game.(@level == level).budget.text());
+					break;
+					
+				case "passengers":
+					Response.push(gameValues.game.(@level == level).passengers.text());
+					break;
+					
+				case "violationChance":
+					Response.push(gameValues.game.(@level == level).violationChance.text());
+					break;
+				
+				case "minViolations":
+					Response.push(gameValues.game.(@level == level).minViolations.text());
+					break;
+				
+				case "securityAlert":
+					Response.push(gameValues.game.(@level == level).securityAlert.text());
+					break;
+				
+				case "offenses":
+					for each (var offense:String in gameValues.game.(@level == level).offenses.offense) {
+						Response.push(offense);
+					}
+					break;
+
+				case "items": 
+					for each (var item:String in gameValues.game.(@level == level).items.item) {
+						Response.push(item);
+					}
+					break;
+			}//end of switch
+			return(Response);
+		}
+	}
+}

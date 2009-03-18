@@ -1,1 +1,164 @@
-﻿package gameGraphics {		import gameLogic.Station;		/* This class initially contains the empty (graphical) spots of a station, which by user interaction	   are filled with graphical Security check units. It also contains its logical representation.	   (A station is one(!) row of five (to six) Security Check Units.) 	*/	public class StationG extends Sprite {				//Five spots for either a graphic symbolizing an empty spot or the graphical representation of a Security Check Unit		private var spot1:Sprite;		private var spot2:Sprite;		private var spot3:Sprite;		private var spot4:Sprite;		private var spot5:Sprite;				//store it in array?		private var spots:Array = new Array(5); //contains sprites!				//logical representation of station		private var stationL:Station;				public StationG(number:int) {			stationL = new Station(number);			for (var i:int=0;i<5;i++) {				spots[i] = new GSpot();				Sprite(spots[i]).x = 0;				Sprite(spots[i]).y = 400*i;				addChild(spots[i]);			}		}				//SPECIFY WHAT THIS FUNCTION DOES!!! / SHOULD DO!!!		internal override function hittestObject(obj:DisplayObject):Boolean {			for(var i:int=0;i<spots.length;i++) {				if(Sprite(spots[i]).hittestObject(obj))					return true;			}					}				//Adds a security check unit to a specific spot and makes the original spots disappear		internal addSecurityCheckUnitG(secCheckG:SecurityCheckUnitG, num:int):void {			spots[num] = secCheckG;		}				//Removes the security check unit and replaces it by the original shape in place. 		internal removeSecurityCheckUnitG(num:int):void {			// SecurityCheckUnitG(spots[num]).destroy();			// spots[num] = original shape! 		}					}		}
+﻿package gameGraphics {
+	import flash.display.Sprite;
+	import flash.display.*;
+	import flash.display.DisplayObject;
+	import flash.geom.Point;
+	import flash.events.*;
+	import flash.display.Stage;
+	import gameLogic.*;
+	import gameUI.UnselectedMenu;
+
+	
+	/* This class initially contains the empty (graphical) spots of a station, which by user interaction
+	   are filled with graphical Security check units. It also contains its logical representation.
+	   (A station is one(!) row of five (to six) Security Check Units.) 
+	*/
+	public class StationG extends Sprite {
+		
+		//Five spots for either a graphic symbolizing an empty spot or the graphical representation of a Security Check Unit
+		private var spot1:GSpot;
+		private var spot2:GSpot;
+		private var spot3:GSpot;
+		private var spot4:GSpot;
+		private var spot5:GSpot;
+		
+		private var spotNum:Number = -1;
+		
+		private var spots:Array = new Array(5); //contains sprites! //No it doesn't!
+		
+		//logical representation of station
+		private var stationL:Station;
+		
+		public function StationG(number:int) {
+			stationL = new Station(number);
+			for (var i:int=0;i<5;i++) {
+				spots[i] = new GSpot();
+				spots[i].x = 108*-i;
+				spots[i].y = 56*i;
+				addChild(spots[i]);
+				spots[i].alpha=0.5;
+				spots[i].addEventListener(MouseEvent.MOUSE_OVER, rollO);
+				spots[i].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
+			}
+		}
+		
+		//Adds a security check unit to a specific spot and makes the original spots disappear
+		public function addSecurityCheckUnitG(secCheckG:SecurityCheckUnitG, num:int):void {
+
+			var newX = this.spots[num].x;
+			var newY = this.spots[num].y;
+			
+			this.spots[num].removeEventListener(MouseEvent.MOUSE_OVER, rollO);
+			this.spots[num].removeEventListener(MouseEvent.MOUSE_OUT, rollOt);
+			removeChild(this.spots[num]);
+			
+			this.spots[num] = secCheckG;
+			
+			this.spots[num].x = newX-(this.spots[num].width/2);
+			this.spots[num].y = newY-(this.spots[num].height/2);
+			
+			addChild(this.spots[num]);
+			
+			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, machineOver);
+			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, machineOut);
+			//this.spots[num].addEventListener(MouseEvent.CLICK, upgradeUI);
+			
+		}
+		
+		//Removes the security check unit and replaces it by the original shape in place. 
+		public function removeSecurityCheckUnitG(num:int):void {
+			var newX = this.spots[num].x;
+			var newY = this.spots[num].y;
+			
+			this.spots[num].removeEventListener(MouseEvent.MOUSE_OVER, machineOver);
+			this.spots[num].removeEventListener(MouseEvent.MOUSE_OUT, machineOut);
+			//this.spots[num].removeEventListener(MouseEvent.CLICK, upgradeUI);
+			removeChild(this.spots[num]);
+			
+			this.spots[num] = new GSpot();
+			
+			this.spots[num].x = newX;
+			this.spots[num].y = newY;
+			
+			addChild(this.spots[num]);
+			this.spots[num].alpha=0.5;
+			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, rollO);
+			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
+		}
+				
+		// Returns the station number of this instance
+		public function whichStationNum():Number
+		{	
+			return this.stationL.getNumber();
+		}
+		
+		// Hides visible GSpots
+		public function hideSpots():void {
+			for each (var spot:Sprite in spots) {
+				if (spot is GSpot) {
+					spot.visible = false;
+				}
+			}
+		}
+		
+		// Displays hidden GSpots
+		public function showSpots():void {
+			for each (var spot:Sprite in spots) {
+				if (spot is GSpot) {
+					spot.visible = true;
+				}
+			}
+		}
+		
+		// Get the spot mouse is over
+		public function getspotNum():Number
+		{
+			return spotNum;
+		}
+		
+		// Getter for spot array
+		public function get spotArray():Array {
+			return spots;
+		}
+		
+		// Returns graphical instance of a spot
+		public function getspotSprite(num:int):Sprite
+		{
+			return spots[num];
+		}
+		
+		// Rollover function for blank spot
+		private function rollO(e:MouseEvent):Number
+		{
+			var spot = e.currentTarget;			
+			spot.alpha = 0.75;
+			for(var i:int=0;i<spots.length;i++) {
+				if(spots[i]==spot)
+				{	
+					spotNum = i;
+					return i;
+				}
+			}
+			spotNum = -1;
+			return -1;
+		}
+
+		// Rollout function for blank spot
+		private function rollOt(e:MouseEvent):void
+		{
+			var spot = e.currentTarget;			
+			spot.alpha = 0.50;	
+			spotNum = -1;
+		}
+		
+		// Triggers update of unselected UI on rollover
+		private function machineOver(e:MouseEvent):void {
+			UnselectedMenu.setMachine(e.currentTarget as SecurityCheckUnitG);
+		}
+		
+		// Clears unselected UI on rollout
+		private function machineOut(e:MouseEvent):void {
+			UnselectedMenu.setBlank();
+		}
+	}	
+}

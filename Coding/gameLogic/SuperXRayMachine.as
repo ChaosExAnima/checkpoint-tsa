@@ -8,19 +8,19 @@
 	public class SuperXRayMachine extends XRayMachine {
 		
 		public function SuperXRayMachine() {
-			super("Super X-Ray Machine",
-				  Number(XMLmachineData.getXML("Xray","moodChange","2")), 
-				  Number(XMLmachineData.getXML("Xray","price","2")),
-				  Number(XMLmachineData.getXML("Xray","sellFor","2")),
+			super(XMLmachineData.getXML("SuperXrayMachine","name","1"),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","moodChange","1")), 
+				  Number(XMLmachineData.getXML("SuperXrayMachine","price","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","sellFor","1")),
 				  [new Bomb(), new Knife(), new Gun()],
-				  Number(XMLmachineData.getXML("Xray","accuracyMin","2")),
-				  Number(XMLmachineData.getXML("Xray","accuracyMax","2")),
-				  Number(XMLmachineData.getXML("Xray","speedMin","2")),
-				  Number(XMLmachineData.getXML("Xray","speedMax","2")),
-				  Number(XMLmachineData.getXML("Xray","powerUpGunKnifePrice","2")),
-				  Number(XMLmachineData.getXML("Xray","powerUpBombPrice","2"))); //READ IN FROM XML:
+				  Number(XMLmachineData.getXML("SuperXrayMachine","accuracyMin","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","accuracyMax","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","speedMin","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","speedMax","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpGunKnifePrice","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpBombPrice","1"))); //READ IN FROM XML:
 				  
-				  instaDetect = true;
+				  //instaDetect = true; //Needs to be defined somewhere!
 		}
 		
 		//WILL NOT BE IMPLEMENTED
