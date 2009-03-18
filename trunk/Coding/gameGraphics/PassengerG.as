@@ -6,6 +6,7 @@
 	import flash.events.*;
 	import gameGraphics.Torso;
 	import gameGraphics.Legs;
+	import gameUI.UnselectedMenu;
 	
 	public class PassengerG extends Sprite
 	{
@@ -42,40 +43,25 @@
 		
 		private var myLine:LineG;
 		
+		private var logicPass:Passenger = null;		
+		
+		// Graphical vars
 		private var _colors:Array;
 		private var _torso:MovieClip;
-		
-//		private var corpWalk:PWalk = new PWalk();
-//		private var corpStand:PStand = new PStand();
-		
 		private var _legs:MovieClip;
-		private var _legsShdw:MovieClip;
 		private var _legRef:Legs = new Legs();
 		private var _legColors:Array;
-		public var _name:String;
 		private var _toggle:Boolean;
 		
-		private var logicPass:Passenger = null;
+
 		
 		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array, name:String):void
 		{
-			
-			/*corpWalk.x = spriteOffsetX;
-			corpWalk.y = spriteOffsetY;
-			corpWalk.width = corpWalk.width*spriteScale;
-			corpWalk.height = corpWalk.height*spriteScale;
-			
-			corpStand.x = spriteOffsetX;
-			corpStand.y = spriteOffsetY;
-			corpStand.width = corpStand.width*spriteScale;
-			corpStand.height = corpStand.height*spriteScale;*/
-			
-			
 			_torso = torso;
 			_colors = colors;
 			_legs = _legRef.getStand();
 			_legColors = _legRef.setColor(_legs)
-			_name = name;
+			this.name = name;
 			
 			x = x_;
 			y = y_;
@@ -84,8 +70,6 @@
 			waitTic = Utilities.randRange(15,25);
 			reroutTic = Utilities.randRange(15,30);
 	
-//			movingMC = corpWalk;
-			
 			logicPass = logic;
 			
 			
@@ -93,49 +77,75 @@
 			
 			this.addChild(_legs);
 			this.addChild(_torso);
-			//this.addChild(movingMC);
-			//movingMC.addChild(_torso);			
 			
 			this.addEventListener(MouseEvent.CLICK, toggleSelected);
+			this.addEventListener(MouseEvent.MOUSE_OVER, overSelected);
+			this.addEventListener(MouseEvent.MOUSE_OUT, outSelected);
 
 			inittedB = true;
 		}
 		
-		private function toggleSelected(e:MouseEvent):void {
-			if (!_toggle) {
-				trace(_name);
-				_legRef.showCircle(_legs, true);
-				_toggle = true;
-			} else {
-				_legRef.showCircle(_legs, false);
-				_toggle = false;
+		//------------------------------------------NAVIGATION FUNCTIONS--------------------------//
+		
+		// Sets current walk target to new entry on waypoint array
+		public function setTarg(x_:Number, y_:Number):void
+		{
+			xTarg.unshift(x_);
+			yTarg.unshift(y_);
+			setOrigin();
+			recalSpeeds();
+			updateHeading();
+		}
+		
+		// Goes either to next waypoint or kills self,
+		// depending on if there are any waypoints left
+		private function atTarg():void
+		{
+			xTarg.shift();
+			yTarg.shift();
+			setOrigin();
+			if(xTarg.length < 1)
+			{
+				killMe();
+			}else{
+				recalSpeeds();
+				updateHeading();
 			}
 		}
 		
-		public function initted():Boolean
+		// Sets the new waypoint to random point on the map
+		public function randTarg():void
 		{
-			return inittedB;
+			setTarg(Utilities.randRange(0,1800), Utilities.randRange(0,1350));
 		}
 		
-		private function frameEntered(e:Event):void
+		// Skips current target
+		public function skipTarg():void
 		{
-			//drawMe();
-		}
-/*		
-		public function jumpTo():void
-		{
-			x = xTarg[0];
-			y = yTarg[0];
 			atTarg();
 		}
-*/		
+		
+		// Adds new waypoint to go to after finishing current waypoints
+		public function addTarg(x_:Number, y_:Number):void
+		{
+			xTarg.push(x_);
+			yTarg.push(y_);
+		}
+		
+		// Recalibrates the speed depending on the distance to the target
 		private function recalSpeeds():void
 		{
 			xSpeed = targSpeed*(xTarg[0] - x)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
 			ySpeed = targSpeed*(yTarg[0] - y)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
-//			trace(xSpeed+", "+ySpeed);
-//			trace(targSpeed);
 		}
+		
+		// Sets origin to current position
+		private function setOrigin():void
+		{
+			originX = x;
+			originY = y;
+		}
+		
 		
 		public function tStep():void
 		{
@@ -151,59 +161,28 @@
 			}
 		}
 		
-		private function setOrigin():void
+		// Returns true if current distance to waypoint is under a certain distance
+		public function closeEnough():Boolean
 		{
-			originX = x;
-			originY = y;
+			return distToTarg() <= gimmeDist;
 		}
 		
-		private function atTarg():void
-		{
-			trace("at targ");
-			xTarg.shift();
-			yTarg.shift();
-			setOrigin();
-			if(xTarg.length < 1)
-			{
-				trace("ran out of targets");
-				killMe();
-			}else{
-				recalSpeeds();
-				updateHeading();
-			}
-			//randTarg();
+		// Kills self
+		public function killMe():void
+		{			
+			trace("killing myself");		
+			obsolete = true;
 		}
 		
-		public function randTarg():void
+		// Returns how far it is to current waypoint
+		public function distToTarg():Number
 		{
-			setTarg(Utilities.randRange(0,1800), Utilities.randRange(0,1350));
+			return Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
 		}
 		
-		public function setTarg(x_:Number, y_:Number):void
-		{
-			xTarg.unshift(x_);
-			yTarg.unshift(y_);
-			setOrigin();
-			recalSpeeds();
-			updateHeading();
-		}
+		//----------------------------------------GRAPHICAL FUNCTIONS--------------------------------------//
 		
-		public function skipTarg():void
-		{
-
-			//xTarg.shift();
-			//yTarg.shift();
-			//			BAD SANDY! Check for double-shifts!
-			
-			atTarg();
-		}
-		
-		public function addTarg(x_:Number, y_:Number):void
-		{
-			xTarg.push(x_);
-			yTarg.push(y_);
-		}
-		
+		// Sets how person faces depending on angle to waypoint
 		private function updateHeading():void
 		{
 			var theta:Number = Math.atan(Math.abs(xSpeed/ySpeed))*180/Math.PI;
@@ -223,7 +202,7 @@
 			theta = Math.ceil(theta/45);
 			if (theta != _torso.currentFrame) {
 	 			_torso.gotoAndStop(theta);
-			 	_torso.addFrameScript(_torso.currentFrame-1, setClip);
+			 	_torso.addFrameScript(_torso.currentFrame-1, setTorso);
 			}
 			if (theta != _legs.currentFrame) {
 				_legs.gotoAndStop(theta);
@@ -231,36 +210,34 @@
 			}
 		}
 		
-		private function setClip():void {
+		// Sets torso direction and recolors it
+		private function setTorso():void {
 			_torso.addFrameScript(_torso.currentFrame-1, null);
 			new Torso().setColor(_torso, _colors);
 		}
 		
+		// Sets legs direction and recolors it
 		private function setLegs():void {
 			_legs.addFrameScript(_legs.currentFrame-1, null);
 			_legRef.setColor(_legs, _legColors);
 			_legRef.scaleAnim(_legs, targSpeed);
-//			_legRef.scaleAnim(_legsShdw, targSpeed);
 		}
 			
-		
+		// Sets legs to walk animation
 		public function startWalk():void
 		{
 			if (_legs is stand1) {
 				this.removeChild(_legs);
-//				this.removeChild(_legsShdw);
 				_legs = _legRef.getWalk();
-//				_legsShdw = _legRef.getWalkShdw();
 				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
-//				_legsShdw.addFrameScript(_legs.currentFrame-1, 
 				this.addChildAt(_legs, 0);
-//				this.addChildAt(_legsShdw, 0);
 			}
 
 			updateHeading();
 			recalSpeeds();
 		}
 		
+		// Sets legs to stand animation
 		public function stopWalk():void
 		{
 			if (_legs is walk1) {
@@ -273,15 +250,43 @@
 			updateHeading();
 		}
 		
-		public function closeEnough():Boolean
-		{
-			return distToTarg() <= gimmeDist;
+		//-------------------------------------------SELECTION FUNCTIONS------------------------------//
+		
+		// Clears person info on mouse out
+		private function outSelected(e:MouseEvent):void {
+			UnselectedMenu.setBlank();
 		}
 		
-		public function distToTarg():Number
-		{
-			return Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+		// Sets person info on mouse in
+		private function overSelected(e:MouseEvent):void {
+			UnselectedMenu.setPerson(this);
+			// Hilite person code here
 		}
+		
+		// Selects person and shows redirect on mouse down
+		private function toggleSelected(e:MouseEvent):void {
+			if (!_toggle) {
+				trace(this.name);
+				_legRef.showCircle(_legs, true);
+				_toggle = true;
+			} else {
+				_legRef.showCircle(_legs, false);
+				_toggle = false;
+			}
+		}
+		
+		//------------------------------------GETTERS AND SETTERS---------------------------------------//
+
+		// Gets logic
+		public function get logic():Passenger {
+			return(logicPass);
+		}
+		
+		// Gets whether is initialized
+		public function initted():Boolean
+		{
+			return inittedB;
+		}		
 		
 		public function getFootPrintX():Number
 		{
@@ -330,15 +335,6 @@
 			}else{
 				setTarg(myLine.x,myLine.y);
 			}
-		}
-		
-		public function killMe():void
-		{			
-			trace("killing myself");		
-			this.removeEventListener(Event.ENTER_FRAME, frameEntered);
-//			corporealForm.graphics.clear();
-			obsolete = true;
-			
 		}
 	}
 }

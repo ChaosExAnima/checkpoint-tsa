@@ -382,5 +382,9 @@
 			passArray = new Array();
 			setGrid(width_,height_,floorW,floorH);
 		}
+		
+		public function get passengerArray():Array {
+			return passArray;
+		}
 	}
 }

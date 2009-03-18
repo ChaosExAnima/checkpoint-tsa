@@ -41,7 +41,6 @@
 			
 			personMaker = new GraphPassFact(this);
 			
-			
 			//this.addChild(lineA);
 			//this.addChild(lineB);
 			//this.addChild(lineC);
@@ -180,5 +179,6 @@
 			escalatorE.clearPasses();
 			afloor.clearPasses();
 		}
+
 	}
 }

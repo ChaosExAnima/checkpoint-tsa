@@ -3,6 +3,7 @@
 <securityCheckUnits>
 <!------------------------------------------------------TICKET_CHECKER---------------------------------------------->
 	<unit name="TicketChecker" level="1" type="guard">
+		<name>Ticket Checker</name>
 	 	<price>300</price>
 		<speed>0.25</speed>
 		<powerUpPrice>600</powerUpPrice>
@@ -10,96 +11,162 @@
 	 </unit>
 <!----------------------------------------------------------BAG_CHECKER--------------------------------------------->	 
 	<unit name="BagChecker" level="1" type="guard">
+		<name>Bag Checker</name>
 		<price>20</price>
  	  	<accuracy>60</accuracy>
 		<speed>10</speed>
 		<sellFor>0</sellFor>
 		<moodChange>2</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>
      </unit>
 	 <unit name="BagChecker" level="2" type="guard">
+	 	<name>Bag Checker</name>
 		<price>40</price>
  	  	<accuracy>80</accuracy>
 		<speed>8</speed>
 		<sellFor>0</sellFor>
-		<moodChange>2</moodChange>     	
+		<moodChange>2</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>   	
      </unit>
 	 <unit name="BagChecker" level="3" type="guard">
+	 	<name>Bag Checker</name>
 		<price>80</price>
  	  	<accuracy>80</accuracy>
 		<speed>7</speed>
 		<sellFor>0</sellFor>
-		<moodChange>2</moodChange>     	
+		<moodChange>2</moodChange>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>     	
      </unit>
 <!----------------------------------------------------------WAND_WAVER--------------------------------------------------->	 
 	 <unit name="WandWaver" level="1" type="guard">
+	 	<name>Wand Waver</name>
 		<price>20</price>
  	  	<accuracy>60</accuracy>
 		<speed>6</speed>
 		<sellFor>0</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>   	
      </unit>
+	 
 	 <unit name="WandWaver" level="2" type="guard">
+	 	<name>Wand Waver</name>
  		<price>40</price>
  	  	<accuracy>80</accuracy>
 		<speed>6</speed>
 		<sellFor>0</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>   	
      </unit>
+	 
 	 <unit name="WandWaver" level="3" type="guard">
+	 	<name>Wand Waver</name>
 		<price>80</price>
  	  	<accuracy>80</accuracy>
 		<speed>4</speed>
 		<sellFor>0</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange>     
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>	
      </unit>
  
 <!----------------------------------------------------------DRUG_CANINE--------------------------------------------------->	 
 	  <unit name="DrugCanine" level="1" type="guard">
+	  	<name>Drug Dog</name>
 		<price>50</price>
  	  	<accuracy>20</accuracy>
 		<speed>4</speed>
 		<sellFor>25</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange> 
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>    	
      </unit>
 	 <unit name="DrugCanine" level="2" type="guard">
+	 	<name>Drug Canine</name>
 		<price>100</price>
  	  	<accuracy>40</accuracy>
 		<speed>4</speed>
 		<sellFor>50</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange>   
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>  	
      </unit>
 	 <unit name="DrugCanine" level="3" type="guard">
+	 	<name>Drug Pig</name>
 		<price>200</price>
  	  	<accuracy>50</accuracy>
 		<speed>4</speed>
 		<sellFor>100</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange> 
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>    	
      </unit>
 <!----------------------------------------------------------BOMB_CANINE--------------------------------------------------->
 	 <unit name="BombCanine" level="1" type="guard">
+	 	<name>Bomb Dog</name>
 		<price>70</price>
  	  	<accuracy>40</accuracy>
 		<speed>4</speed>
 		<sellFor>35</sellFor>
-		<moodChange>1.5</moodChange>     	
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>   	
      </unit>
 	 <unit name="BombCanine" level="2" type="guard">
+	 	<name>Bomb Canine</name>
 		<price>140</price>
  	  	<accuracy>60</accuracy>
 		<speed>4</speed>
 		<sellFor>70</sellFor>
 		<moodChange>1.5</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>
      </unit>
 	 <unit name="BombCanine" level="3" type="guard">
+	 	<name>Bomb Pig</name>
 		<price>280</price>
  	  	<accuracy>70</accuracy>
 		<speed>4</speed>
 		<sellFor>160</sellFor>
 		<moodChange>1.5</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>
      </unit>
 <!----------------------------------------------------------METAL_DETECTORS--------------------------------------------------->	 
-	<!--"CHEAPIE METAL DETECTOR"-->
-	 <unit name="MetalDetector" level="1" type="slider">
+	<!--"Cheapie METAL DETECTOR"-->
+	 <unit name="CheepieMetalDetector" level="1" type="slider">
+	 	<name>Metal Detector</name>
 		<price>200</price>
 		<accuracy>55</accuracy>
 		<accuracyMin>45</accuracyMin>
@@ -115,11 +182,16 @@
 		<powerUpKnifePrice>30</powerUpKnifePrice>
 		<powerUpAccuracyMin>55</powerUpAccuracyMin>
 		<powerUpAccuracyMax>75</powerUpAccuracyMax>
+		<offenses>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
 	 </unit>
 	
 
 	<!--"SUPER METAL DETECTOR"-->	 
-	  <unit name="MetalDetector" level="2" type="slider">
+	  <unit name="SuperMetalDetector" level="1" type="slider">
+	  	<name>Ultra Detector</name>
 	    <price>600</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -135,11 +207,17 @@
 		<powerUpAccuracyMin>null</powerUpAccuracyMin>
 		<powerUpAccuracyMax>null</powerUpAccuracyMax>
 		<sellFor>300</sellFor><!--????????? it"s supposed to be a Percent but above is fixed!!!!-->
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
 	 </unit>
 <!----------------------------------------------------------X_RAYS--------------------------------------------------->	 
 
-<!--"CHEAPIE XRAY"--> 
- 	 <unit name="Xray" level="1" type="slider">
+<!--"Cheapie XRAY"--> 
+ 	 <unit name="CheepieXrayMachine" level="1" type="slider">
+	 	<name>X-Ray Machine</name>
 	    <price>400</price>
 		<accuracy>50</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -153,10 +231,16 @@
 		<powerUpAccuracyMin>40</powerUpAccuracyMin>
 		<powerUpAccuracyMax>60</powerUpAccuracyMax>	
 		<sellFor>200</sellFor>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
 	 </unit>
 	 
 <!--"SUPER XRAY"--> 
- 	 <unit name="Xray" level="2" type="slider">
+ 	 <unit name="SuperXrayMachine" level="1" type="slider">
+	 	<name>Super Scanner</name>
 	    <price>800</price>
 		<accuracy>40</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -170,10 +254,16 @@
 		<powerUpAccuracyMin>50</powerUpAccuracyMin>
 		<powerUpAccuracyMax>70</powerUpAccuracyMax>	
 		<sellFor>400</sellFor>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
 	 </unit>
 <!----------------------------------------------------------SNIFFER_MACHINE--------------------------------------------------->	
 
  	 <unit name="SnifferMachine" level="1" type="slider"> 
+	 	<name>Sniffer</name>
 	    <price>1800</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -191,6 +281,7 @@
 <!----------------------------------------------------------ENTERTAINMENT_ASSETS--------------------------------------------------->	
 
  	 <unit name="VideoDisplay" level="1" type="entertainment"> 
+	 	<name>Video Display</name>
 	    <price>300</price>
 		<speed>0</speed>
 		<moodChange>0.2</moodChange>
@@ -198,6 +289,7 @@
 	 </unit>
 	 
 	 <unit name="Clown" level="1" type="entertainment"> 
+	 	<name>Clown</name>
 	    <price>1250</price>
 		<speed>0</speed>
 		<moodChange>0.5</moodChange>
