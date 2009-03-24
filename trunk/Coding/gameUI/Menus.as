@@ -1,9 +1,13 @@
 ﻿package gameUI {
 	import gameData.*;
+	import gameUI.*;
 	import gameSound.SoundManager;
+	import gameControl.TheGame;
 	import flash.display.MovieClip;
-	import flash.events.MouseEvent;
+	import flash.events.*;
 	import flash.ui.Mouse;
+	import flash.ui.Keyboard;
+	import fl.controls.Button;
 	
 	public class Menus extends MovieClip {
 		private var _machineData:XMLmachineData = new XMLmachineData();
@@ -13,6 +17,8 @@
 		private var _remainingUses:int = 3; //Remaining uses for hot-cold game
 		private var _cursor:MovieClip = null; //Custom cursor clip
 		private var _sndManager:SoundManager;
+		private var _infoBox:InfoBox;
+		private var _options:Options;
 		
 		public function Menus(inter:Interface, sound:SoundManager):void {
 			_UI = inter;
@@ -20,11 +26,21 @@
 			_curMenu = new UnselectedMenu(this);
 			_curMenu.init();
 			this.addChild(_curMenu);
-			this.addChild(new InfoBox(this));
+			_infoBox = new InfoBox(this);
+			this.addChild(_infoBox);
+			
+			this.addEventListener(Event.ADDED_TO_STAGE, createListeners);
+		}
+		
+		// Creates listeners- call after Menus is added to the display list!
+		private function createListeners(e:Event):void {
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, moveHandler);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, optionsHandler);
+			_UI.lineOutline.addEventListener(MouseEvent.CLICK, newLineHandler);
 		}
 		
 		// Swaps current menu for new one
-		internal function setMenu(menu:MovieClip):void {
+		public function setMenu(menu:MovieClip):void {
 			this.removeChild(_curMenu);
 			_curMenu.cleanUp();
 			_curMenu = menu;
@@ -36,13 +52,70 @@
 		internal function playClick():void {
 			_sndManager.playSound("sounds/fx/Click_1.mp3");
 		}
-
-//------------------------------------CUSTOM CURSOR FUNCTIONS----------------------//
 		
-		// Creates listeners- call after Menus is added to the display list!
-		public function createListeners():void {
-			MovieClip(root).addEventListener(MouseEvent.MOUSE_MOVE, moveHandler);
+//----------------------------------NEW LINE DIALOG BOX-------------------------------//
+
+		private function newLineHandler(e:MouseEvent):void {
+			var newLineBox:MovieClip = new menu_newline();
+			newLineBox.x = stage.stageWidth/2;
+			newLineBox.y = stage.stageHeight/2;
+			this.addChild(newLineBox);
+			
+			var b_confirm:Button = new Button();
+			b_confirm.setStyle("upSkin", new Button_confirmUpSkin());
+			b_confirm.setStyle("downSkin", new Button_confirmDownSkin());
+			b_confirm.setStyle("overSkin", new Button_confirmOverSkin());
+			b_confirm.label = "";
+			b_confirm.x = 125;
+			b_confirm.y = -25;
+			
+			newLineBox.addChild(b_confirm);
+			
+			var price:int = Math.pow(2, _UI.getNumStations())*100;
+			newLineBox.t_price.text = "Buy a new line for $"+price+"?";
+			
+			if (!TheGame.affordable(price)) {
+				b_confirm.enabled = false;
+			} else {
+				b_confirm.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) { _UI.addStation();
+																				   e.target.parent.parent.removeChild(newLineBox);});
+			}
+			
+			newLineBox.b_cancel.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) {e.target.parent.parent.removeChild(newLineBox);});
 		}
+		
+//----------------------------------OPTIONS MENU FUNCTIONS------------------------//
+
+		// Displays Options menu
+		public function showOptions():void {
+			if (!_options) {
+				_options = new Options(this, _sndManager);
+				_options.x = 500;
+				_options.y = 375;
+				this.addChild(_options);
+			}
+		}
+		
+		// Removes Options menu
+		public function hideOptions():void {
+			if (_options) {
+				this.removeChild(_options);
+				_options = null;
+			}
+		}
+		
+		// Handles calling up options by hitting ESC key
+		private function optionsHandler(e:KeyboardEvent):void {
+			if (e.keyCode == Keyboard.ESCAPE) {
+				if (!_options) {
+					showOptions();
+				} else {
+					hideOptions();
+				}
+			}
+		}
+		
+//------------------------------------CUSTOM CURSOR FUNCTIONS----------------------//
 
 		// Triggered when over the menu
 		private function overMenu():void {
@@ -50,7 +123,7 @@
 			if (!_cursor) {
 				Mouse.show();
 			} else {
-				MovieClip(root).addChild(_cursor);
+				stage.addChild(_cursor);
 			}
 		}
 		
@@ -65,7 +138,7 @@
 		// Removes cursor movieclip
 		internal function clearCursor():void {
 			try {
-				MovieClip(root).removeChild(_cursor);
+				stage.removeChild(_cursor);
 			} catch(e:Error) {}
 		}
 		
@@ -109,7 +182,7 @@
 			_cursor = cur;
 			clearCursor();
 			if (_cursor) {
-				MovieClip(root).addChild(_cursor);
+				stage.addChild(_cursor);
 			}
 		}
 		
@@ -119,6 +192,10 @@
 		
 		internal function get sndManager():SoundManager {
 			return (_sndManager);
+		}
+		
+		public function get infoBox():InfoBox {
+			return (_infoBox);
 		}
 	}
 }

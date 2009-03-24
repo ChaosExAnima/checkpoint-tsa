@@ -78,7 +78,7 @@ import gameGraphics.SecurityCheckUnitG;
 			if (prohObjs.some(testKindProhObjs)) 
 			{
 				var chance:Number = Math.random();
-				if (chance<((accuracy * Airport.getSecurityAlertLevelMultiplyer())/100)) 
+				if (chance<((accuracy * Airport.getSecurityAlertLevelMultiplier())/100)) 
 					return true;
 			}
 			return false;					
@@ -178,7 +178,7 @@ import gameGraphics.SecurityCheckUnitG;
 		}
 		
 		public function getAccuracy():int {
-			return accuracy;
+			return accuracy*Airport.getSecurityAlertLevelMultiplier();
 		}
 		
 		//PRE: Only to be set by station. 1 <= position <= 5
@@ -188,7 +188,7 @@ import gameGraphics.SecurityCheckUnitG;
 		}
 		
 		public function getSpeed():Number {
-			return speed;
+			return TheGame.gameToMinTime(speed*Airport.getSecurityAlertLevelMultiplier());
 		}
 	
 		public function getMood():Number {

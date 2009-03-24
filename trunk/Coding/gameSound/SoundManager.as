@@ -14,8 +14,7 @@
 		var m_bMute:Boolean = false;
 		var m_musicLevel:int;
 		
-		public function SoundManager()
-		{
+		public function SoundManager():void {
 			var so:SharedObject = SharedObject.getLocal("mute");
 			if(!so.size)
 			{
@@ -39,13 +38,18 @@
 			{
 				m_musicLevel = so.data.musicLevel;
 			}		
-			
 		}
 		
-		public function	getMute():Boolean{ return m_bMute;}
-		public function	toggleMute():Boolean { setMute(!m_bMute); return m_bMute;}
-		public function setMute(bMute:Boolean)
-		{ 
+		public function	getMute():Boolean {
+			return m_bMute;
+		}
+		
+		public function	toggleMute():Boolean { 
+			setMute(!m_bMute); 
+			return m_bMute;
+		}
+		
+		public function setMute(bMute:Boolean):void { 
 			m_bMute = bMute; 
 			var so:SharedObject = SharedObject.getLocal("mute");
 			so.data.mute = m_bMute == 1;
@@ -63,19 +67,21 @@
 			return(sound);
 		}
 		
-		public function setMusic(filename:String)
+		public function setMusic(filename:String):void
 		{
 			if(m_music)
 				m_music.transitionMusic(filename);
 			else
 			{
-				m_music = new SoundObject(filename, this, true);
+				m_music = new SoundObject(filename, this, true, m_musicLevel);
 				m_music.setSoundLevel(m_musicLevel);
 			}
 		}
 		
 		// volume ranges from 0 (silent) to 100 (full volume)
-		public function getMusicVolume():int { return m_musicLevel;}
+		public function getMusicVolume():int { 
+			return m_musicLevel;
+		}
 		
 		// volume ranges from 0 (silent) to 100 (full volume)
 		public function setMusicVolume(sndlevel:int) 

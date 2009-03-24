@@ -39,14 +39,17 @@
 			showAvailableUnits();
 			clearDispData();
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, update);
+			_UI.parent.addEventListener(MouseEvent.CLICK, cancelHandler);
 		}
 		
+		// Cleans up before switching menus
 		public function cleanUp():void {
 			for each (var button:Sprite in _buttons) {
 				button.removeEventListener(MouseEvent.MOUSE_OVER, dispMachineData);
 			}
 			_UI.hideStations();
 			TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, update);
+			_UI.parent.removeEventListener(MouseEvent.CLICK, cancelHandler);
 		}
 		
 		// Used to update button availablity if money changed
@@ -96,6 +99,21 @@
 						disableUnits(machine);
 					}
 				}
+			}
+		}
+		
+		// Handler for cancelling out of build menu
+		private function cancelHandler(e:MouseEvent):void {
+			_menu.setMenu(new UnselectedMenu(_menu));
+			if (_UI.gSecCheckUnit) {
+				_UI.uiAirport.removeChild(_UI.gSecCheckUnit);
+				for each (var stat:StationG in _UI.stations) {
+					for each (var spot:Sprite in stat.spotArray) {
+						if (spot is GSpot) {
+							spot.removeEventListener(MouseEvent.CLICK, placeMachine);
+						}
+					}
+				}			
 			}
 		}
 		
@@ -158,13 +176,13 @@
 				startDrag(true);
 				transform.colorTransform = new ColorTransform(.8,.8,.8,0.5,100,0,0,0);
 			}
-			for each (var line:StationG in _UI.stations) {
-				for each (var spot:Sprite in line.spotArray) {
+			for each (var station:StationG in _UI.stations) {
+				for each (var spot:Sprite in station.spotArray) {
 					if (spot is GSpot) {
 						spot.addEventListener(MouseEvent.CLICK, placeMachine);
 					}
 				}
-			}			
+			}
 		}
 		
 		//Stops drag and plunks machine down
@@ -172,8 +190,8 @@
 			var unit:SecurityCheckUnitG = _UI.gSecCheckUnit;
 			var station:StationG = _UI.getStation();
 
-			for each (var line:StationG in _UI.stations) {
-				for each (var spot:Sprite in line.spotArray) {
+			for each (var stat:StationG in _UI.stations) {
+				for each (var spot:Sprite in stat.spotArray) {
 					if (spot is GSpot) {
 						spot.removeEventListener(MouseEvent.CLICK, placeMachine);
 					}
@@ -183,8 +201,8 @@
 			station.addSecurityCheckUnitG(unit, station.getspotNum());
 			unit.transform.colorTransform = new ColorTransform(1,1,1,1,0,0,0,0);
 			_UI.gSecCheckUnit = null;
-			showAvailableUnits();
-			_menu.setMenu(new UnselectedMenu(_menu));
+			//showAvailableUnits();
+			_menu.setMenu(new SelectedMenu(_menu, unit));
 		}
 
 		//-----------------------------MACHINE INFO DISPLAY----------------------------------//

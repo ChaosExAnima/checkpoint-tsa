@@ -6,7 +6,7 @@
 	import flash.events.*;
 	import flash.display.Stage;
 	import gameLogic.*;
-	import gameUI.UnselectedMenu;
+	import gameUI.*;
 
 	
 	/* This class initially contains the empty (graphical) spots of a station, which by user interaction
@@ -29,6 +29,8 @@
 		//logical representation of station
 		private var stationL:Station;
 		
+		private var _lineG:LineG;
+		
 		public function StationG(number:int) {
 			stationL = new Station(number);
 			for (var i:int=0;i<5;i++) {
@@ -40,6 +42,12 @@
 				spots[i].addEventListener(MouseEvent.MOUSE_OVER, rollO);
 				spots[i].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
 			}
+			
+			_lineG = new LineG(this);
+			_lineG.x = 1220+(108*number);
+			_lineG.y = 340+(56*number);
+			trace("Station coords: "+this.x+", "+this.y);
+			this.addChild(_lineG);
 		}
 		
 		//Adds a security check unit to a specific spot and makes the original spots disappear
@@ -53,6 +61,8 @@
 			removeChild(this.spots[num]);
 			
 			this.spots[num] = secCheckG;
+			stationL.addSecurityCheckUnit(secCheckG.logic, num);
+			secCheckG.spot = num;
 			
 			this.spots[num].x = newX-(this.spots[num].width/2);
 			this.spots[num].y = newY-(this.spots[num].height/2);
@@ -61,18 +71,18 @@
 			
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, machineOver);
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, machineOut);
-			//this.spots[num].addEventListener(MouseEvent.CLICK, upgradeUI);
+			this.spots[num].addEventListener(MouseEvent.CLICK, machineSelect);
 			
 		}
 		
 		//Removes the security check unit and replaces it by the original shape in place. 
 		public function removeSecurityCheckUnitG(num:int):void {
-			var newX = this.spots[num].x;
-			var newY = this.spots[num].y;
+			var newX = (this.spots[num].x)+(this.spots[num].width/2);
+			var newY = (this.spots[num].y)+(this.spots[num].height/2);
 			
 			this.spots[num].removeEventListener(MouseEvent.MOUSE_OVER, machineOver);
 			this.spots[num].removeEventListener(MouseEvent.MOUSE_OUT, machineOut);
-			//this.spots[num].removeEventListener(MouseEvent.CLICK, upgradeUI);
+			this.spots[num].removeEventListener(MouseEvent.CLICK, machineSelect);
 			removeChild(this.spots[num]);
 			
 			this.spots[num] = new GSpot();
@@ -84,6 +94,8 @@
 			this.spots[num].alpha=0.5;
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, rollO);
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
+			
+			hideSpots();
 		}
 				
 		// Returns the station number of this instance
@@ -159,6 +171,20 @@
 		// Clears unselected UI on rollout
 		private function machineOut(e:MouseEvent):void {
 			UnselectedMenu.setBlank();
+		}
+		
+		// Shows the selection menu
+		private function machineSelect(e:MouseEvent):void {
+			var menu:Menus = MovieClip(root).menus;
+			menu.setMenu(new SelectedMenu(menu, e.currentTarget as SecurityCheckUnitG));
+		}
+		
+		public function getLogic():Station {
+			return stationL;
+		}
+		
+		public function get line():LineG {
+			return _lineG;
 		}
 	}	
 }

@@ -17,17 +17,20 @@
 		private var m_bLoop:Boolean;
 		private var m_nextMusicFilename:String;
 		private var m_timer:Timer;
+		private var m_vol:int;
 		
 		
-		public function SoundObject(filename:String, myParent, bLoop:Boolean):void
+		public function SoundObject(filename:String, myParent, bLoop:Boolean, vol:int = 100):void
 		{
 			m_parent = myParent;
 			m_bLoop = bLoop;
+			m_vol = vol;
 			
 			var req:URLRequest = new URLRequest(filename);
 			m_snd = new Sound(req);
 			m_channel = m_snd.play();
 			m_channel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+			setSoundLevel(m_vol);
 		}
 		
 		public function transitionMusic(filename:String):void
@@ -46,6 +49,7 @@
 			{
 				m_channel = m_snd.play();
 				m_channel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+				setSoundLevel(m_vol);
 			}
 			else
 				m_parent.deleteSound(this);

@@ -7,6 +7,7 @@
 	import gameGraphics.Torso;
 	import gameGraphics.Legs;
 	import gameUI.UnselectedMenu;
+	import gameUI.RedirectMenu;
 	
 	public class PassengerG extends Sprite
 	{
@@ -53,6 +54,8 @@
 		private var _legColors:Array;
 		private var _toggle:Boolean;
 		
+		public var _paused:Boolean;
+		private var _redirect:RedirectMenu;
 
 		
 		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array, name:String):void
@@ -153,7 +156,7 @@
 			{
 				 atTarg();
 			}else{
-				if(xTarg.length >= 1)
+				if(xTarg.length >= 1 && !_paused) 
 				{
 					x += xSpeed;
 					y += ySpeed;
@@ -226,7 +229,7 @@
 		// Sets legs to walk animation
 		public function startWalk():void
 		{
-			if (_legs is stand1) {
+			if (_legs is stand1 && !_paused) {
 				this.removeChild(_legs);
 				_legs = _legRef.getWalk();
 				_legs.addFrameScript(_legs.currentFrame-1, setLegs);
@@ -265,13 +268,12 @@
 		
 		// Selects person and shows redirect on mouse down
 		private function toggleSelected(e:MouseEvent):void {
-			if (!_toggle) {
-				trace(this.name);
-				_legRef.showCircle(_legs, true);
-				_toggle = true;
+			if (!_redirect) {
+				trace("Redirect Menu created!");
+				_redirect = new RedirectMenu(this, MovieClip(root).UI);
+				this.addChild(_redirect);
 			} else {
-				_legRef.showCircle(_legs, false);
-				_toggle = false;
+				_redirect = null;
 			}
 		}
 		
@@ -333,6 +335,7 @@
 				setTarg(1400,660);
 				trace("found a checker");
 			}else{
+				trace("Coords: "+myLine.x+", "+myLine.y);
 				setTarg(myLine.x,myLine.y);
 			}
 		}

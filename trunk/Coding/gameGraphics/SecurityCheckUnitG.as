@@ -9,10 +9,11 @@
 	/* This holds all variables and methods all graphical representations of Security Check Units have in common. 
 	   Use subclasses of this class to display Security Check Units. */
 	
-	public class SecurityCheckUnitG extends Sprite{
+	public class SecurityCheckUnitG extends Sprite {
 		
 		//private var xLoc:Number;
 		//private var yLoc:Number;
+		private var _spot:int;
 		
 		//Unit form that is displayed by SecurityCheckUnitG
 		protected var unitForm:MovieClip; //= new CheepieMetalDetectorG();
@@ -78,5 +79,12 @@
 			addChild(unitForm);
 		}
 		
+		public function get spot():int {
+			return _spot;
+		}
+		
+		public function set spot(num:int):void {
+			_spot = num;
+		}
 	}
 }

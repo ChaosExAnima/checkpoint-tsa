@@ -173,7 +173,7 @@
 				return 0;
 			}
 			
-			var passConceal = passG.logic.conceal;
+			var passConceal = passG.logic.getConcealment();
 			// the lower the concealment the farther away from the passenger
 			// the meter maxes out.
 		
