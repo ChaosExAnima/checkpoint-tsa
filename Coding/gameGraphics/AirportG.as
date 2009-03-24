@@ -15,19 +15,9 @@
 		public var escalatorD:Escalator = new Escalator();
 		public var escalatorE:Escalator = new Escalator();
 		
-		//public var lineA:LineG = new LineG(1);
-		//public var lineB:LineG = new LineG(2);
-		//public var lineC:LineG = new LineG(3);
-		//public var lineD:LineG = new LineG(4);
-		//public var lineE:LineG = new LineG(5);
-		
-		public var lines = new Array(new LineG(1), new LineG(2), new LineG(3), new LineG(4), new LineG(5))
+		public var lines = new Array();
 		
 		public var afloor:Floor = new Floor(10, 10, 0, 0, 1800, 1350);
-		
-		
-		
-		
 		
 		public function AirportG():void
 		{
@@ -37,18 +27,7 @@
 			this.addChild(escalatorD);
 			this.addChild(escalatorE);
 			
-			new Airport();
-			
 			personMaker = new GraphPassFact(this);
-			
-			//this.addChild(lineA);
-			//this.addChild(lineB);
-			//this.addChild(lineC);
-			//this.addChild(lineD);
-			//this.addChild(lineE);
-			
-			for(var i:uint = 0; i < lines.length; i++)
-				this.addChild(lines[i]);
 			
 			this.addChild(afloor);
 			
@@ -68,36 +47,6 @@
 			escalatorE.y = 1280;
 			
 			var offset:uint = 55;
-			
-//			lineA.x = 1165;
-//			lineA.y = 322 + offset;
-	
-//			lineB.x = 1266;
-//			lineB.y = 375 + offset;
-			
-//			lineC.x = 1381;
-//			lineC.y = 433 + offset;
-			
-//			lineD.x = 1490;
-//			lineD.y = 486 + offset;
-			
-//			lineE.x = 1605;
-//			lineE.y = 540 + offset;
-
-			lines[0].x = 1165;
-			lines[0].y = 322 + offset;
-	
-			lines[1].x = 1266;
-			lines[1].y = 375 + offset;
-			
-			lines[2].x = 1381;
-			lines[2].y = 433 + offset;
-			
-			lines[3].x = 1490;
-			lines[3].y = 486 + offset;
-			
-			lines[4].x = 1605;
-			lines[4].y = 540 + offset;
 			
 			this.addEventListener(Event.ENTER_FRAME, frameEntered);
 		}
@@ -178,6 +127,29 @@
 			escalatorD.clearPasses();
 			escalatorE.clearPasses();
 			afloor.clearPasses();
+		}
+		
+		public function addLine():void {
+			if (lines.length >= 5) {
+				return;
+			}
+			
+			lines.push(new StationG(lines.length));
+			Airport.addStation(lines.length);
+			
+			var sX:int = 1220;
+			var sY:int = 340;
+			
+			for each (var line:StationG in lines) {
+				line.x = sX;
+				line.y = sY;
+				sX += 108;
+				sY += 56;
+				this.addChild(line);
+				line.hideSpots();
+			}
+			
+			
 		}
 
 	}

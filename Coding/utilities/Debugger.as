@@ -71,6 +71,8 @@
 			}
 			setStyles(newButton);
 			_container.addChild(newButton);
+			_container.visible = false;
+			_shown = false;
 		}
 		
 		public function addTextBox(title:String):void {

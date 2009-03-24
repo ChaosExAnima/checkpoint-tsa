@@ -18,35 +18,52 @@
 		public var stations:Array; //Array containing lines
 		private var whichStation:int = -1;
 		public var gSecCheckUnit:SecurityCheckUnitG;
+		public var lineOutline:selected_station;
 		
 		public function Interface():void {
 			this.addChild(uiAirport);
 						
 			var sX:int = 1220;
 			var sY:int = 340;
-			var uiStation1:StationG = new StationG(1);
-			var uiStation2:StationG = new StationG(2);
-			var uiStation3:StationG = new StationG(3);
-			var uiStation4:StationG = new StationG(4);
-			var uiStation5:StationG = new StationG(5);
-			stations = new Array(uiStation1, uiStation2, uiStation3, uiStation4, uiStation5);
-
-			for each (var station:StationG in stations) {
-				station.x = sX;
-				station.y = sY;
-				station.hideSpots();
-				sX += 108;
-				sY += 56;
-				uiAirport.addChild(station);
-			}
+			
+			lineOutline = new selected_station();
+			this.addChild(lineOutline);
+			lineOutline.alpha = 0;
+			lineOutline.addEventListener(MouseEvent.MOUSE_OVER, lineShow);
+			lineOutline.addEventListener(MouseEvent.MOUSE_OUT, lineHide);
+			addStation();
 		}
 		
+		public function getNumStations():int {
+			return (stations.length);
+		}
+				
+		private function lineShow(e:MouseEvent):void {
+			lineOutline.alpha = 1;
+		}
+		
+		private function lineHide(e:MouseEvent):void {
+			lineOutline.alpha = 0;
+		}
+		
+		public function addStation():void {
+			uiAirport.addLine();
+			stations = uiAirport.lines;
+			
+			lineOutline.x = 1220+(108*stations.length);
+			lineOutline.y = 340+(56*stations.length);
+			lineOutline.alpha = 0;
+			if (stations.length == 5) {
+				this.removeChild(lineOutline);
+			}
+		}
+			
 		// Shows stations to place units. 
 		public function showStations():void {
-			for each(var station:StationG in stations) {
-				station.showSpots();
-				station.addEventListener(MouseEvent.MOUSE_OVER, getStationNum);
-				station.addEventListener(MouseEvent.MOUSE_OUT, offStation);
+			for each(var line:StationG in stations) {
+				line.showSpots();
+				line.addEventListener(MouseEvent.MOUSE_OVER, getStationNum);
+				line.addEventListener(MouseEvent.MOUSE_OUT, offStation);
 			}
 		}
 		
@@ -62,7 +79,7 @@
 		// Gets a reference to a station. With no arguements, it returns the current station.
 		public function getStation(num:int = -1):StationG {
 			if (num == -1) {
-				num = whichStation-1;
+				num = whichStation;
 			}
 			return(stations[num]);
 		}

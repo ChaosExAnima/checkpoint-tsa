@@ -26,7 +26,7 @@
 			var torsoColors:Array = _torsoRef.setColor(passTorso);
 			
 			var tempLogic:Passenger = pFact.createPassenger();
-			var tempPass:PassengerG = new PassengerG(Utilities.randRange(-10,10),Utilities.randRange(-10,10), tempLogic, pA.lines[tempLogic.getGotoStationNr() - 1], passTorso, torsoColors, passName);
+			var tempPass:PassengerG = new PassengerG(Utilities.randRange(-10,10),Utilities.randRange(-10,10), tempLogic, pA.lines[tempLogic.getGotoStationNr() - 1].line, passTorso, torsoColors, passName);
 			
 			return tempPass;
 		}

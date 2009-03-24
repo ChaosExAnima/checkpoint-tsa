@@ -52,12 +52,12 @@
 		// Shows options (TO DO)
 		private function optionsHandler(e:MouseEvent):void {
 			_menu.playClick();
-			// Display options!
+			_menu.showOptions();
 		}
 		
 		// Updating function that determines what is rolled over
 		private function update(e:TimerEvent):void {
-			var obj = UnselectedMenu._object;
+			var obj = _object;
 			if (obj is SecurityCheckUnitG) {
 				showMachine(obj as SecurityCheckUnitG);
 			} else if (obj is PassengerG) {
@@ -206,7 +206,7 @@
 				_pMenu.icon_mood.gotoAndStop(1);
 			}
 		}
-		
+			
 		// Clears menu
 		private function showBlank():void {
 			if (this.contains(_mMenu)) {
@@ -218,15 +218,15 @@
 		
 		// Call if 
 		public static function setMachine(type:SecurityCheckUnitG):void {
-			UnselectedMenu._object = type;
+			_object = type;
 		}
 		
 		public static function setPerson(type:PassengerG):void {
-			UnselectedMenu._object = type;
+			_object = type;
 		}
 		
 		public static function setBlank():void {
-			UnselectedMenu._object = null;
+			_object = null;
 		}
 	}
 }
