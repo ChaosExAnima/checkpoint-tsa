@@ -11,14 +11,17 @@
 	
 	public class PassengerG extends Sprite
 	{
+		// Coordinates of waypoints
 		private var xTarg:Array = new Array();
 		private var yTarg:Array = new Array();
 		
+		// Current location
 		private var originX:Number = 0;
 		private var originY:Number = 0;
 		
 		private var targSpeed:Number = 0;
 		
+		// Walking speed
 		private var xSpeed:Number = 0;
 		private var ySpeed:Number = 0;
 		
@@ -33,18 +36,18 @@
 		
 		public var atTic:Number = 0;
 		public var waitTic:Number = 0;
-		public var reroutTic:Number = 0;
-		public var rerouting:Boolean = false;
-		public var gimmeDist:Number = 30;
+		public var reroutTic:Number = 0; // Random number that determines when to try to go back to the old waypoint
+		public var rerouting:Boolean = false; // If encountered an obstacle
+		public var gimmeDist:Number = 10; // Distance at which person is at waypoint
 		
 		public var obsolete:Boolean = false;
 		
-		private var inittedB:Boolean = false;
+		private var inittedB:Boolean = false; // Is initialized
 		private var movingMC:MovieClip;
 		
-		private var myLine:LineG;
+		private var myLine:LineG; // Target line
 		
-		private var logicPass:Passenger = null;		
+		private var logicPass:Passenger = null; // Logical equivalent of passenger
 		
 		// Graphical vars
 		private var _colors:Array;
@@ -54,10 +57,10 @@
 		private var _legColors:Array;
 		private var _toggle:Boolean;
 		
-		public var _paused:Boolean;
+		private var _paused:Boolean;
 		private var _redirect:RedirectMenu;
 
-		
+	
 		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array, name:String):void
 		{
 			_torso = torso;
@@ -98,6 +101,7 @@
 			setOrigin();
 			recalSpeeds();
 			updateHeading();
+			obsolete = false;
 		}
 		
 		// Goes either to next waypoint or kills self,
@@ -107,10 +111,13 @@
 			xTarg.shift();
 			yTarg.shift();
 			setOrigin();
+			_toggle = true;
 			if(xTarg.length < 1)
 			{
 				killMe();
+				
 			}else{
+				trace("reached target");
 				recalSpeeds();
 				updateHeading();
 			}
@@ -133,13 +140,16 @@
 		{
 			xTarg.push(x_);
 			yTarg.push(y_);
+			obsolete = false;
 		}
 		
 		// Recalibrates the speed depending on the distance to the target
 		private function recalSpeeds():void
 		{
-			xSpeed = targSpeed*(xTarg[0] - x)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
-			ySpeed = targSpeed*(yTarg[0] - y)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+			if (xTarg[0]) {
+				xSpeed = targSpeed*(xTarg[0] - x)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+				ySpeed = targSpeed*(yTarg[0] - y)/Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+			}
 		}
 		
 		// Sets origin to current position
@@ -149,7 +159,7 @@
 			originY = y;
 		}
 		
-		
+		// Moves person
 		public function tStep():void
 		{
 			if(SUtilities.switchedSide(yTarg[0], originY, y + ySpeed) && SUtilities.switchedSide(xTarg[0], originX, x + xSpeed))
@@ -181,6 +191,16 @@
 		public function distToTarg():Number
 		{
 			return Math.sqrt(Math.pow(xTarg[0] - x,2) + Math.pow(yTarg[0] - y,2));
+		}
+		
+		// Stops the person until called again
+		public function halt(val:Boolean):void {
+			_paused = val;
+			if (_paused == true) {
+				stopWalk();
+			} else {
+				startWalk();
+			}
 		}
 		
 		//----------------------------------------GRAPHICAL FUNCTIONS--------------------------------------//
@@ -277,6 +297,16 @@
 			}
 		}
 		
+		// Removes redirect functionality
+		public function noRedirect():void {
+			this.removeEventListener(MouseEvent.CLICK, toggleSelected);
+			if (_redirect) {
+				this.removeChild(_redirect);
+				_redirect = null;
+				halt(false);
+			}
+		}
+		
 		//------------------------------------GETTERS AND SETTERS---------------------------------------//
 
 		// Gets logic
@@ -335,8 +365,7 @@
 				setTarg(1400,660);
 				trace("found a checker");
 			}else{
-				trace("Coords: "+myLine.x+", "+myLine.y);
-				setTarg(myLine.x,myLine.y);
+				setTarg(myLine.station.x,myLine.station.y);
 			}
 		}
 	}
