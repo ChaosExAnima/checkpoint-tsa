@@ -17,7 +17,7 @@
 		
 		public var lines = new Array();
 		
-		public var afloor:Floor = new Floor(10, 10, 0, 0, 1800, 1350);
+		public var afloor:Floor = new Floor(10, 10, 0, 0, 1800, 1350); // The floor
 		
 		public function AirportG():void
 		{
@@ -51,9 +51,9 @@
 			this.addEventListener(Event.ENTER_FRAME, frameEntered);
 		}
 		
+		// Moves people at top of escalator to floor
 		private function frameEntered(e:Event)
 		{
-			// escalatorA.getWaiting().forEach(moveToFloor);
 			var waiting:Array = escalatorA.getWaiting();
 			for(var i = 0; i < waiting.length; i++)
 			{
@@ -85,16 +85,14 @@
 			}
 		}
 		
-		public function moveToFloor(pass:PassengerG, escalator:Escalator):void
-		{
-			trace("movetofloor: "+PassengerG);
-			
+		// Moves people to floor
+		private function moveToFloor(pass:PassengerG, escalator:Escalator):void
+		{			
 			pass.x = (escalator.x-afloor.x) + pass.x;
 			pass.y = (escalator.y-afloor.y) + pass.y;
 			afloor.receivePass(pass);
-
 		}
-		
+			
 		public function addPass():void
 		{
 			
@@ -127,6 +125,10 @@
 			escalatorD.clearPasses();
 			escalatorE.clearPasses();
 			afloor.clearPasses();
+			
+			for each (var station:StationG in lines) {
+				station.line.clearPasses();
+			}
 		}
 		
 		public function addLine():void {
@@ -137,8 +139,8 @@
 			lines.push(new StationG(lines.length));
 			Airport.addStation(lines.length);
 			
-			var sX:int = 1220;
-			var sY:int = 340;
+			var sX:int = 788;
+			var sY:int = 564;
 			
 			for each (var line:StationG in lines) {
 				line.x = sX;

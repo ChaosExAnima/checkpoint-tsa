@@ -24,8 +24,7 @@
 			}
 			this.x += 50;
 			
-			_person.stopWalk();
-			_person._paused = true;
+			_person.halt(true);
 			
 			var mood:int = _person.logic.getMood();
 			var time:int = _person.logic.getTimeLeft()/3;
@@ -51,8 +50,7 @@
 				if (_lineArray[i] == e.target) {
 					trace("Line Set!");
 					_person.setLine(_UI.getStation(i).line);
-					_person._paused = false;
-					_person.startWalk();
+					_person.halt(false);
 					parent.removeChild(this);
 				}
 			}

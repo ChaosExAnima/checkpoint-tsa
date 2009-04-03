@@ -34,22 +34,21 @@
 			//drawMe();
 			idle();
 		}
-		
-		
+				
 		public function caught():void {
-			unitForm.gotoAndStop("caught");
+			unitForm.gotoAndStop(4);
 		}
 		
 		public function go():void {
-			unitForm.gotoAndStop("go");
+			unitForm.gotoAndStop(3);
 		}
 		
 		public function checking():void {
-			unitForm.gotoAndStop("checking");
+			unitForm.gotoAndStop(2);
 		}
 		
 		public function idle():void {
-			unitForm.gotoAndStop("idle");
+			unitForm.gotoAndStop(1);
 		}
 		
 		public function get logic():SecurityCheckUnit {

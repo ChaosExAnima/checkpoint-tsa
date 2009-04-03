@@ -24,6 +24,7 @@
 		public static const OUTOFMOOD:String = "out of mood";
 		public static const OUTOFTIME:String = "out of time";
 		public static const MOVEON:String = "move on";
+		public static const CAUGHT:String = "caught";
 		
 		public function Passenger(initTemp:int, tInc:int, initTimeLeft:int, conc:int, prObj:ProhibitedObject, gStation:Station):void {
 			mood = initTemp;
@@ -125,7 +126,7 @@
 			TheGame.addReputation(prohibObj.getCatchingRepGain());
 			TheGame.addMoney(prohibObj.getCatchingMoneyGain());
 			//-------------------------------------------------------
-			
+			this.dispatchEvent(new Event(CAUGHT));
 			//JUST TO TEXT TEST:
 			trace("Oh, damn I got caught!");
 			//END TEXT TEST

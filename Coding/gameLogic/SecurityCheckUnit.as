@@ -99,7 +99,7 @@ import gameGraphics.SecurityCheckUnitG;
 		
 
 		//PRE: Security Check Unit is empty.
-		internal function checkPassenger(passIn:Passenger):void {
+		public function checkPassenger(passIn:Passenger):void {
 			var tempPass:Passenger=passIn;
 			finished = false;
 			
@@ -113,7 +113,7 @@ import gameGraphics.SecurityCheckUnitG;
 			beingCaught=isCaught(tempPass.carriesWhat());
 			passInUnit = 0;
 			pass = tempPass;
-			//TheGame.getGameTik().addEventListener(TimerEvent.TIMER, progressTime);
+			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, progressTime);
 			
 		}
 		
@@ -133,34 +133,34 @@ import gameGraphics.SecurityCheckUnitG;
 		//Responsible for passing on passenger.
 		private function progressTime(e:TimerEvent):void {
 			if(pass!=null) {
-			passInUnit++;
-			
-			if(finished != true && instaDetect == true && beingCaught == true) {
-				finished = true;
-				passCaught();
-			}
-			
-			if(finished!=true&&passInUnit>=speed) {
-				finished = true;
-				if(instaDetect == false && beingCaught==true) {
-					passCaught();
-					//TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
-				}
-				//try
-				else {
-					secCheckG.go();
-				}
-				//out
-			}
-			
-			if(finished==true&&station.nextFree(position)) {
-				var tempPass:Passenger = pass;
-				pass = null;
-				station.passOnPassenger(tempPass, position);
+				passInUnit++;
 				
-				//trace (position + " (in progressTime): " + pass);
-				//TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
-			}		}
+				if(finished != true && instaDetect == true && beingCaught == true) {
+					finished = true;
+					passCaught();
+				}
+				
+				if(finished!=true&&passInUnit>=speed) {
+					finished = true;
+					if(instaDetect == false && beingCaught==true) {
+						passCaught();
+					}
+					//try
+					else {
+						secCheckG.go();
+					}
+					//out
+				}
+				
+				if(finished==true&&station.nextFree(position)) {
+					var tempPass:Passenger = pass;
+					
+					station.passOnPassenger(tempPass, position);
+					pass = null;
+					//trace (position + " (in progressTime): " + pass);
+					TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
+				}		
+			}
 		}
 		
 		
@@ -171,7 +171,7 @@ import gameGraphics.SecurityCheckUnitG;
 			pass = null;
 			
 			station.passOnPassenger(null, position);
-			
+			TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
 			//try
 			secCheckG.caught();
 			//out

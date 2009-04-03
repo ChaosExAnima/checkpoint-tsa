@@ -35,8 +35,8 @@
 			stationL = new Station(number);
 			for (var i:int=0;i<5;i++) {
 				spots[i] = new GSpot();
-				spots[i].x = 108*-i;
-				spots[i].y = 56*i;
+				spots[i].x = 108*i;
+				spots[i].y = 56*-i;
 				addChild(spots[i]);
 				spots[i].alpha=0.5;
 				spots[i].addEventListener(MouseEvent.MOUSE_OVER, rollO);
@@ -44,9 +44,8 @@
 			}
 			
 			_lineG = new LineG(this);
-			_lineG.x = 1220+(108*number);
-			_lineG.y = 340+(56*number);
-			trace("Station coords: "+this.x+", "+this.y);
+			//_lineG.x = 1220+(108*number);
+			//_lineG.y = 340+(56*number);
 			this.addChild(_lineG);
 		}
 		
@@ -61,7 +60,7 @@
 			removeChild(this.spots[num]);
 			
 			this.spots[num] = secCheckG;
-			stationL.addSecurityCheckUnit(secCheckG.logic, num);
+			stationL.addSecurityCheckUnit(secCheckG.logic, num+1);
 			secCheckG.spot = num;
 			
 			this.spots[num].x = newX-(this.spots[num].width/2);
@@ -96,6 +95,19 @@
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
 			
 			hideSpots();
+		}
+		
+		public function getFirst(num:int):int {
+			for (var i:int = num; i<5; i++) {
+				if (!(spots[i] is GSpot)) {
+					//trace (spots[i]);
+					if (spots[i].logic.isFree()) {
+						return i;
+					}
+				}
+			}
+			trace("No machines found!");
+			return -1;
 		}
 				
 		// Returns the station number of this instance
@@ -179,7 +191,7 @@
 			menu.setMenu(new SelectedMenu(menu, e.currentTarget as SecurityCheckUnitG));
 		}
 		
-		public function getLogic():Station {
+		public function get logic():Station {
 			return stationL;
 		}
 		

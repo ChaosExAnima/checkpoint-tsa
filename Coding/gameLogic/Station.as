@@ -1,6 +1,7 @@
 ﻿package gameLogic {
 	
 	import gameControl.TheGame;
+	import flash.events.Event;
 	
 	/* This class encapsulates a station, containing a line and security check units */
 	
@@ -43,6 +44,9 @@
 		
 		//PRE: At least one security check unit must be set up in this station.
 		public function firstSecurityCheckUnitEmpty():Boolean {
+			if (getNextSetPos(0) == -1) {
+				return false;
+			}
 			return securityCheckUnits[getNextSetPos(0)].isFree();
 		}
 		
@@ -71,20 +75,12 @@
 		public function passOnPassenger(pass:Passenger, position:int):void {
 			if(pass!=null) {
 				var nextPos:int = getNextSetPos(position);
+				pass.dispatchEvent(new Event(Passenger.MOVEON));
 				if (nextPos == -1) {
 					pass.goToPlane();
 				}
-				else {
-					//NEW CODE:
-					//COMMENT IN:
-					//pass.dispatchEvent(new Event(Passenger.MOVEON, nextPos));
-					
-					//OLD CODE:
-					//COMMENT OUT:
-					securityCheckUnits[nextPos].checkPassenger(pass);
-				}
 			}
-			if((position-1)==getNextSetPos(0)) line.handleGameEvent(Line.FIRST_EMPTY);
+			//if((position-1)==getNextSetPos(0)) line.handleGameEvent(Line.FIRST_EMPTY);
 		}
 		
 		public function doPassOn(pass:Passenger, nextPos:int):void {
@@ -97,6 +93,7 @@
 		
 		
 		public function getPassengerIntoFirstSecUnit(pass:Passenger):void {
+			trace(securityCheckUnits[getNextSetPos(0)]);
 			securityCheckUnits[getNextSetPos(0)].checkPassenger(pass);
 		}
 		
