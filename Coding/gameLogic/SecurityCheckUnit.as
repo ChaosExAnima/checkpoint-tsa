@@ -48,6 +48,8 @@ import gameGraphics.SecurityCheckUnitG;
 		private var secCheckG:SecurityCheckUnitG;
 		//out
 		
+		private var taken:Boolean = false;
+		
 		public function SecurityCheckUnit(unitName:String, accuracy:int, speed:Number, mood:Number, price:int, sellFor:int, prohObjs:Array) {
 			this.unitName = unitName;
 			this.accuracy = accuracy;
@@ -56,13 +58,15 @@ import gameGraphics.SecurityCheckUnitG;
 			this.price = price;
 			this.sellFor = sellFor;
 			this.prohObjs = prohObjs;
-			this.buy(price);
+			this.price = price;
 			
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, progressTime);
 		}
 		
-		protected function buy(value:int):void {
-			TheGame.subtractMoney(value);
+		public function buy(val:int = 0):void {
+			if (val == 0)
+				val = price;
+			TheGame.subtractMoney(val);
 		}
 		
 		/*
@@ -89,13 +93,10 @@ import gameGraphics.SecurityCheckUnitG;
 			}
 		}
 		
-		/* wont need this, because it can be done by the subclasses. Perhaps protected?
-		public function setAccuracy(level:int):void
-		{
-			if (0<= level && level<=90)
-				accuracy = level;			
+		// Sets machine is full
+		public function isTaken():void {
+			taken = true;
 		}
-		*/
 		
 
 		//PRE: Security Check Unit is empty.
@@ -115,6 +116,7 @@ import gameGraphics.SecurityCheckUnitG;
 			pass = tempPass;
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, progressTime);
 			
+			taken = true;
 		}
 		
 		private function removePassenger(e:Event) {
@@ -126,7 +128,7 @@ import gameGraphics.SecurityCheckUnitG;
 			//try
 			secCheckG.idle();
 			//out
-			
+			taken = false;
 		}
 		
 		//Simulates the progress of time in the Security check unit when checking a passenger.
@@ -157,6 +159,7 @@ import gameGraphics.SecurityCheckUnitG;
 					
 					station.passOnPassenger(tempPass, position);
 					pass = null;
+					taken = false;
 					//trace (position + " (in progressTime): " + pass);
 					TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
 				}		
@@ -175,6 +178,7 @@ import gameGraphics.SecurityCheckUnitG;
 			//try
 			secCheckG.caught();
 			//out
+			taken = false;
 		}
 		
 		public function getAccuracy():int {
@@ -214,7 +218,7 @@ import gameGraphics.SecurityCheckUnitG;
 		}
 		
 		public function isFree():Boolean {
-			return (pass==null);
+			return (!taken);
 		}
 		
 		public function setSecCheckG(secCheckG:SecurityCheckUnitG) {

@@ -183,7 +183,7 @@
 		// Kills self
 		public function killMe():void
 		{			
-			trace("killing myself");		
+			//trace("killing myself");		
 			obsolete = true;
 		}
 		
