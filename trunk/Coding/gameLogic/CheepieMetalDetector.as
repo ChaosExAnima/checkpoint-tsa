@@ -26,6 +26,7 @@
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardPrice","1")), 
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardSpeed","1"))
 				  );//READ IN FROM XML:
+			trace("XML data: "+accuracySpecialMin);
 		}
 		
 		//PRE: There has to be a guard installed.
@@ -44,15 +45,43 @@
 		//POST: All values are correctly set when Gun is powered up. 
 		//If the power up for Knife is enabled, then does nothing
 		public function doPowerUpGun():void {
-			//TODO
+			if(powerUpKnife==false&&powerUpGun==false&&guard==true) {
+				buy(pricePowerUpGun);
+				sellFor = sellFor + pricePowerUpGun/2;
+				//TODO
+				powerUpGun = true;
+			}
 		}
 		
-		/*
+		// Returns true is machine is upgraded
+		public function isPowerUpKnife():Boolean {
+			return (powerUpKnife == true);
+		}
+		
+		public function isPowerUpGun():Boolean {
+			return (powerUpGun == true);
+		}
+		
+		
 		//Takes into account the special accuracy setting for power ups
-		public override function isCaught(pObj:ProhibitedObject):Boolean {
+		protected override function isCaught(pObj:ProhibitedObject):Boolean {
+			var chance:Number = Math.random();
 			
+			if(pObj == null) return false;
+			if ((pObj is Knife && powerUpKnife) || (pObj is Gun && powerUpGun)) {
+				var bonus:int = accuracySpecialMin+((accuracySpecialMax-accuracySpecialMin)/2);
+				if (chance<(((accuracy * Airport.getSecurityAlertLevelMultiplier())+bonus)/100)) 
+					return true;
+			} else if (prohObjs.some(testKindProhObjs))	{
+				if (chance<((accuracy * Airport.getSecurityAlertLevelMultiplier())/100)) 
+					return true;
+			}
+			return false;
+			
+			function testKindProhObjs(item:*, index:int, array:Array):Boolean {
+				var elem:ProhibitedObject=item;
+				return (elem.getKindOfObj() == pObj.getKindOfObj())
+			}
 		}
-		*/
-		
 	}
 }

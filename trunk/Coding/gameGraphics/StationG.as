@@ -97,19 +97,33 @@
 			hideSpots();
 		}
 		
+		// Gets the first available machine
 		public function getFirst(num:int):int {
-			for (var i:int = num; i<5; i++) {
+			for (var i:int = num; i<4; i++) {
 				if (!(spots[i] is GSpot)) {
-					//trace (spots[i]);
-					if (spots[i].logic.isFree()) {
-						return i;
-					}
+					return i;
 				}
 			}
 			trace("No machines found!");
 			return -1;
 		}
-				
+		
+		// Gets next available machine
+		public function getNext(num:int):int {
+			for (var i:int = num+1; i<4; i++) {
+				if (!(spots[i] is GSpot)) {
+					return i;
+				}
+			}
+			trace("No machines found!");
+			return -1;
+		}
+		
+		// Checks if machine exists at a spot
+		public function checkSpot(num:int):Boolean {
+			return (!(spots[num] is GSpot));
+		}
+		
 		// Returns the station number of this instance
 		public function whichStationNum():Number
 		{	

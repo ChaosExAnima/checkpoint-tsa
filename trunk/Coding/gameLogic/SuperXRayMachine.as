@@ -18,7 +18,10 @@
 				  Number(XMLmachineData.getXML("SuperXrayMachine","speedMin","1")),
 				  Number(XMLmachineData.getXML("SuperXrayMachine","speedMax","1")),
 				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpGunKnifePrice","1")),
-				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpBombPrice","1"))); //READ IN FROM XML:
+				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpBombPrice","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpAccuracyMin","1")),
+				  Number(XMLmachineData.getXML("SuperXrayMachine","powerUpAccuracyMax","1"))
+				  ); //READ IN FROM XML:
 				  
 				  //instaDetect = true; //Needs to be defined somewhere!
 		}

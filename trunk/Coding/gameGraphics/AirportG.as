@@ -2,6 +2,8 @@
 {
 	import utilities.*;
 	import gameLogic.*;
+	import gameControl.TheGame;
+	import gameData.XMLgameData;
 	import flash.display.*;
 	import flash.events.*;
 	
@@ -15,12 +17,20 @@
 		public var escalatorD:Escalator = new Escalator();
 		public var escalatorE:Escalator = new Escalator();
 		
+		private var winMenu:menu_win = new menu_win();
+		
 		public var lines = new Array();
 		
-		public var afloor:Floor = new Floor(10, 10, 0, 0, 1800, 1350); // The floor
+		public var afloor:Floor = new Floor(10, 10, 0, 300, 900, 675); // The floor
+		public var preline:Floor = new Floor(10, 10, 500, 0, 900, 675); // The preline
+				
+		private var passPercent:int = 20;
 		
 		public function AirportG():void
 		{
+			preline.setTarget(afloor);
+			afloor.setTarget(null);
+			
 			this.addChild(escalatorA);
 			this.addChild(escalatorB);
 			this.addChild(escalatorC);
@@ -30,6 +40,7 @@
 			personMaker = new GraphPassFact(this);
 			
 			this.addChild(afloor);
+			this.addChild(preline);
 			
 			escalatorA.x = 20;
 			escalatorA.y = 1080;
@@ -49,6 +60,44 @@
 			var offset:uint = 55;
 			
 			this.addEventListener(Event.ENTER_FRAME, frameEntered);
+			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, onGameTik);
+		}
+		
+		private function onGameTik(e:TimerEvent):void {
+			var rand:int = Utilities.randRange(0, 99);
+			
+			if (rand < passPercent) {
+				addPass();
+			}
+			
+			if(XMLgameData.gameXML)
+			{
+				var maxPass:int = XMLgameData.gameXML.game.(@level == TheGame.getLevel()).passengers.text();
+				
+				if (TheGame.getNumPass() > maxPass) 
+				{
+					trace("Current passengers: "+TheGame.getNumPass());
+					clearPasses();
+					TheGame.pauseGame();
+					TheGame.setLevel(TheGame.getLevel()+1);
+					TheGame.resetNumPass();
+					
+					
+					winMenu.x = 500;
+					winMenu.y = 375;
+					
+					winMenu.btn_continue.addEventListener(MouseEvent.CLICK, resumeGameHandler);
+					
+					root.stage.addChild(winMenu);
+					
+				}
+			}
+		}
+		
+		private function resumeGameHandler(e:MouseEvent)
+		{
+			TheGame.startGame();
+			root.stage.removeChild(winMenu);
 		}
 		
 		// Moves people at top of escalator to floor
@@ -86,6 +135,13 @@
 		}
 		
 		// Moves people to floor
+		private function moveToPreline(pass:PassengerG, escalator:Escalator):void
+		{			
+			pass.x = (escalator.x-preline.x) + pass.x;
+			pass.y = (escalator.y-preline.y) + pass.y;
+			preline.receivePass(pass);
+		}
+		
 		private function moveToFloor(pass:PassengerG, escalator:Escalator):void
 		{			
 			pass.x = (escalator.x-afloor.x) + pass.x;
@@ -116,7 +172,6 @@
 			}
 		}
 		
-		
 		public function clearPasses():void
 		{	
 			escalatorA.clearPasses();
@@ -124,6 +179,7 @@
 			escalatorC.clearPasses();
 			escalatorD.clearPasses();
 			escalatorE.clearPasses();
+			preline.clearPasses();
 			afloor.clearPasses();
 			
 			for each (var station:StationG in lines) {

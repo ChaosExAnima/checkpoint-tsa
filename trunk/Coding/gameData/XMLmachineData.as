@@ -48,6 +48,10 @@
 			machineValues = securityCheckUnits;
 		}
 		
+		public static function getXMLData():XML {
+			return machineValues;
+		}
+		
 		public static function getXML(chkPnt:String, attName:String, AcuLevel:String = "1", pwrUp:String = ""):String
 		{
 			//return(this.ready);
@@ -114,6 +118,31 @@
 				case "name":
 					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).name.text();
 					break;
+					
+				case "powerUpGunPrice":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpGunPrice.text();
+					break;
+				
+				case "powerUpKnifePrice":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpKnifePrice.text();
+					break;
+				
+				case "powerUpGunKnifePrice":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpGunKnifePrice.text();
+					break;
+				
+				case "powerUpBombPrice":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpBombPrice.text();
+					break;
+				
+				case "powerUpAccuracyMin":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpAccuracyMin.text();
+					break;
+				
+				case "powerUpAccuracyMax":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpAccuracyMax.text();
+					break;
+				
 			}//end of switch
 			
 			return(Response);
