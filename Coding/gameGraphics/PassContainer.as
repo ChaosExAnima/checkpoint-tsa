@@ -1,0 +1,1 @@
+﻿package gameGraphics{	import gameGraphics.PassengerG;	import flash.display.*;	import flash.events.*;	import flash.geom.Point;		public class PassContainer extends Sprite	{		protected function moveOn(pass:PassengerG):Boolean		{			// override			return false;		}				public function receivePass(pass:PassengerG):Boolean		{			// override			return false;		}	}}
