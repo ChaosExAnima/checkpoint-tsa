@@ -12,7 +12,7 @@
 				  Number(XMLmachineData.getXML("DrugCanine","accuracy","1")),
 				  Number(XMLmachineData.getXML("DrugCanine", "price", "1")),
 				  Number(XMLmachineData.getXML("DrugCanine", "sellFor", "1")),
-				  [new Bomb()],
+				  [new Drugs()],
 				  Number(XMLmachineData.getXML("DrugCanine", "price", "2")),
 				  Number(XMLmachineData.getXML("DrugCanine","accuracy","2")),
 				  Number(XMLmachineData.getXML("DrugCanine", "price", "3")),

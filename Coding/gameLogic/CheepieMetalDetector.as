@@ -24,7 +24,9 @@
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedMin","1")), 
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedMax","1")), 
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardPrice","1")), 
-				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardSpeed","1"))
+				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardSpeed","1")),
+				  Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpGunPrice","1")),
+				  (accuracySpecialMin+accuracySpecialMax)/2
 				  );//READ IN FROM XML:
 			trace("XML data: "+accuracySpecialMin);
 		}

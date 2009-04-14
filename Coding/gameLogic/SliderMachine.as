@@ -14,8 +14,8 @@
 		
 		protected var sliderPercentage:int = 50;
 		
-		public function SliderMachine(unitName:String, mood:Number, price:int, sellFor:int, prohObjs:Array,accuracyMin:int, accuracyMax:int, speedMin:int, speedMax:int) {
-			super(unitName, (accuracyMin+accuracyMax)/2, (speedMin+speedMax)/2, mood, price, sellFor, prohObjs);
+		public function SliderMachine(unitName:String, mood:Number, price:int, sellFor:int, prohObjs:Array,accuracyMin:int, accuracyMax:int, speedMin:int, speedMax:int, upgradePrice:int, upgradeAcc:Number) {
+			super(unitName, (accuracyMin+accuracyMax)/2, (speedMin+speedMax)/2, mood, price, sellFor, prohObjs, upgradePrice, upgradeAcc);
 			this.accuracyMin = accuracyMin;
 			this.accuracyMax = accuracyMax;
 			this.speedMin = speedMin;

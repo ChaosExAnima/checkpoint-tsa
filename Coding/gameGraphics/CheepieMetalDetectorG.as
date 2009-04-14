@@ -1,6 +1,8 @@
 ﻿package gameGraphics {
 	
 	import gameLogic.CheepieMetalDetector;
+	import gameLogic.MetalDetector;
+	import flash.display.MovieClip;
 	
 	/* Encapsulates the graphical representation of a Cheepie Metal Detector with the power up possibilites for guns or knives */
 	
@@ -10,30 +12,12 @@
 			super(xLoc, yLoc, new CheepieMetalDetector(), new GCheepieMetalDetector());
 		}
 		
-		//Graphical interfaces for POWERUPS:
-		
-		//PRE: There has to be a guard installed.
-		//POST: All values are correctly set when Knife is powered up. 
-		//Graphical change is displayed.
-		//If the power up for guns is enabled, then not available
-		public function doPowerUpKnifeUI():void {
-			//TODO
-			
-			CheepieMetalDetector(secCheck).doPowerUpKnife();
-		}
-		
-		/*public function availablePowerUpsUI():Boolean {
-			return CheepieMetalDetector(secCheck).availablePowerUps();
-		}*/
-
-		//PRE: There has to be a guard installed.
-		//POST: All values are correctly set when Gun is powered up. 
-		//Graphical change is displayed.
-		//If the power up for Knife is enabled, then not available
-		public function doPowerUpGunUI():void {
-			//TODO
-			
-			CheepieMetalDetector(secCheck).doPowerUpGun();
+		protected override function newGuard(guard:MovieClip):void {
+			if (MetalDetector(secCheck).isGuard()) {
+				guard.x = 73.9;
+				guard.y = 108.7;
+				this.addChild(guard);
+			}
 		}
 	}
 }
