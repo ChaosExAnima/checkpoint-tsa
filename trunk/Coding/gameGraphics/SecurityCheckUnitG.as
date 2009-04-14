@@ -34,6 +34,10 @@
 			//drawMe();
 			idle();
 		}
+		
+		public function upgrade(type:Boolean = false):void {
+			trace("Upgrade not implemented yet!");
+		}
 				
 		public function caught():void {
 			unitForm.gotoAndStop(4);

@@ -202,10 +202,10 @@
 		<moodChange>0.5</moodChange>
 		<speedupGuardPrice>75</speedupGuardPrice>
 		<speedupGuardSpeed>0.5</speedupGuardSpeed> <!--??? MAKES IS FASTER BY 0.5 SECONDS !!!!!!-->
-		<powerUpGunPrice>null</powerUpGunPrice>
-		<powerUpKnifePrice>null</powerUpKnifePrice>
-		<powerUpAccuracyMin>null</powerUpAccuracyMin>
-		<powerUpAccuracyMax>null</powerUpAccuracyMax>
+		<powerUpGunPrice>0</powerUpGunPrice>
+		<powerUpKnifePrice>0</powerUpKnifePrice>
+		<powerUpAccuracyMin>0</powerUpAccuracyMin>
+		<powerUpAccuracyMax>0</powerUpAccuracyMax>
 		<sellFor>300</sellFor><!--????????? it"s supposed to be a Percent but above is fixed!!!!-->
 		<offenses>
 			<offense>bomb</offense>

@@ -14,8 +14,10 @@
 				  Number(XMLmachineData.getXML("SuperMetalDetector","accuracyMax","1")),
 				  Number(XMLmachineData.getXML("SuperMetalDetector","speedMin","1")),
 				  Number(XMLmachineData.getXML("SuperMetalDetector","speedMax","1")),
-				  Number(XMLmachineData.getXML("SuperMetalDetector","powerUpPriceGunKnife","1")),
-				  Number(XMLmachineData.getXML("SuperMetalDetector","powerUpPriceBomb","1"))
+				  Number(XMLmachineData.getXML("SuperMetalDetector","speedUpGuardPrice","1")),
+				  Number(XMLmachineData.getXML("SuperMetalDetector","speedUpGuardSpeed","1")),
+				  Number(XMLmachineData.getXML("SuperMetalDetector","powerUpGunPrice","1")),
+				  Number(XMLmachineData.getXML("SuperMetalDetecter","powerUpAccuracyMin","1"))
 				  ); //READ IN FROM XML:
 				  
 				  //instaDetect = true;

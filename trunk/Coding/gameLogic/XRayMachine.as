@@ -25,7 +25,7 @@
 									accuracySpecialMin:int,
 									accuracySpecialMax:int
 									) {
-			super(unitName, mood, price, sellFor, prohObjs, accuracyMin, accuracyMax, speedMin, speedMax);
+			super(unitName, mood, price, sellFor, prohObjs, accuracyMin, accuracyMax, speedMin, speedMax, pricePowerUpBomb, (accuracySpecialMax+accuracySpecialMin)/2);
 			this.pricePowerUpGunKnife = pricePowerUpGunKnife;
 			this.pricePowerUpBomb = pricePowerUpBomb;
 			this.accuracySpecialMin = accuracySpecialMin;

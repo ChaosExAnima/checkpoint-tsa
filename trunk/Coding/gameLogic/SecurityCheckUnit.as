@@ -29,7 +29,8 @@ import gameGraphics.SecurityCheckUnitG;
 		protected var station:Station; //assignment is done when Unit is being created in the Station class.
 		//stores all prohibited Objetcts the Security check unit is looking for
 		protected var prohObjs:Array; //<ProhibitedObject>
-		
+		protected var upgradePrice:int;
+		protected var upgradeAccuracy:Number;
 		//This is the number of game tiks a passenger has been in the security check unit.
 		private var passInUnit:Number=0;
 		//The current passenger in the unit
@@ -50,7 +51,7 @@ import gameGraphics.SecurityCheckUnitG;
 		
 		private var taken:Boolean = false;
 		
-		public function SecurityCheckUnit(unitName:String, accuracy:int, speed:Number, mood:Number, price:int, sellFor:int, prohObjs:Array) {
+		public function SecurityCheckUnit(unitName:String, accuracy:int, speed:Number, mood:Number, price:int, sellFor:int, prohObjs:Array, upgradePrice:int, upgradeAcc:int) {
 			this.unitName = unitName;
 			this.accuracy = accuracy;
 			this.speed = TheGame.minToGameTime(speed); //converted from spec seconds into game tiks
@@ -59,6 +60,8 @@ import gameGraphics.SecurityCheckUnitG;
 			this.sellFor = sellFor;
 			this.prohObjs = prohObjs;
 			this.price = price;
+			this.upgradePrice = upgradePrice;
+			this.upgradeAccuracy = upgradeAcc;
 			
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, progressTime);
 		}
@@ -216,13 +219,21 @@ import gameGraphics.SecurityCheckUnitG;
 		public function getProhObjs():Array {
 			return prohObjs;
 		}
-		
+				
 		public function isFree():Boolean {
 			return (!taken);
 		}
 		
 		public function setSecCheckG(secCheckG:SecurityCheckUnitG) {
 			this.secCheckG = secCheckG;
+		}
+		
+		public function getUpgradePrice():int {
+			return upgradePrice;
+		}
+		
+		public function getUpgradeAccuracy():int {
+			return upgradeAccuracy;
 		}
 	}
 }

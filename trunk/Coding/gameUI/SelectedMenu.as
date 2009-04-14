@@ -24,7 +24,8 @@
 		}
 		
 		public function init():void {
-			showButtons(); // No way to figure out number of upgrades available!
+			showButtons();
+			showUpgrades();
 			_menu.UI.parent.addEventListener(MouseEvent.CLICK, deselect);
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, update);
 			setStats();
@@ -65,6 +66,152 @@
 		
 		private function updateStats(val:int):void {
 			(_machine.logic as SliderMachine).accSpeedSlide(val);
+		}
+		
+
+		
+		// Shows picture of machine
+		private function showPicture(obj:MovieClip):void {
+			if (icon_picture.numChildren == 2) {
+				icon_picture.removeChild(icon_picture.getChildAt(1));
+			}
+			icon_picture.addChild(obj);
+			obj.width = 80;
+			obj.height = 80;
+			obj.x = 0;
+			obj.y = 5;
+		}
+		
+		// Sets the appropriate icon for the offenses.
+		private function showOffenseIcons(oList:Array, obj:MovieClip= null):void {
+			if (!obj) {
+				obj = this;
+			}
+			// Tries to set icons for everything, and stops when array is done.
+			// Probably should be done with ifs or something, but this is cooler.
+			if (oList[0]) {
+				obj.icon_1.gotoAndStop(oList[0].getKindOfObj());
+				scaleIcons(obj.icon_1, obj);
+			} else {
+				obj.icon_1.gotoAndStop(1);
+			}
+			if (oList[1]) {
+				obj.icon_2.gotoAndStop(oList[1].getKindOfObj());
+				scaleIcons(obj.icon_2, obj);
+			} else {
+				obj.icon_2.gotoAndStop(1);
+			}
+			if (oList[2]) {
+				obj.icon_3.gotoAndStop(oList[2].getKindOfObj());
+				scaleIcons(obj.icon_3, obj);
+			} else {
+				obj.icon_3.gotoAndStop(1);
+			}
+			if (oList[3]) {
+				obj.icon_4.gotoAndStop(oList[3].getKindOfObj());
+				scaleIcons(obj.icon_4, obj);
+			} else {
+				obj.icon_4.gotoAndStop(1);
+			}
+		}
+		
+		private function scaleIcons(ico:MovieClip, obj:MovieClip):void {
+			if (obj != this) {
+				ico.width = ico.width/2;
+				ico.height = ico.height/2;
+			}
+		}
+				
+		private function showButtons():void {
+			var format:TextFormat = new TextFormat();
+			format.font = "Helvetica";
+			format.size = 16;
+			format.color = 0xFFFFFF;
+			
+			_cancel = new Button();
+			with (_cancel) {
+				x = 380;
+				y = 680;
+				height = 50;
+				width = 110;
+				label = "";
+				setStyle("textFormat", format);
+				setStyle("downSkin", new Button_cancelDownSkin());
+				setStyle("upSkin", new Button_cancelUpSkin());
+				setStyle("overSkin", new Button_cancelOverSkin());
+				addEventListener(MouseEvent.CLICK, sellHandler);
+			}
+			this.addChild(_cancel);
+			
+			_button1 = new Button();
+			with (_button1) {
+				x = 380;
+				y = 620;
+				height = 50;
+				width = 110;
+				label = "";
+				addEventListener(MouseEvent.CLICK, upgrade1Handler);
+			}
+			this.addChild(_button1);
+			
+			var upgradeText:MovieClip;
+			if (((_machine is CheepieMetalDetectorG) && ((_machine.logic as MetalDetector).isGuard())) || (_machine is CheepieXRayMachineG) || (_machine is SuperXRayMachineG)) {
+				upgradeText = new upgradeTwo();
+				// Add function for setting text here
+				_button1.width = 50;
+				_button1.setStyle("icon", upgradeText);
+				
+				upgradeText = new upgradeTwo();
+				// Add function call for setting text here
+				_button2 = new Button();
+				with (_button2) {
+					x = 440;
+					y = 620;
+					height = 50;
+					width = 50;
+					label = "";
+					addEventListener(MouseEvent.CLICK, upgrade2Handler);
+					setStyle("icon", upgradeText);
+				}
+				this.addChild(_button2);
+			} else {
+				upgradeText = new upgradeOne();
+				_button1.setStyle("icon", upgradeText);
+			}
+		}
+		
+		private function showUpgrades():void {
+			var targ:Array = _machine.logic.getProhObjs();
+			var bObj1:MovieClip = _button1.getStyle("icon") as MovieClip;
+			var bObj2:MovieClip;
+			if (_button2) {
+				bObj2 = _button2.getStyle("icon") as MovieClip;
+			}
+			
+			bObj1.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
+			bObj1.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+			if ((_machine is MetalDetectorG) && !((_machine.logic as MetalDetector).isGuard())) {
+				bObj1.icon_1.gotoAndStop("speed");
+				bObj1.icon_2.gotoAndStop("1");
+				bObj1.icon_3.gotoAndStop("1");
+				bObj1.icon_4.gotoAndStop("1");
+			} else if (_machine is XRayMachineG) {
+				bObj1.icon_upgrade.gotoAndStop("gun");
+				bObj2.icon_upgrade.gotoAndStop("bomb");
+				bObj2.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
+				bObj2.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+			} else if ((_machine is CheepieMetalDetectorG) && ((_machine.logic as MetalDetector).isGuard())) {
+				bObj1.icon_upgrade.gotoAndStop("gun");
+				bObj2.icon_upgrade.gotoAndStop("knife");
+				bObj2.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
+				bObj2.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+			} else {
+				showOffenseIcons(targ, bObj1);
+			}
+			
+			if (_machine.logic.getUpgradePrice() == 0) {
+				_button1.enabled = false;
+			}
 		}
 		
 		// Picks what picture a machine has
@@ -114,101 +261,7 @@
 			}
 		}
 		
-		// Shows picture of machine
-		private function showPicture(obj:MovieClip):void {
-			if (icon_picture.numChildren == 2) {
-				icon_picture.removeChild(icon_picture.getChildAt(1));
-			}
-			icon_picture.addChild(obj);
-			obj.width = 80;
-			obj.height = 80;
-			obj.x = 0;
-			obj.y = 5;
-		}
-		
-		// Sets the appropriate icon for the offenses.
-		private function showOffenseIcons(oList:Array):void {
-			// Tries to set icons for everything, and stops when array is done.
-			// Probably should be done with ifs or something, but this is cooler.
-			if (oList[0]) {
-				icon_1.gotoAndStop(oList[0].getKindOfObj());
-			} else {
-				icon_1.gotoAndStop(1);
-			}
-			if (oList[1]) {
-				icon_2.gotoAndStop(oList[1].getKindOfObj());
-			} else {
-				icon_2.gotoAndStop(1);
-			}
-			if (oList[2]) {
-				icon_3.gotoAndStop(oList[2].getKindOfObj());
-			} else {
-				icon_3.gotoAndStop(1);
-			}
-			if (oList[3]) {
-				icon_4.gotoAndStop(oList[3].getKindOfObj());
-			} else {
-				icon_4.gotoAndStop(1);
-			}
-		}
-		
-		private function showButtons():void {
-			var format:TextFormat = new TextFormat();
-			format.font = "Helvetica";
-			format.size = 16;
-			format.color = 0xFFFFFF;
-			
-			_cancel = new Button();
-			with (_cancel) {
-				x = 380;
-				y = 680;
-				height = 50;
-				width = 110;
-				label = "";
-				setStyle("textFormat", format);
-				setStyle("downSkin", new Button_cancelDownSkin());
-				setStyle("upSkin", new Button_cancelUpSkin());
-				setStyle("overSkin", new Button_cancelOverSkin());
-				addEventListener(MouseEvent.CLICK, sellHandler);
-			}
-			this.addChild(_cancel);
-			
-			_button1 = new Button();
-			with (_button1) {
-				x = 380;
-				y = 620;
-				height = 50;
-				width = 110;
-				label = "";
-				addEventListener(MouseEvent.CLICK, upgrade1Handler);
-			}
-			this.addChild(_button1);
-			
-			var upgradeText:MovieClip;
-			if ((_machine is CheepieMetalDetectorG) || (_machine is CheepieXRayMachineG) || (_machine is SuperXRayMachineG)) {
-				upgradeText = new upgradeTwo();
-				// Add function for setting text here
-				_button1.width = 50;
-				_button1.setStyle("icon", upgradeText);
-				
-				upgradeText = new upgradeTwo();
-				// Add function call for setting text here
-				_button2 = new Button();
-				with (_button2) {
-					x = 440;
-					y = 620;
-					height = 50;
-					width = 50;
-					label = "";
-					addEventListener(MouseEvent.CLICK, upgrade2Handler);
-					setStyle("icon", upgradeText);
-				}
-				this.addChild(_button2);
-			} else {
-				upgradeText = new upgradeTwo();
-				_button1.setStyle("icon", upgradeText);
-			}
-		}
+		/*--------------------------------------- HANDLERS ---------------------------------*/
 		
 		private function sellHandler(e:MouseEvent):void {
 			_menu.playClick();
@@ -220,11 +273,12 @@
 		
 		private function upgrade1Handler(e:MouseEvent):void {
 			_menu.playClick();
-			// do upgrade code
+			_machine.upgrade(false);
 		}
 		
 		private function upgrade2Handler(e:MouseEvent):void {
 			_menu.playClick();
+			_machine.upgrade(true);
 			// second upgrade code
 		}
 			

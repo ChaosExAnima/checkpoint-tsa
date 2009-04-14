@@ -99,6 +99,14 @@
 					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpPrice.text();
 					break;
 					
+				case "powerUpSpeedMin":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpSpeedMin.text();
+					break;
+					
+				case "powerUpSpeedMax":
+					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).powerUpSpeedMax.text();
+					break;
+					
 				case "speedUpGuardPrice":
 					Response = machineValues.unit.(@name == chkPnt).(@level == AcuLevel).speedUpGuardPrice.text();
 					break;

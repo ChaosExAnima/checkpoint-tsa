@@ -29,7 +29,9 @@
 				  Number(XMLmachineData.getXML("SnifferMachine","accuracyMin","1")),
 				  Number(XMLmachineData.getXML("SnifferMachine","accuracyMax","1")),
 				  Number(XMLmachineData.getXML("SnifferMachine","speedMin","1")),
-				  Number(XMLmachineData.getXML("SnifferMachine","speedMax","1")));
+				  Number(XMLmachineData.getXML("SnifferMachine","speedMax","1")),
+				  Number(XMLmachineData.getXML("SnifferMachine","powerUpPrice","1")),
+				  Number(XMLmachineData.getXML("SnifferMachine","powerUpSpeedMin","1")));
 		}
 
 		//PRE: proObj must either be bomb or drugs

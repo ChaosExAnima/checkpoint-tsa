@@ -7,11 +7,15 @@
 		protected var guard:Boolean = false;
 		protected var priceGuard:int;
 		protected var speedUpGuard:Number;
+		protected var upgradeNextPrice:int;
+		protected var upgradeNextAcc:Number;
 		
-		public function MetalDetector(unitName:String, mood:Number, price:int, sellFor:int, prohObjs:Array, accuracyMin:int, accuracyMax:int, speedMin:Number, speedMax:Number, priceGuard:int, speedUpGuard:Number) {
-			super(unitName, mood, price, sellFor, prohObjs, accuracyMin, accuracyMax, speedMin, speedMax);
+		public function MetalDetector(unitName:String, mood:Number, price:int, sellFor:int, prohObjs:Array, accuracyMin:int, accuracyMax:int, speedMin:Number, speedMax:Number, priceGuard:int, speedUpGuard:Number, upgradePrice:int, upgradeAcc:Number) {
+			super(unitName, mood, price, sellFor, prohObjs, accuracyMin, accuracyMax, speedMin, speedMax, priceGuard, speedUpGuard);
 			this.priceGuard = priceGuard;
 			this.speedUpGuard = speedUpGuard;
+			this.upgradeNextPrice = upgradePrice;
+			this.upgradeNextAcc = upgradeAcc;
 			
 		}
 		
@@ -24,6 +28,8 @@
 				speed = speed - speedUpGuard;
 				speedMin = speedMin - speedUpGuard;
 				speedMax = speedMax - speedUpGuard;
+				this.upgradePrice = upgradeNextPrice;
+				this.upgradeAccuracy = upgradeNextAcc;
 				guard = true;
 			}
 		}
