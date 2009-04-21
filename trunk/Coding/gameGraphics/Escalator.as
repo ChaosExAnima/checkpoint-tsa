@@ -23,6 +23,9 @@
 		private var xSpeed:Number = 0;
 		private var ySpeed:Number = 0;
 		
+		private var _startX:int = 0;
+		private var _startY:int = -36;
+		
 		
 		public function Escalator():void
 		{
@@ -67,6 +70,8 @@
 		{
 			//passArray.push(this.addChild(pass));
 			pass.stopWalk();
+			pass.x += _startX;
+			pass.y += _startY;
 			waiting.push(pass);
 		}
 		
