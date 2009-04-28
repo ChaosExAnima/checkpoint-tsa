@@ -33,7 +33,7 @@
 		private var _personHolder:Sprite = new Sprite();
 		
 		public function StationG(number:int) {
-			stationL = new Station(number);
+			stationL = Airport.addStation(number);
 			for (var i:int=0;i<5;i++) {
 				spots[i] = new GSpot();
 				spots[i].x = 108*i;

@@ -57,10 +57,10 @@ public class Airport {
 	}
 	
 	//adds a station to the airport, where 1 <= place <= 5
-	public static function addStation(place:int):void {
+	public static function addStation(place:int):Station {
 		nrStations++;
 		stations[place-1] = new Station(place);
-		trace("nrStations = "+nrStations);
+		return(stations[place-1]);
 	}
 	
 	//removes a station from the airport, where 1 <= place <= 5
@@ -98,6 +98,6 @@ public class Airport {
 		if (ticketChecker == null) return false;
 		else return true;
 	}
-	
+		
 }
 }
