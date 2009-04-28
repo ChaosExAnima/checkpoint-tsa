@@ -110,24 +110,27 @@
 						
 					}else { // ... and is obsolete
 						var pass:PassengerG = passArray[depth_array[i]];
-						//if(pass.getLine().isNotFull()) {
+						if(pass.getLine().isNotFull()) {
 							pickupBox(pass.getFootPrintX(),
 									  pass.getFootPrintY(),
 									  pass.getFootPrintW(),
 									  pass.getFootPrintH()); // Removes collision block
 							moveOn(pass); // Sends person to next target
-						/*} else {
-							pass.obsolete = false;
-							pass.stopWalk();
+						} else if(!pass.rerouting) {
 							pass.rerouting = true;
 							pass.randTarg();
 							pass.atTic = 0;
-						}*/
+							newPassArray.push(pass);
+							pass.setLine(pass.getLine());
+						}else{
+							pass.atTic++;
+						}
 					}			
 				}
 			}
 			
 			passArray = newPassArray;
+//trace("passArray #1: " + this.name + " " + passArray);		
 			
 			if(!gridDrawn && drawGrid)
 				gridDrawer();
@@ -193,7 +196,7 @@
 			// Skip if close enough to the current waypoint
 			if(passArray[pass].closeEnough())
 			{
-				trace("close enough");
+				//trace("close enough");
 				passArray[pass].skipTarg();
 			}
 			
@@ -325,7 +328,7 @@
 				if(passArray[i].parent)
 					passArray[i].parent.removeChild(passArray[i]);
 			}
-			passArray = null;
+			passArray = null;			
 			passArray = new Array();
 			setGrid(width_,height_,floorW,floorH);
 		}
@@ -412,8 +415,21 @@
 			drawnBits.graphics.endFill();
 		}
 		
+		public function getTargetedLines():Array {
+			var lineArray:Array = new Array();
+			lineArray.push(Airport.getNrStations());
+			
+			trace("pass array size: " + passArray);
+			for each (var pass:PassengerG in passArray) {
+				trace("array pass" + pass);
+				var line:int = pass.getLine().getNum();
+				lineArray[line]++;
+			}
+			trace("Floor lineArray: "+lineArray);
+			return (lineArray);
+		}
 		
-		public override function toString():String
+		/*public override function toString():String
 		{
 			var outString:String = new String();
 	
@@ -427,6 +443,6 @@
 			}
 	
 			return outString;
-		}
+		}*/
 	}
 }

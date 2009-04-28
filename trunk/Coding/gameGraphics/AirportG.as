@@ -25,7 +25,7 @@
 									   new Sprite(), new GExit3(), 
 									   new Sprite(), new GExit4(), 
 									   new Sprite(), new GExit5());
-		private var ticketChecker:MovieClip;
+		public var ticketChecker:TicketCheckerG = null;
 		
 		public static const FLOOR_X = 105;
 		public static const FLOOR_Y = 550;
@@ -37,7 +37,10 @@
 		{
 			preline.setTarget(afloor);
 			afloor.setTarget(null);
-
+			
+			personMaker = new GraphPassFact(this);
+			
+			
 			this.addChild(escalatorA);
 			this.addChild(new GEscalator1());
 			this.addChild(escalatorB);
@@ -49,10 +52,10 @@
 			this.addChild(escalatorE);
 			this.addChild(new GFadeOut);
 			
-			personMaker = new GraphPassFact(this);
-			
-			this.addChild(afloor);
-			this.addChild(preline);
+			/*afloor.mouseEnabled = false;
+			afloor.mouseChildren =false;
+			preline.mouseEnabled = false;
+			preline.mouseChildren = false;*/
 			
 			for (var i:int = 0; i < gLines.length; i++) {
 				this.addChild(gLines[i]);
@@ -61,6 +64,9 @@
 					gLines[i].mouseChildren = false;
 				}
 			}
+			
+			this.addChild(afloor);
+			this.addChild(preline);
 			
 			escalatorA.x = 20;
 			escalatorA.y = 1080;
@@ -128,24 +134,27 @@
 			
 		public function addPass():void
 		{
-			
-			switch(Utilities.randRange(1,5))
-			{
-				case 1:
-					escalatorA.receivePass(personMaker.makePass());
-				break;
-				case 2:
-					escalatorB.receivePass(personMaker.makePass());
-				break;
-				case 3:
-					escalatorC.receivePass(personMaker.makePass());
-				break;
-				case 4:
-					escalatorD.receivePass(personMaker.makePass());
-				break;
-				case 5:
-					escalatorE.receivePass(personMaker.makePass());
-				break;
+			//trace(TheGame.getPeopleActive());
+			if (TheGame.getPeopleActive() < TheGame.getMaxPeopleActive()) {
+				TheGame.incrementPeopleActive();
+				switch(Utilities.randRange(1,5))
+				{
+					case 1:
+						escalatorA.receivePass(personMaker.makePass());
+					break;
+					case 2:
+						escalatorB.receivePass(personMaker.makePass());
+					break;
+					case 3:
+						escalatorC.receivePass(personMaker.makePass());
+					break;
+					case 4:
+						escalatorD.receivePass(personMaker.makePass());
+					break;
+					case 5:
+						escalatorE.receivePass(personMaker.makePass());
+					break;
+				}
 			}
 		}
 		
@@ -165,8 +174,10 @@
 		}
 		
 		public function addTicketChecker():void {
+			trace(ticketChecker);
 			if (!ticketChecker) {
-				ticketChecker = new TicketCheckerG();
+				trace("Ticket checker created");
+				ticketChecker = new TicketCheckerG(this);
 				this.addChild(ticketChecker);
 			}
 		}
@@ -177,7 +188,6 @@
 			}
 			
 			lines.push(new StationG(lines.length));
-			Airport.addStation(lines.length);
 			
 			var sX:int = 788;
 			var sY:int = 564;
@@ -193,8 +203,8 @@
 				gLines[(i*2)+1].mouseEnabled = false;
 				lines[i].hideSpots();
 			}
-			
-			
+			this.addChild(afloor);
+			this.addChild(preline);
 		}
 
 	}
