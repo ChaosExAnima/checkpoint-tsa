@@ -87,7 +87,7 @@
             <project_file path="./Coding/gameUI/UISlider.as" filetype="as" />
             <project_file path="./Coding/gameUI/UnselectedMenu.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameControl" expanded="false">
+        <project_folder name="gameControl" expanded="true">
             <project_file path="./Coding/gameControl/TheGame.as" filetype="as" />
         </project_folder>
         <project_folder name="gameSound" expanded="false">
@@ -110,6 +110,6 @@
             <project_file path="./Coding/utilities/Utilities.as" filetype="as" />
         </project_folder>
         <project_file path="./Coding/Loader.fla" filetype="fla" profile="" />
-        <project_file path="./Coding/UI.fla" filetype="fla" profile="" def_file="true" />
+        <project_file path="./Coding/Main.fla" filetype="fla" profile="" def_file="true" />
     </project_folder>
 </flash_project>

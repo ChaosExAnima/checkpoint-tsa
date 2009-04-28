@@ -39,8 +39,9 @@
 			if(powerUpGunKnife==false&&powerUpBomb==false) {
 				buy(pricePowerUpGunKnife);
 				sellFor = sellFor + pricePowerUpGunKnife/2;
-				//TODO
 				powerUpGunKnife = true;
+				upgradePrice = 0;
+				upgradeAccuracy = 0;
 			}
 		}
 
@@ -51,8 +52,9 @@
 			if(powerUpGunKnife==false&&powerUpBomb==false) {
 				buy(pricePowerUpBomb);
 				sellFor = sellFor + pricePowerUpBomb/2;
-				//TODO
 				powerUpBomb = true;
+				upgradePrice = 0;
+				upgradeAccuracy = 0;
 			}
 		}
 		
@@ -62,6 +64,10 @@
 		
 		public function isPowerUpBomb():Boolean {
 			return powerUpBomb;
+		}
+		
+		public function get upgradeAcc():Number {
+			return (accuracySpecialMax+accuracySpecialMin)/2;
 		}
 		
 		//Takes into account the special accuracy setting for power ups

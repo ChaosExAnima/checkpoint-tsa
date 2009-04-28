@@ -52,14 +52,17 @@
 		private function setStats():void {
 			t_name.text = _machine.logic.getName();
 			t_percent.text = String(_machine.logic.getAccuracy())+"% vs";
-			t_upgrade1.text = ""; // No way to get upgrade stats!
-			t_upgrade2.text = ""; //No way to get upgrade stats!
 			t_time.text = String(Math.round(_machine.logic.getSpeed()));
 			_cancel.label = "Sell for $"+String(_machine.logic.getSellFor());
-			icon_upgrade1.gotoAndStop(1);
-			icon_upgrade2.gotoAndStop(1);
 			icon_time.gotoAndStop(Math.min(Math.round(_machine.logic.getSpeed()), 40));
 			
+			if (_machine is MoodUnitG) {
+				t_percent.text = "";
+				t_time.text = "";
+				icon_time.visible = false;
+			}
+			
+			setUpgradeStats();
 			showOffenseIcons(_machine.logic.getProhObjs());
 			pickPicture();
 		}
@@ -68,8 +71,39 @@
 			(_machine.logic as SliderMachine).accSpeedSlide(val);
 		}
 		
-
-		
+		// Updates upgrade stats
+		private function setUpgradeStats():void {
+			if (_machine.upgradeAcc[0]) {
+				t_upgrade1.text = "+"+String(_machine.upgradeAcc[0])+"% vs";
+			} else {
+				t_upgrade1.text = "";
+			}
+			if (_machine.upgradeAcc[1]) {
+				t_upgrade2.text = "+"+String(_machine.upgradeAcc[1])+"% vs";
+			} else {
+				t_upgrade2.text = "";
+			}
+			icon_upgrade1.gotoAndStop(_machine.upgradeType[0]);
+			icon_upgrade1a.gotoAndStop(_machine.upgradeType[1]);
+			icon_upgrade2.gotoAndStop(_machine.upgradeType[2]);
+			icon_upgrade2a.gotoAndStop(_machine.upgradeType[3]);
+			
+			if (!TheGame.affordable(_machine.logic.getUpgradePrice())) {
+				_button1.enabled = false;
+				if (_button2) {
+					_button2.enabled = false;
+				}
+				if (_machine is SnifferMachineG) {
+					_button1.enabled = true;
+				}
+			} else if (_machine.logic.getUpgradePrice() != 0) {
+				_button1.enabled = true;
+				if (_button2) {
+					_button2.enabled = true;
+				}
+			}
+		}
+				
 		// Shows picture of machine
 		private function showPicture(obj:MovieClip):void {
 			if (icon_picture.numChildren == 2) {
@@ -116,7 +150,7 @@
 		}
 		
 		private function scaleIcons(ico:MovieClip, obj:MovieClip):void {
-			if (obj != this) {
+			if ((obj != this)&&(ico.width == 26)) {
 				ico.width = ico.width/2;
 				ico.height = ico.height/2;
 			}
@@ -127,7 +161,7 @@
 			format.font = "Helvetica";
 			format.size = 16;
 			format.color = 0xFFFFFF;
-			
+		
 			_cancel = new Button();
 			with (_cancel) {
 				x = 380;
@@ -155,7 +189,9 @@
 			this.addChild(_button1);
 			
 			var upgradeText:MovieClip;
-			if (((_machine is CheepieMetalDetectorG) && ((_machine.logic as MetalDetector).isGuard())) || (_machine is CheepieXRayMachineG) || (_machine is SuperXRayMachineG)) {
+			if (((_machine is CheepieMetalDetectorG) && ((_machine.logic as MetalDetector).isGuard())) ||
+					(_machine is CheepieXRayMachineG) || (_machine is SuperXRayMachineG) ||
+					(_machine is SnifferMachineG && (_machine.logic as SnifferMachine).upgraded == false)) {
 				upgradeText = new upgradeTwo();
 				// Add function for setting text here
 				_button1.width = 50;
@@ -190,6 +226,14 @@
 			
 			bObj1.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
 			bObj1.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+
+			if (bObj2) {
+				bObj2.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
+				bObj2.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+				bObj1.icon_upgrade1.gotoAndStop(1);
+				bObj2.icon_upgrade1.gotoAndStop(1);
+			}
+			
 			if ((_machine is MetalDetectorG) && !((_machine.logic as MetalDetector).isGuard())) {
 				bObj1.icon_1.gotoAndStop("speed");
 				bObj1.icon_2.gotoAndStop("1");
@@ -197,21 +241,62 @@
 				bObj1.icon_4.gotoAndStop("1");
 			} else if (_machine is XRayMachineG) {
 				bObj1.icon_upgrade.gotoAndStop("gun");
+				bObj1.icon_upgrade1.gotoAndStop("knife");
 				bObj2.icon_upgrade.gotoAndStop("bomb");
-				bObj2.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
+				bObj2.t_upgrade.text = String(_machine.logic.getUpgradeAccuracy())+"%";
 				bObj2.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
 			} else if ((_machine is CheepieMetalDetectorG) && ((_machine.logic as MetalDetector).isGuard())) {
 				bObj1.icon_upgrade.gotoAndStop("gun");
 				bObj2.icon_upgrade.gotoAndStop("knife");
 				bObj2.t_upgrade.text = "+"+String(_machine.logic.getUpgradeAccuracy())+"%";
 				bObj2.t_price.text = "$"+String(_machine.logic.getUpgradePrice());
+			} else if ((_machine is SnifferMachineG && (_machine.logic as SnifferMachine).upgraded == false)) {
+				bObj2.icon_upgrade.gotoAndStop("speed");
+				swapSnifferIcon();
+			} else if (_machine is SnifferMachineG) {
+				swapSnifferIcon();
 			} else {
 				showOffenseIcons(targ, bObj1);
 			}
 			
-			if (_machine.logic.getUpgradePrice() == 0) {
+			if (_machine.logic.getUpgradePrice() == 0 && !(_machine is SnifferMachineG)) {
 				_button1.enabled = false;
+				with (bObj1) {
+					t_upgrade.text = "";
+					t_price.text = "";
+					if (bObj1.icon_upgrade) {
+						icon_upgrade.gotoAndStop("1");
+						icon_upgrade1.gotoAndStop("1");
+					} else {
+						icon_1.gotoAndStop("1");
+						icon_2.gotoAndStop("1");
+						icon_3.gotoAndStop("1");
+						icon_4.gotoAndStop("1");
+					}
+				}
+				if (_button2) {
+					_button2.enabled = false;
+					with (bObj2) {
+						t_upgrade.text = "";
+						t_price.text = "";
+						icon_upgrade.gotoAndStop("1");
+						icon_upgrade1.gotoAndStop("1");
+					}
+				}
 			}
+		}
+		
+		private function swapSnifferIcon():void {
+			var button:MovieClip = new upgradeSniffer();
+			var ico:MovieClip = button.icon;
+			if ((_machine.logic.getProhObjs()[0].getKindOfObj()) == "bomb") {
+				ico.gotoAndStop("drugs");
+			} else {
+				ico.gotoAndStop("bomb");
+			}
+			//ico.height = 40;
+			//ico.width = 40;
+			_button1.setStyle("icon", button);
 		}
 		
 		// Picks what picture a machine has
@@ -274,11 +359,17 @@
 		private function upgrade1Handler(e:MouseEvent):void {
 			_menu.playClick();
 			_machine.upgrade(false);
+			this.removeChild(_button1);
+			this.removeChild(_cancel);
+			showButtons();
+			showUpgrades();
 		}
 		
 		private function upgrade2Handler(e:MouseEvent):void {
 			_menu.playClick();
 			_machine.upgrade(true);
+			showButtons();
+			showUpgrades();
 			// second upgrade code
 		}
 			

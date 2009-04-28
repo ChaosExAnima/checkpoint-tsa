@@ -19,10 +19,7 @@
 				  Number(XMLmachineData.getXML("SuperMetalDetector","powerUpGunPrice","1")),
 				  Number(XMLmachineData.getXML("SuperMetalDetecter","powerUpAccuracyMin","1"))
 				  ); //READ IN FROM XML:
-				  
 				  //instaDetect = true;
 		}
-
-		
 	}
 }

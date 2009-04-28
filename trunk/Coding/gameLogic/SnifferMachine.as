@@ -17,7 +17,7 @@
 		private static var priceUpgrade:int;
 		private static var speedUpgradeMin:int;
 		private static var speedUpgradeMax:int;
-		private var upgraded:Boolean;
+		public var upgraded:Boolean = false;
 		
 		
 		public function SnifferMachine() {
@@ -32,20 +32,30 @@
 				  Number(XMLmachineData.getXML("SnifferMachine","speedMax","1")),
 				  Number(XMLmachineData.getXML("SnifferMachine","powerUpPrice","1")),
 				  Number(XMLmachineData.getXML("SnifferMachine","powerUpSpeedMin","1")));
+			priceUpgrade = Number(XMLmachineData.getXML("SnifferMachine","powerUpPrice","1"));
+			speedUpgradeMin = Number(XMLmachineData.getXML("SnifferMachine","powerUpSpeedMin","1"));
+			speedUpgradeMax = Number(XMLmachineData.getXML("SnifferMachine","powerUpSpeedMax","1"));
 		}
 
 		//PRE: proObj must either be bomb or drugs
 		//POST: Sets sniffingAt correspondingly.
 		public function changeSniffingAt(proObj:ProhibitedObject) {
-			prohObjs = null;
+			prohObjs.pop();
 			prohObjs.push(proObj);
-		}		
+		}
 		
 		//TODO:
 		//PRE: upgraded is false.
 		//POST: Upgrade is in place and details are set correctly.
-		public function upgrade() {
-			
+		public function speedUp() {
+			if (!upgraded) {
+				buy(priceUpgrade);
+				speedMin = speedUpgradeMin;
+				speedMax = speedUpgradeMax;
+				upgraded = true;
+				upgradePrice = 0;
+				upgradeAccuracy = 0;
+			}
 		}
 	}
 	

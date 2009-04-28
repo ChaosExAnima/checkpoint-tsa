@@ -21,6 +21,9 @@
 		//Logical security check unit
 		protected var secCheck:SecurityCheckUnit; // = new CheepieMetalDetector();
 		
+		// Contains stats for upgrade UI
+		public var upgradeAcc:Array = new Array(null, null);
+		public var upgradeType:Array = new Array(1, 1, 1, 1);
 		
 		public function SecurityCheckUnitG(xLoc:Number, yLoc:Number, secCheck:SecurityCheckUnit, secCheckG:MovieClip) {
 		    this.x = xLoc;//Utilities.randRange(0,700);

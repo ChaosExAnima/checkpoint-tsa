@@ -30,6 +30,7 @@
 		private var stationL:Station;
 		
 		private var _lineG:LineG;
+		private var _personHolder:Sprite = new Sprite();
 		
 		public function StationG(number:int) {
 			stationL = new Station(number);
@@ -44,9 +45,8 @@
 			}
 			
 			_lineG = new LineG(this);
-			//_lineG.x = 1220+(108*number);
-			//_lineG.y = 340+(56*number);
 			this.addChild(_lineG);
+			this.addChild(_personHolder);
 		}
 		
 		//Adds a security check unit to a specific spot and makes the original spots disappear
@@ -63,10 +63,11 @@
 			stationL.addSecurityCheckUnit(secCheckG.logic, num+1);
 			secCheckG.spot = num;
 			
-			this.spots[num].x = newX-(this.spots[num].width/2);
-			this.spots[num].y = newY-(this.spots[num].height/2);
+			this.spots[num].x = newX;
+			this.spots[num].y = newY;
 			
 			addChild(this.spots[num]);
+			addChild(_personHolder);
 			
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, machineOver);
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, machineOut);
@@ -76,8 +77,8 @@
 		
 		//Removes the security check unit and replaces it by the original shape in place. 
 		public function removeSecurityCheckUnitG(num:int):void {
-			var newX = (this.spots[num].x)+(this.spots[num].width/2);
-			var newY = (this.spots[num].y)+(this.spots[num].height/2);
+			var newX = this.spots[num].x;
+			var newY = this.spots[num].y;
 			
 			this.spots[num].removeEventListener(MouseEvent.MOUSE_OVER, machineOver);
 			this.spots[num].removeEventListener(MouseEvent.MOUSE_OUT, machineOut);
@@ -90,6 +91,8 @@
 			this.spots[num].y = newY;
 			
 			addChild(this.spots[num]);
+			addChild(_personHolder);
+			
 			this.spots[num].alpha=0.5;
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OVER, rollO);
 			this.spots[num].addEventListener(MouseEvent.MOUSE_OUT, rollOt);
@@ -211,6 +214,10 @@
 		
 		public function get line():LineG {
 			return _lineG;
+		}
+		
+		public function get personHolder():Sprite {
+			return _personHolder;
 		}
 	}	
 }

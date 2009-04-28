@@ -76,21 +76,36 @@
 				y = _subY;
 				t_name.text = machine.logic.getName();
 				t_percent.text = String(machine.logic.getAccuracy())+"%";
-				t_upgrade1.text = "";
-				icon_upgrade1.visible = false;
-				t_upgrade2.text = "";
-				icon_upgrade2.visible = false;
 				t_speed.text = String(machine.logic.getSpeed());
 				icon_speed.visible = true;
 				icon_speed.gotoAndStop(Math.min(machine.logic.getSpeed(), 40));
 			}
+			
 			if(machine.logic.getSpeed() == 0) {
 				_mMenu.t_speed.text = "";
 				_mMenu.t_percent.text = "";
 				_mMenu.icon_speed.visible = false;
 			}
+			setUpgradeStats(machine);
 			pickPicture(machine);
 			showOffenseIcons(machine.logic.getProhObjs());		
+		}
+		
+		// Updates upgrade stats
+		private function setUpgradeStats(machine:SecurityCheckUnitG):void {
+			if (machine.upgradeAcc[0]) {
+				_mMenu.t_upgrade1.text = "+"+String(machine.upgradeAcc[0])+"% vs";
+			} else {
+				_mMenu.t_upgrade1.text = "";
+			}
+			if (machine.upgradeAcc[1]) {
+				_mMenu.t_upgrade2.text = "+"+String(machine.upgradeAcc[1])+"% vs";
+			} else {
+				_mMenu.t_upgrade2.text = "";
+			}
+			_mMenu.icon_upgrade1.gotoAndStop(machine.upgradeType[0]);
+			_mMenu.icon_upgrade1a.gotoAndStop(machine.upgradeType[1]);
+			_mMenu.icon_upgrade2.gotoAndStop(machine.upgradeType[2]);
 		}
 		
 		// Sets the appropriate icon for the offenses.

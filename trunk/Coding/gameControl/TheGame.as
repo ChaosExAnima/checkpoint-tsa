@@ -15,6 +15,7 @@
 		private static var gameTik:Timer = new Timer(delay,0);
 		private static var numPass:int;
 		private static var maxPass:int = 0;
+		private static var curArrests:int = 0;
 		private static var curLevel:int = 1;
 		
 		public function TheGame() {
@@ -98,6 +99,18 @@
 		
 		public static function resetNumPass():void {
 			numPass = 0;
+		}
+		
+		public static function incrementArrests():void {
+			curArrests++;
+		}
+		
+		public static function getArrests():int {
+			return (curArrests);
+		}
+		
+		public static function resetArrests():void {
+			curArrests = 0;
 		}
 		
 		public static function setMaxPass(val:int):void {

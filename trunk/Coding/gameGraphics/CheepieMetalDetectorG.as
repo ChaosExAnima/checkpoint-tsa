@@ -14,9 +14,29 @@
 		
 		protected override function newGuard(guard:MovieClip):void {
 			if (MetalDetector(secCheck).isGuard()) {
-				guard.x = 73.9;
-				guard.y = 108.7;
-				this.addChild(guard);
+				if (this.contains(_guard)) {
+					this.removeChild(_guard);
+				}
+				_guard = guard;
+				_guard.x = 30;
+				_guard.y = -55;
+				this.addChild(_guard);
+			}
+		}
+		
+		public override function upgrade(type:Boolean = false):void {
+			if (!MetalDetector(secCheck).isGuard()) {
+				addGuard();
+				upgradeAcc[0] = MetalDetector(secCheck).guardAcc;
+				upgradeType[0] = "speed";
+			} else if (type == false) {
+				CheepieMetalDetector(secCheck).doPowerUpKnife();
+				upgradeAcc[1] = CheepieMetalDetector(secCheck).upgradeAcc;
+				upgradeType[2] = "knife";
+			} else if (type == true) {
+				CheepieMetalDetector(secCheck).doPowerUpGun();
+				upgradeAcc[1] = CheepieMetalDetector(secCheck).upgradeAcc;
+				upgradeType[2] = "gun";
 			}
 		}
 	}
