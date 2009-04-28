@@ -3,12 +3,12 @@
 	
 	/* Encapsulates the Cheepie Metal Detector with the power up possibilites for guns or knives */
 	public class CheepieMetalDetector extends MetalDetector {
-		private static var pricePowerUpKnife:int = Number(XMLmachineData.getXML("CheapieMetalDetector","powerUpKnifePrice","1"));//READ IN FROM XML:
-		private static var pricePowerUpGun:int = Number(XMLmachineData.getXML("CheapieMetalDetector","powerUpGunPrice","1"));//READ IN FROM XML:
+		private var pricePowerUpKnife:int = Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpKnifePrice","1"));//READ IN FROM XML:
+		private var pricePowerUpGun:int = Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpGunPrice","1"));//READ IN FROM XML:
 		
 		//Power up changes accuracy for only one object. The min and max values are stored in these variables.
-		private static var accuracySpecialMin:int = Number(XMLmachineData.getXML("CheapieMetalDetector","powerUpAccuracyMin","1"));//READ IN FROM XML:
-		private static var accuracySpecialMax:int = Number(XMLmachineData.getXML("CheapieMetalDetector","powerUpAccuracyMax","1"));//READ IN FROM XML:
+		private var accuracySpecialMin:int = Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpAccuracyMin","1"));//READ IN FROM XML:
+		private var accuracySpecialMax:int = Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpAccuracyMax","1"));//READ IN FROM XML:
 		
 		private var powerUpKnife:Boolean = false;
 		private var powerUpGun:Boolean = false;
@@ -26,9 +26,8 @@
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardPrice","1")), 
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","speedUpGuardSpeed","1")),
 				  Number(XMLmachineData.getXML("CheepieMetalDetector","powerUpGunPrice","1")),
-				  (accuracySpecialMin+accuracySpecialMax)/2
+				  (accuracySpecialMax-accuracySpecialMin)
 				  );//READ IN FROM XML:
-			trace("XML data: "+accuracySpecialMin);
 		}
 		
 		//PRE: There has to be a guard installed.
@@ -38,8 +37,8 @@
 			if(powerUpKnife==false&&powerUpGun==false&&guard==true) {
 				buy(pricePowerUpKnife);
 				sellFor = sellFor + pricePowerUpKnife/2;
-				//TODO
 				powerUpKnife = true;
+				this.upgradePrice = 0;
 			}
 		}
 
@@ -50,8 +49,8 @@
 			if(powerUpKnife==false&&powerUpGun==false&&guard==true) {
 				buy(pricePowerUpGun);
 				sellFor = sellFor + pricePowerUpGun/2;
-				//TODO
 				powerUpGun = true;
+				this.upgradePrice = 0;
 			}
 		}
 		
@@ -64,6 +63,9 @@
 			return (powerUpGun == true);
 		}
 		
+		public function get upgradeAcc():int {
+			return (accuracySpecialMax-accuracySpecialMin);
+		}
 		
 		//Takes into account the special accuracy setting for power ups
 		protected override function isCaught(pObj:ProhibitedObject):Boolean {

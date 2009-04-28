@@ -48,7 +48,7 @@
 			for(var i:int = 0; i<maxInLine; i++) {
 				passArray.push(null);
 				spotArray.push(new Point(pX, pY));
-				addMark(pX, pY); // TEMP
+				//addMark(pX, pY); // TEMP
 				pX += 40;
 				pY -= 20;
 			}
@@ -86,7 +86,7 @@
 					if (passArray[i].obsolete == true) { // No more targets!
 						passArray[i].stopWalk();
 						if (i == maxInLine-1) { // At the head of line
-							moveOn(passArray[maxInLine-1]);
+							moveOn(passArray[i]);
 						} else if (!passArray[i+1]) { // Look for empty spots ahead
 							passArray[i].setTarg(spotArray[i+1].x, spotArray[i+1].y);
 							passArray[i].startWalk();
@@ -100,13 +100,18 @@
 			for (i = 0; i < unitArray.length; i++) {
 				if (unitArray[i]) {
 					unitArray[i].tStep();
+					if ((station.spotArray[i] is CheepieMetalDetectorG)||(station.spotArray[i] is SuperMetalDetectorG)||(station.spotArray[i] is SnifferMachineG)) {
+						if (Utilities.getDist(station.spotArray[i], unitArray[i]) < 50) {
+							unitArray[i].mask = station.spotArray[i].getUnitForm().person_mask;
+							station.personHolder.addChild(unitArray[i]);
+						} else {
+							this.addChild(unitArray[i]);
+							unitArray[i].mask = null;
+						}
+					} 
 					if (unitArray[i].obsolete) { // No more waypoints
-						/*if (!station.checkSpot(i)) { //Machine not at expected point?
-							gotoNext(i);
-							break;
-						}*/
 						var unit:SecurityCheckUnit = station.spotArray[i].logic;
-						 
+					
 						if (unit.isFree()) {
 							unitArray[i].stopWalk();
 							unit.checkPassenger(unitArray[i].logic);
@@ -145,9 +150,8 @@
 				unitArray[index] = null;
 			} else if (station.spotArray[station.getNext(index)].logic.isFree()) {
 				var unit:SecurityCheckUnitG = station.spotArray[station.getNext(index)];
-				pass.setTarg((unit.x+(unit.width/2)), (unit.y+(unit.height/2)));
+				pass.setTarg((unit.x), (unit.y));
 				pass.startWalk();
-				//unit.logic.isTaken();
 				unitArray[station.getNext(index)] = pass;
 				unitArray[index] = null;
 			}
@@ -159,7 +163,7 @@
 			
 			if (station.logic.firstSecurityCheckUnitEmpty()) {
 				var units:Sprite = station.spotArray[station.getFirst(0)];
-				pass.setTarg((units.x+(units.width/2)), (units.y+(units.height/2)));
+				pass.setTarg(units.x, units.y);
 				pass.startWalk();
 				pass.logic.addEventListener(Passenger.CAUGHT, arrestHandler);
 				pass.logic.addEventListener(Passenger.MOVEON, moveOnHandler)
@@ -201,8 +205,13 @@
 			for (var i:int = 0; i < unitArray.length; i++) {
 				if (unitArray[i]) {
 					if (unitArray[i].logic == e.target) {
-						this.removeChild(unitArray[i]);
+						if (station.personHolder.contains(unitArray[i])) {
+							station.personHolder.removeChild(unitArray[i]);
+						} else {
+							this.removeChild(unitArray[i]);
+						}
 						TheGame.incrementNumPass();
+						TheGame.incrementArrests();
 						unitArray[i] = null;
 					}
 				}
@@ -254,6 +263,7 @@
 				var spot:int = getLastFree();
 				pass.setTarg(spotArray[spot].x, spotArray[spot].y);
 				pass.noRedirect();
+				pass.speed = 5;
 				passArray[spot] = pass;
 				logic.pushPassenger(pass.logic);
 				pass.logic.addEventListener(Passenger.OUTOFTIME, passHandler);

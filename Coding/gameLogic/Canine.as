@@ -29,6 +29,8 @@
 			buy(priceGermanShepherd);
 			level = 2;
 			accuracy = germanShepherdAccuracy;
+			upgradePrice = pricePig;
+			upgradeAccuracy = pigAccuracy;
 		}
 	
 		//PRE: level=2 and must have enough money
@@ -37,6 +39,8 @@
 			buy(pricePig);
 			level = 3;
 			accuracy = pigAccuracy;
+			upgradePrice = 0;
+			upgradeAccuracy = 0;
 		}
 		
 		public function getLevel():int {

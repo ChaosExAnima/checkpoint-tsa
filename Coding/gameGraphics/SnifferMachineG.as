@@ -1,6 +1,6 @@
 ﻿ package gameGraphics {
 
-	import gameLogic.SnifferMachine;
+	import gameLogic.*;
 	
 	/* Encapsulates the graphical representation of a Sniffer machine with the ability to choose what it is sniffing at and a speed upgrade. */
 	   
@@ -10,7 +10,20 @@
 			super(xLoc, yLoc, new SnifferMachine(), new GSnifferMachine());
 		}
 		
-		// Handles the ability in the UI of adding a guard.
-		// This shall only allow to upgrade speed, if money is sufficient and if no upgrade has been executed yet.
+		public override function upgrade(type:Boolean = false):void {
+			if (type == false) {
+				swapSniffer();
+			} else {
+				SnifferMachine(secCheck).speedUp();
+			}
+		}
+		
+		public function swapSniffer():void {
+			if ((secCheck.getProhObjs()[0].getKindOfObj()) == "bomb" ) {
+				SnifferMachine(secCheck).changeSniffingAt(new Drugs());
+			} else {
+				SnifferMachine(secCheck).changeSniffingAt(new Bomb());
+			}
+		}
 	}
 }

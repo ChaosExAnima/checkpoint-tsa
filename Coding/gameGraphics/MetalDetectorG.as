@@ -7,6 +7,7 @@
 	   like the ability in the UI to add a guard. */
 	   
 	public class MetalDetectorG extends SliderMachineG {
+		protected var _guard:MovieClip = new guard_idle();
 		
 		public function MetalDetectorG(xLoc:Number, yLoc:Number, secCheck:MetalDetector, metalDetector:MovieClip) {
 			super(xLoc, yLoc, secCheck, metalDetector);
@@ -15,14 +16,26 @@
 		// Handles the ability in the UI of adding a guard.
 		public function addGuard():void {
 			MetalDetector(secCheck).addGuard();
-			newGuard(new guard_idle());
+			var curFrame:int = unitForm.currentFrame;
+			trace(curFrame);
+			if (curFrame <= 2) {
+				newGuard(new guard_idle());
+			} else if (curFrame == 3) {
+				newGuard(new guard_pass());
+			} else if (curFrame == 4) {
+				newGuard(new guard_arrest());
+			}
 		}
 				
 		protected function newGuard(guard:MovieClip):void {
 			if (MetalDetector(secCheck).isGuard()) {
-				guard.x = 78.5;
-				guard.y = 116.1;
-				this.addChild(guard);
+				if (this.contains(_guard)) {
+					this.removeChild(_guard);
+				}
+				_guard = guard;
+				_guard.x = 30;
+				_guard.y = -65;
+				this.addChild(_guard);
 			}
 		}
 								  

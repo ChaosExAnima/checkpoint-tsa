@@ -1,5 +1,6 @@
 ﻿package gameLogic {
 	import gameControl.TheGame;
+	import gameUI.Menus;
 	import flash.events.TimerEvent;
 	import flash.events.EventDispatcher;
 	import flash.events.Event;
@@ -104,6 +105,7 @@
 				//Incident based loss and missing based loss of reputation does not add
 				if(prohibObj.incidentHappens()) {
 					TheGame.subtractReputation(prohibObj.getIncidentRepLoss());
+					Menus._infoBox.addText(prohibObj.incidentMsg());
 				}
 				else {
 					TheGame.subtractReputation(prohibObj.getMissingRepLoss());

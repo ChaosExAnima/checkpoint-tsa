@@ -110,19 +110,19 @@
 						
 					}else { // ... and is obsolete
 						var pass:PassengerG = passArray[depth_array[i]];
-						if(pass.getLine().isNotFull()) {
+						//if(pass.getLine().isNotFull()) {
 							pickupBox(pass.getFootPrintX(),
 									  pass.getFootPrintY(),
 									  pass.getFootPrintW(),
 									  pass.getFootPrintH()); // Removes collision block
 							moveOn(pass); // Sends person to next target
-						} else {
+						/*} else {
 							pass.obsolete = false;
 							pass.stopWalk();
 							pass.rerouting = true;
 							pass.randTarg();
 							pass.atTic = 0;
-						}
+						}*/
 					}			
 				}
 			}
@@ -140,7 +140,7 @@
 		{
 			if(!Airport.hasTicketChecker() || target == null)
 			{
-				trace("we're being handed off");
+				//trace("we're being handed off");
 				
 				var passLine:LineG = pass.getLine();
 				pass.x = (this.x-passLine.x) + pass.x;

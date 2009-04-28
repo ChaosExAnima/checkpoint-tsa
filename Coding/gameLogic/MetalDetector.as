@@ -16,7 +16,6 @@
 			this.speedUpGuard = speedUpGuard;
 			this.upgradeNextPrice = upgradePrice;
 			this.upgradeNextAcc = upgradeAcc;
-			
 		}
 		
 		//PRE: No guard was added yet.
@@ -37,6 +36,10 @@
 		// Determines if guard is added
 		public function isGuard():Boolean {
 			return guard;
+		}
+		
+		public function get guardAcc():Number {
+			return speedUpGuard;
 		}
 	}
 }

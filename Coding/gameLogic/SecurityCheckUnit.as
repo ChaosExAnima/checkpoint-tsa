@@ -29,7 +29,9 @@ import gameGraphics.SecurityCheckUnitG;
 		protected var station:Station; //assignment is done when Unit is being created in the Station class.
 		//stores all prohibited Objetcts the Security check unit is looking for
 		protected var prohObjs:Array; //<ProhibitedObject>
+		// stores price for next upgrade
 		protected var upgradePrice:int;
+		// stores accuracy modifier for next upgrade
 		protected var upgradeAccuracy:Number;
 		//This is the number of game tiks a passenger has been in the security check unit.
 		private var passInUnit:Number=0;
@@ -51,7 +53,7 @@ import gameGraphics.SecurityCheckUnitG;
 		
 		private var taken:Boolean = false;
 		
-		public function SecurityCheckUnit(unitName:String, accuracy:int, speed:Number, mood:Number, price:int, sellFor:int, prohObjs:Array, upgradePrice:int, upgradeAcc:int) {
+		public function SecurityCheckUnit(unitName:String, accuracy:int, speed:Number, mood:Number, price:int, sellFor:int, prohObjs:Array, upgradePrice:int, upgradeAcc:Number) {
 			this.unitName = unitName;
 			this.accuracy = accuracy;
 			this.speed = TheGame.minToGameTime(speed); //converted from spec seconds into game tiks
@@ -232,7 +234,7 @@ import gameGraphics.SecurityCheckUnitG;
 			return upgradePrice;
 		}
 		
-		public function getUpgradeAccuracy():int {
+		public function getUpgradeAccuracy():Number {
 			return upgradeAccuracy;
 		}
 	}

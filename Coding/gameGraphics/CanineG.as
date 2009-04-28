@@ -35,6 +35,7 @@
 		public function germanShepherdUpgrade():void {
 			var mc = new GCanineShepherd();
 			mc.kindOfCanine.gotoAndStop(canineTimeLine);
+			mc.gotoAndStop(1);
 			swapUnitForm(mc);
 			Canine(secCheck).germanShepherdUpgrade();
 			level = 2;
@@ -45,6 +46,7 @@
 		public function pigUpgrade():void {
 			var mc = new GCaninePig();
 			mc.kindOfCanine.gotoAndStop(canineTimeLine);
+			mc.gotoAndStop(1);
 			swapUnitForm(mc);
 			Canine(secCheck).pigUpgrade();
 			level = 3;

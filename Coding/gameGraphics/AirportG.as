@@ -166,7 +166,7 @@
 		
 		public function addTicketChecker():void {
 			if (!ticketChecker) {
-				ticketChecker = new GTicketChecker();
+				ticketChecker = new TicketCheckerG();
 				this.addChild(ticketChecker);
 			}
 		}

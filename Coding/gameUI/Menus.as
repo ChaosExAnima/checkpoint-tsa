@@ -17,7 +17,7 @@
 		private var _remainingUses:int = 3; //Remaining uses for hot-cold game
 		private var _cursor:MovieClip = null; //Custom cursor clip
 		private var _sndManager:SoundManager;
-		private var _infoBox:InfoBox;
+		public static var _infoBox:InfoBox;
 		private var _options:Options;
 		private var _winMenu:MovieClip = new menu_win();
 		private var _loseMenu:MovieClip = new menu_lose();
@@ -60,6 +60,7 @@
 			TheGame.pauseGame();
 			TheGame.setLevel(TheGame.getLevel()+1);
 			TheGame.resetNumPass();
+			TheGame.resetArrests();
 
 			_winMenu.x = stage.stageWidth/2;
 			_winMenu.y = stage.stageHeight/2;

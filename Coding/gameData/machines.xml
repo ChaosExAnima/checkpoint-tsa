@@ -200,8 +200,8 @@
 		<speedMin>1</speedMin>
 		<speedMax>3</speedMax>			 	
 		<moodChange>0.5</moodChange>
-		<speedupGuardPrice>75</speedupGuardPrice>
-		<speedupGuardSpeed>0.5</speedupGuardSpeed> <!--??? MAKES IS FASTER BY 0.5 SECONDS !!!!!!-->
+		<speedUpGuardPrice>75</speedUpGuardPrice>
+		<speedUpGuardSpeed>0.5</speedUpGuardSpeed> <!--??? MAKES IS FASTER BY 0.5 SECONDS !!!!!!-->
 		<powerUpGunPrice>0</powerUpGunPrice>
 		<powerUpKnifePrice>0</powerUpKnifePrice>
 		<powerUpAccuracyMin>0</powerUpAccuracyMin>
