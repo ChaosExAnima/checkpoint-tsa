@@ -51,9 +51,7 @@ public class PassengerFactory {
 		if(nrStat==0) return null;
 		
 		var dice:int=Utilities.randRange(1,nrStat);
-		while(Airport.getStation(dice)==null) {
-			dice++;
-		}
+		
 		return Airport.getStation(dice);
 	}
 	

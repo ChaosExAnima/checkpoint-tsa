@@ -417,15 +417,17 @@
 		
 		public function getTargetedLines():Array {
 			var lineArray:Array = new Array();
-			lineArray.push(Airport.getNrStations());
-			
-			trace("pass array size: " + passArray);
-			for each (var pass:PassengerG in passArray) {
-				trace("array pass" + pass);
-				var line:int = pass.getLine().getNum();
-				lineArray[line]++;
+			for (var i:int = 0; i < Airport.getNrStations(); i++) {
+				lineArray.push(0);
 			}
-			trace("Floor lineArray: "+lineArray);
+			//trace("Line array: "+lineArray);
+			
+			for each (var pass:PassengerG in passArray) {
+				var line:int = pass.getLine().getNum();
+				//trace("current line: "+line);
+				lineArray[line-1]++;
+			}
+			//trace("lineArray post popcont: "+lineArray);
 			return (lineArray);
 		}
 		
