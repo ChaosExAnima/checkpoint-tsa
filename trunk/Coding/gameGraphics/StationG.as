@@ -33,7 +33,7 @@
 		private var _personHolder:Sprite = new Sprite();
 		
 		public function StationG(number:int) {
-			stationL = Airport.addStation(number);
+			stationL = Airport.addStation(number+1);
 			for (var i:int=0;i<5;i++) {
 				spots[i] = new GSpot();
 				spots[i].x = 108*i;
@@ -107,7 +107,7 @@
 					return i;
 				}
 			}
-			trace("No machines found!");
+			//trace("No machines found!");
 			return -1;
 		}
 		
@@ -118,7 +118,7 @@
 					return i;
 				}
 			}
-			trace("No machines found!");
+			//trace("No machines found!");
 			return -1;
 		}
 		
