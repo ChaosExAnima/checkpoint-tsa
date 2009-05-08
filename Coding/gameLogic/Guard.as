@@ -22,7 +22,7 @@
 		protected var moodTraining3:int;
 		//This determines the Mood for Training Level 3 for the bag checker and wand waver personnel
 						
-		public function Guard(unitName:String, mood:Number, speed:int, accuracy:int, price:int, sellFor:int, prohObjs:Array, level2price:int, level2accuracy:int, level2speed:int, level2mood:Number, level3price:int, level3accuracy:int, level3speed:int, level3mood:Number) {
+		public function Guard(unitName:String, mood:Number, accuracy:int, speed:int, price:int, sellFor:int, prohObjs:Array, level2price:int, level2accuracy:int, level2speed:int, level2mood:Number, level3price:int, level3accuracy:int, level3speed:int, level3mood:Number) {
 			super(unitName, accuracy, speed, mood, price, sellFor, prohObjs, level2price, level2accuracy);
 			
 			priceTraining2 = level2price;

@@ -109,7 +109,7 @@
 			if (num == -1) {
 				num = whichStation;
 			}
-			return(stations[num]);
+			return(stations[num-1]);
 		}
 		
 		// Gets current station number
@@ -151,6 +151,10 @@
 		
 		public function set menus(val:Menus):void {
 			_menus = val;
+		}
+		
+		public function get airport():AirportG {
+			return uiAirport;
 		}
 	}
 }

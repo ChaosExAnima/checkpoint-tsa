@@ -3,6 +3,7 @@
 	import utilities.*;
 	import flash.display.*;
 	import flash.events.*;
+	import flash.geom.Point;
 	import gameGraphics.PassengerG;
 	import gameLogic.Airport;
 	
@@ -117,8 +118,10 @@
 									  pass.getFootPrintH()); // Removes collision block
 							moveOn(pass); // Sends person to next target
 						} else if(!pass.rerouting) {
+							var rand:Point = AirportG.boundingBox.randPoint();
 							pass.rerouting = true;
-							pass.randTarg();
+							pass.setTarg(rand.x, rand.y);
+							trace("randtarg: "+rand.x+","+rand.y);
 							pass.atTic = 0;
 							newPassArray.push(pass);
 							pass.setLine(pass.getLine());
@@ -215,8 +218,9 @@
 				dropLowBox(x_, y_, w_, h_);	
 				if(passArray[pass].atTic >= passArray[pass].waitTic && !passArray[pass].rerouting)
 				{
+					var rand:Point = AirportG.boundingBox.randPoint();
 					passArray[pass].rerouting = true;
-					passArray[pass].randTarg();
+					passArray[pass].setTarg(rand.x, rand.y);
 					passArray[pass].atTic = 0;
 				}else{
 					passArray[pass].atTic++;
