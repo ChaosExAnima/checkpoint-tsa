@@ -164,6 +164,9 @@
 				case "WandWaver":
 					unit = new WandWaiverG(0, 0);
 					break;
+				case "TicketChecker":
+					_UI.airport.addTicketChecker();
+					return;
 				default:
 					trace("createMachine function passed invalid name!");
 					break;

@@ -112,6 +112,26 @@
 			return(body);
 		}
 		
+		// Not implemented yet!
+		public function poseDefault():void {
+			
+		}
+		
+		// Not implemented yet!
+		public function poseArrest():void {
+			
+		}
+		
+		// Not implemented yet!
+		public function poseBored():void {
+			
+		}
+		
+		// Not implemented yet!
+		public function poseCross():void {
+			
+		}
+		
 		public function getGender():String {
 			return(_gender);
 		}

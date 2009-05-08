@@ -25,7 +25,7 @@
 									   new Sprite(), new GExit3(), 
 									   new Sprite(), new GExit4(), 
 									   new Sprite(), new GExit5());
-		public var ticketChecker:TicketCheckerG = null;
+		public static var ticketChecker:TicketCheckerG = null;
 		
 		public static const FLOOR_X = 105;
 		public static const FLOOR_Y = 550;
@@ -33,14 +33,17 @@
 		public var afloor:Floor = new Floor(10, 10, FLOOR_X, FLOOR_Y, 1000, 600); // The floor
 		public var preline:Floor = new Floor(10, 10, FLOOR_X, FLOOR_Y, 1000, 600); // The preline
 		
+		public static var boundingBox:Bounds;
+		
 		public function AirportG():void
 		{
+			boundingBox = new Bounds();
 			preline.setTarget(afloor);
 			afloor.setTarget(null);
 			
 			personMaker = new GraphPassFact(this);
 			
-			
+			this.addChild(boundingBox);
 			this.addChild(escalatorA);
 			this.addChild(new GEscalator1());
 			this.addChild(escalatorB);
@@ -180,6 +183,13 @@
 				ticketChecker = new TicketCheckerG(this);
 				this.addChild(ticketChecker);
 			}
+		}
+		
+		public function isTicketChecker():Boolean {
+			if (ticketChecker) {
+				return true;
+			}
+			return false;
 		}
 		
 		public function addLine():void {

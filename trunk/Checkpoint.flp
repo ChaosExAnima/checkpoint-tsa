@@ -1,6 +1,6 @@
 ﻿<flash_project name="Checkpoint" version="1">
     <project_folder name="Code" expanded="true">
-        <project_folder name="gameGraphics" expanded="false">
+        <project_folder name="gameGraphics" expanded="true">
             <project_file path="./Coding/gameGraphics/AirportG.as" filetype="as" />
             <project_file path="./Coding/gameGraphics/BagCheckerG.as" filetype="as" />
             <project_file path="./Coding/gameGraphics/BombCanineG.as" filetype="as" />
@@ -34,7 +34,7 @@
             <project_file path="./Coding/gameGraphics/XRayMachineG.as" filetype="as" />
             <project_file path="./Coding/gameGraphics/TicketCheckerG.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameLogic" expanded="true">
+        <project_folder name="gameLogic" expanded="false">
             <project_file path="./Coding/gameLogic/Airport.as" filetype="as" />
             <project_file path="./Coding/gameLogic/BagChecker.as" filetype="as" />
             <project_file path="./Coding/gameLogic/Bomb.as" filetype="as" />
