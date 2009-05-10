@@ -48,7 +48,7 @@
 			for(var i:int = 0; i<maxInLine; i++) {
 				passArray.push(null);
 				spotArray.push(new Point(pX, pY));
-				//addMark(pX, pY); // TEMP
+				this.addChild(Utilities.addMark(pX, pY)); // TEMP
 				pX += 40;
 				pY -= 20;
 			}
@@ -62,20 +62,7 @@
 			this.addEventListener(Event.ENTER_FRAME, frameEntered);
 		}
 		
-		// Temp function to add a marker for line spots
-		private function addMark(lX:int, lY:int):void {
-			var mark:Shape = new Shape();
-			with (mark) {
-				graphics.lineStyle(2, 0xFF0000);
-				graphics.moveTo(5, 5);
-				graphics.lineTo(-5, -5);
-				graphics.moveTo(-5, 5);
-				graphics.lineTo(5, -5);
-				x = lX;
-				y = lY;
-			}
-			this.addChild(mark);
-		}
+		
 		
 		// Moves passengers along
 		private function frameEntered(e:Event):void {
@@ -86,13 +73,15 @@
 					if (passArray[i].obsolete == true) { // No more targets!
 						passArray[i].stopWalk();
 						if (i == maxInLine-1) { // At the head of line
-							moveOn(passArray[i]);
-							//passArray[i] = null;
+							if ((station.getFirst(0) == -1)||(station.spotArray[station.getFirst(0)].logic.oncoming == false)) { // Next machine is free
+								moveOn(passArray[i]);
+								passArray[i] = null;
+							}
 						} else if (!passArray[i+1]) { // Look for empty spots ahead
 							passArray[i].setTarg(spotArray[i+1].x, spotArray[i+1].y);
 							passArray[i].startWalk();
 							passArray[i+1] = passArray[i];
-							//passArray[i] = null;
+							passArray[i] = null;
 						}
 					}
 				}
@@ -118,7 +107,7 @@
 							unitArray[i].stopWalk();
 							unit.checkPassenger(unitArray[i].logic);
 							if (i == station.getFirst(0)) {
-								passArray[maxInLine-1] = null;
+								//passArray[maxInLine-1] = null;
 							}
 						}
 					}
@@ -164,13 +153,13 @@
 			
 			if (station.logic.firstSecurityCheckUnitEmpty()) {
 				var units:Sprite = station.spotArray[station.getFirst(0)];
-				trace("Machine coords: "+units.x+","+units.y);
+				//trace("Machine coords: "+units.x+","+units.y);
 				pass.setTarg(units.x, units.y);
 				pass.startWalk();
 				pass.logic.addEventListener(Passenger.CAUGHT, arrestHandler);
 				pass.logic.addEventListener(Passenger.MOVEON, moveOnHandler)
 				unitArray[station.getFirst(0)] = pass;
-				//passArray[index] = null;
+				station.spotArray[station.getFirst(0)].logic.oncoming = true;
 			} else if (station.getFirst(0) == -1) {
 				exitAirport(pass);
 				passArray[index] = null;
@@ -230,9 +219,23 @@
 		}
 		
 		// Removes passenger from line
-		private function removePass(spot:int):void {
-			this.removeChild(passArray[spot]);
-			passArray[spot] = null;
+		private function removePass(pass:PassengerG):void {
+			var spot:int;
+			if (getPassNum(passArray, pass) != -1) {
+				spot = getPassNum(passArray, pass);
+				passArray[spot] = null;
+				this.removeChild(passArray[spot]);
+			} else if (getPassNum(unitArray, pass) != -1) {
+				spot = getPassNum(unitArray, pass);
+				unitArray[spot] = null;
+				this.removeChild(unitArray[spot]);
+			} else if (getPassNum(movingOn, pass) != -1) {
+				spot = getPassNum(movingOn, pass);
+				movingOn[spot] = null;
+				this.removeChild(movingOn[spot]);
+			} else {
+				trace ("ERROR! Passenger not found!");
+			}
 		}
 		
 		// Handles when passenger runs out of time/mood
@@ -243,7 +246,7 @@
 			for (var i:int = 0; i < passArray.length; i++) {
 				if (passArray[i]) {
 					if (passArray[i].logic == e.target) {
-						removePass(i);
+						removePass(e.target as PassengerG);
 						TheGame.incrementNumPass();
 					}
 				}

@@ -221,6 +221,7 @@
 					var rand:Point = AirportG.boundingBox.randPoint();
 					passArray[pass].rerouting = true;
 					passArray[pass].setTarg(rand.x, rand.y);
+					Utilities.addMark(rand.x, rand.y);
 					passArray[pass].atTic = 0;
 				}else{
 					passArray[pass].atTic++;

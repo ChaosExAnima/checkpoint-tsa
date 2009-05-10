@@ -31,9 +31,11 @@
 		
 		private var _lineG:LineG;
 		private var _personHolder:Sprite = new Sprite();
+		private var _number:int;
 		
 		public function StationG(number:int) {
 			stationL = Airport.addStation(number+1);
+			_number = number;
 			for (var i:int=0;i<5;i++) {
 				spots[i] = new GSpot();
 				spots[i].x = 108*i;
@@ -102,7 +104,7 @@
 		
 		// Gets the first available machine
 		public function getFirst(num:int):int {
-			for (var i:int = num; i<4; i++) {
+			for (var i:int = num; i<5; i++) {
 				if (!(spots[i] is GSpot)) {
 					return i;
 				}
@@ -206,6 +208,14 @@
 		private function machineSelect(e:MouseEvent):void {
 			var menu:Menus = MovieClip(root).menus;
 			menu.setMenu(new SelectedMenu(menu, e.currentTarget as SecurityCheckUnitG));
+		}
+		
+		public function exitSprite(obj:Sprite):void {
+			var sX:int = -(788+(108*(_number)));
+			var sY:int = -(564+(56*(_number)));
+			this.addChild(obj);
+			obj.x = sX;
+			obj.y = sY;
 		}
 		
 		public function get logic():Station {

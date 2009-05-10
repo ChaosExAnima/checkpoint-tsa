@@ -35,6 +35,7 @@
 			lineOutline.addEventListener(MouseEvent.MOUSE_OUT, lineHide);
 			addStation();
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, onGameTik);
+			
 		}
 		
 		
@@ -57,8 +58,8 @@
 			}
 			
 			if ((TheGame.getReputation() <= 0) || (TheGame.getMoney() <= 0)) {
-				//uiAirport.clearPasses();
-				//_menus.loseMenu();
+				uiAirport.clearPasses();
+				_menus.loseMenu();
 			}
 		}
 		
