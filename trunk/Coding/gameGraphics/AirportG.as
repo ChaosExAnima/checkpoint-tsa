@@ -20,11 +20,13 @@
 		public var escalatorE:Escalator = new Escalator();
 		
 		public var lines = new Array();
-		private var gLines = new Array(new Sprite(), new GExit1(), 
-									   new Sprite(), new GExit2(), 
-									   new Sprite(), new GExit3(), 
-									   new Sprite(), new GExit4(), 
-									   new Sprite(), new GExit5());
+		private var gLines = new Array(new Sprite(), new GLine1(), 
+									   new Sprite(), new GLine2(), 
+									   new Sprite(), new GLine3(), 
+									   new Sprite(), new GLine4(), 
+									   new Sprite(), new GLine5());
+		private var gExits = new Array(new GExit1(), new GExit2(), new GExit3(), new GExit4(), new GExit5());
+		private var lineHolder = new Sprite();
 		public static var ticketChecker:TicketCheckerG = null;
 		
 		public static const FLOOR_X = 105;
@@ -55,17 +57,12 @@
 			this.addChild(escalatorE);
 			this.addChild(new GFadeOut);
 			
-			/*afloor.mouseEnabled = false;
-			afloor.mouseChildren =false;
-			preline.mouseEnabled = false;
-			preline.mouseChildren = false;*/
+			this.addChild(lineHolder);
 			
-			for (var i:int = 0; i < gLines.length; i++) {
-				this.addChild(gLines[i]);
-				if (gLines[i] is MovieClip) {
-					gLines[i].mouseEnabled = false;
-					gLines[i].mouseChildren = false;
-				}
+			for each (var exit:Sprite in gExits) {
+				this.addChild(exit);
+				exit.mouseEnabled = false;
+				exit.mouseChildren = false;
 			}
 			
 			this.addChild(afloor);
@@ -205,10 +202,15 @@
 			for (var i:int=0; i < lines.length; i++) {
 				lines[i].x = sX;
 				lines[i].y = sY;
+				
 				sX += 108;
 				sY += 56;
-				gLines[i*2].addChild(lines[i]);
-				gLines[(i*2)+1].gotoAndStop(2);
+				lineHolder.addChild(lines[i]);
+				lines[i].exitSprite(gExits[i]);
+				//gLines[i*2].addChild(lines[i]);
+				lineHolder.addChild(gLines[(i*2)+1]);
+				gExits[i].gotoAndStop(2);
+				
 				gLines[(i*2)+1].mouseChildren = false;
 				gLines[(i*2)+1].mouseEnabled = false;
 				lines[i].hideSpots();

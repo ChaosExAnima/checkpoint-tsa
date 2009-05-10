@@ -50,6 +50,7 @@ import gameGraphics.SecurityCheckUnitG;
 		//try
 		private var secCheckG:SecurityCheckUnitG;
 		//out
+		public var oncoming:Boolean = false;
 		
 		private var taken:Boolean = false;
 		
@@ -134,6 +135,7 @@ import gameGraphics.SecurityCheckUnitG;
 			secCheckG.idle();
 			//out
 			taken = false;
+			oncoming = false;
 		}
 		
 		//Simulates the progress of time in the Security check unit when checking a passenger.
@@ -165,6 +167,7 @@ import gameGraphics.SecurityCheckUnitG;
 					station.passOnPassenger(tempPass, position);
 					pass = null;
 					taken = false;
+					oncoming = false;
 					//trace (position + " (in progressTime): " + pass);
 					TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
 				}		
@@ -184,6 +187,7 @@ import gameGraphics.SecurityCheckUnitG;
 			secCheckG.caught();
 			//out
 			taken = false;
+			oncoming = false;
 		}
 		
 		public function getAccuracy():int {
@@ -215,6 +219,11 @@ import gameGraphics.SecurityCheckUnitG;
 		//What happens to a passenger in it?
 		public function sellIt():void {
 			TheGame.addMoney(sellFor);
+			station.passOnPassenger(pass, position);
+			pass = null;
+			taken = false;
+			oncoming = false;
+			TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, progressTime);
 			station.removeSecurityCheckUnit(this);
 		}	
 		

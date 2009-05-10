@@ -39,7 +39,11 @@
 		
 		//removes a security check unit from the station
 		public function removeSecurityCheckUnit(secCheckUnit:SecurityCheckUnit):void {
-			//securityCheckUnits.pop(secCheckUnit);
+			for (var i:int = 0; i < securityCheckUnits.length; i++) {
+				if (securityCheckUnits[i] == secCheckUnit) {
+					securityCheckUnits[i] = null;
+				}
+			}
 		}
 		
 		//PRE: At least one security check unit must be set up in this station.

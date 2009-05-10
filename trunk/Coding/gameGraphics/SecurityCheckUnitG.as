@@ -24,6 +24,8 @@
 		// Contains stats for upgrade UI
 		public var upgradeAcc:Array = new Array(null, null);
 		public var upgradeType:Array = new Array(1, 1, 1, 1);
+		// Set in line
+		public var oncoming:Boolean = false
 		
 		public function SecurityCheckUnitG(xLoc:Number, yLoc:Number, secCheck:SecurityCheckUnit, secCheckG:MovieClip) {
 		    this.x = xLoc;//Utilities.randRange(0,700);
