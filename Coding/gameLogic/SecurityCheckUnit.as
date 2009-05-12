@@ -126,11 +126,12 @@ import gameGraphics.SecurityCheckUnitG;
 		}
 		
 		private function removePassenger(e:Event) {
+			if (pass) {
 			pass.removeEventListener(Passenger.OUTOFTIME, removePassenger);
 			pass.removeEventListener(Passenger.OUTOFMOOD, removePassenger);
 			pass = null;
 			station.passOnPassenger(null, position);
-			
+			}
 			//try
 			secCheckG.idle();
 			//out
