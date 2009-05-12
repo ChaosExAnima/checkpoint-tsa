@@ -59,6 +59,7 @@
 		
 		private var _paused:Boolean;
 		private var _redirect:RedirectMenu;
+		private var _helloSound:String;
 
 	
 		public function PassengerG(x_:Number, y_:Number, logic:Passenger, line:LineG, torso:MovieClip, colors:Array, name:String):void
@@ -380,6 +381,14 @@
 			}/*else{
 				setTarg(newLine.x,newLine.y);
 			}*/
+		}
+		
+		public function set sound(str:String):void {
+			_helloSound = str;
+		}
+		
+		public function get sound():String {
+			return _helloSound;
 		}
 	}
 }

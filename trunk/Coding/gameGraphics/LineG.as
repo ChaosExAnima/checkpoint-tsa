@@ -223,16 +223,28 @@
 			var spot:int;
 			if (getPassNum(passArray, pass) != -1) {
 				spot = getPassNum(passArray, pass);
+				if (station.personHolder.contains(passArray[spot])) {
+					station.personHolder.removeChild(passArray[spot]);
+				} else {
+					this.removeChild(passArray[spot]);
+				}
 				passArray[spot] = null;
-				this.removeChild(passArray[spot]);
 			} else if (getPassNum(unitArray, pass) != -1) {
 				spot = getPassNum(unitArray, pass);
+				if (station.personHolder.contains(unitArray[spot])) {
+					station.personHolder.removeChild(unitArray[spot]);
+				} else {
+					this.removeChild(unitArray[spot]);
+				}
 				unitArray[spot] = null;
-				this.removeChild(unitArray[spot]);
 			} else if (getPassNum(movingOn, pass) != -1) {
 				spot = getPassNum(movingOn, pass);
+				if (station.personHolder.contains(movingOn[spot])) {
+					station.personHolder.removeChild(movingOn[spot]);
+				} else {
+					this.removeChild(movingOn[spot]);
+				}
 				movingOn[spot] = null;
-				this.removeChild(movingOn[spot]);
 			} else {
 				trace ("ERROR! Passenger not found!");
 			}

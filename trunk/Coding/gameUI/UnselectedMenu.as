@@ -220,6 +220,8 @@
 			} else if (75 < mood) {
 				_pMenu.icon_mood.gotoAndStop(1);
 			}
+			
+			//_menu.sndManager.playSound(person.sound);
 		}
 			
 		// Clears menu
