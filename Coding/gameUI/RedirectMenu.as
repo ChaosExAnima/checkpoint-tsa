@@ -65,6 +65,7 @@
 			trace("In line: "+_person.logic.line);
 			trace("Parent is: "+_person.parent);
 			trace("Is Obsolete: "+_person.obsolete);
+			trace("Carrying: "+_person.logic.carryingSomething());
 		}
 	}
 }

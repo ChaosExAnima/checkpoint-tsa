@@ -27,7 +27,7 @@
 		public function  accSpeedSlide(percentage:int):void{
 			sliderPercentage = percentage;
 			accuracy = ((accuracyMax-accuracyMin)/100)*sliderPercentage + accuracyMin;
-			speed = ((speedMin-speedMax)/100)*sliderPercentage + speedMax;
+			speed = ((speedMax-speedMin)/100)*sliderPercentage + speedMin;
 			speed = TheGame.minToGameTime(speed);
 		}
 		
