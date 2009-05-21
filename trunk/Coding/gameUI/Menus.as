@@ -149,6 +149,8 @@
 			if (!_cursor) {
 				Mouse.show();
 			} else {
+				_cursor.mouseChildren = false;
+				_cursor.mouseEnabled = false;
 				stage.addChild(_cursor);
 			}
 		}
@@ -206,11 +208,11 @@
 
 		internal function set cursor(cur:MovieClip):void {
 			_cursor = cur;
-			_cursor.mouseChildren = false;
-			_cursor.mouseEnabled = false;
 			clearCursor();
 			if (_cursor) {
 				stage.addChild(_cursor);
+				_cursor.mouseChildren = false;
+				_cursor.mouseEnabled = false;
 			}
 		}
 		

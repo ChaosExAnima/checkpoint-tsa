@@ -1,5 +1,5 @@
 ﻿package gameUI {
-	import gameControl.TheGame;
+	import gameControl.*;
 	import gameData.*
 	import gameLogic.*;
 	import gameGraphics.*;
@@ -14,7 +14,7 @@
 
 	
 	public class Interface extends MovieClip {
-		public var uiAirport:AirportG = new AirportG();
+		private var uiAirport:AirportG = new AirportG();
 		public var stations:Array; //Array containing lines
 		private var whichStation:int = -1;
 		public var gSecCheckUnit:SecurityCheckUnitG;
@@ -23,6 +23,7 @@
 		private var passPercent:int = 20;
 		
 		public function Interface():void {
+			Globals.UI = this;
 			this.addChild(uiAirport);
 						
 			var sX:int = 1220;

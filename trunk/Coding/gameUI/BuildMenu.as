@@ -1,5 +1,5 @@
 ﻿package gameUI {
-	import gameControl.TheGame;
+	import gameControl.*;
 	import gameData.*;
 	import gameGraphics.*;
 	import gameUI.Interface;
@@ -25,7 +25,7 @@
 			_menu = menu;
 			_gameXML = _menu.gameData;
 			_machineXML = _menu.machineData;
-			_UI = _menu.UI;
+			_UI = Globals.UI;
 			_buttons.push(BagChecker, Clown, WandWaver, CheepieXrayMachine, SuperXrayMachine, CheepieMetalDetector, SuperMetalDetector, SnifferMachine, DrugCanine, BombCanine, TicketChecker, VideoDisplay);
 			_money = TheGame.getMoney();
 		}
@@ -119,7 +119,7 @@
 					}
 				}
 				if (_UI.gSecCheckUnit) {
-					_UI.uiAirport.removeChild(_UI.gSecCheckUnit);
+					Globals.airport.removeChild(_UI.gSecCheckUnit);
 					_UI.gSecCheckUnit = null;
 				}
 			}
@@ -178,7 +178,7 @@
 		// Sets up security unit
 		private function setUpSecCheckUnit(unit:SecurityCheckUnitG):void {
 			disableUnits();
-			var area:AirportG = _UI.uiAirport;
+			var area:AirportG = Globals.airport;
 			area.addChild(unit);
 			_UI.gSecCheckUnit = unit;
 			with (unit) {

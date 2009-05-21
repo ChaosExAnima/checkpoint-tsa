@@ -33,11 +33,14 @@
 			setSoundLevel(m_vol);
 		}
 		
-		public function transitionMusic(filename:String):void
+		public function transitionMusic(filename:String, fastfade:Boolean = false):void
 		{
 			m_nextMusicFilename = filename;
 			
 			m_timer = new Timer(200, 100);
+			if (fastfade) {
+				m_timer = new Timer(0.1, 100);
+			}
 			m_timer.addEventListener(TimerEvent.TIMER, fadeOut);
 			m_timer.start();
 			
@@ -51,8 +54,9 @@
 				m_channel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
 				setSoundLevel(m_vol);
 			}
-			else
+			else {
 				m_parent.deleteSound(this);
+			}
 			
 		}
 		

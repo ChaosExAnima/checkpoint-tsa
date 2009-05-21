@@ -1,6 +1,6 @@
 ﻿package gameUI {
 	import gameGraphics.PassengerG;
-	import gameControl.TheGame;
+	import gameControl.*;
 	import flash.display.MovieClip;
 	import flash.events.*;
     import flash.utils.Timer;
@@ -57,6 +57,8 @@
 			if (_menu.remainingUses < 0) {
 				_menu.setMenu(new UnselectedMenu(_menu));
 			}
+			
+			Globals.soundManager.hotColdMusic();
 		}
 		
 		// Cleans up
@@ -74,13 +76,31 @@
 			_timer.removeEventListener(TimerEvent.TIMER_COMPLETE, timerHandler);
 			_timer.stop();
 			TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, update);
+			
+			for each (var pass:PassengerG in Globals.airport.afloor.passengerArray) {
+				pass.removeEventListener(MouseEvent.CLICK, arrestPass);
+			}
+			
+			for each (var passa:PassengerG in Globals.airport.preline.passengerArray) {
+				passa.removeEventListener(MouseEvent.CLICK, arrestPass);
+			}
 		}
 		
 		// Runs every gameTik to set meters
 		private function update(e:TimerEvent):void {
 			ResetMeters();
-			for each (var pass:PassengerG in _menu.UI.uiAirport.afloor.passengerArray) {
+			for each (var pass:PassengerG in Globals.airport.afloor.passengerArray) {
 				CheckPassengerViolation(pass);
+				pass.addEventListener(MouseEvent.CLICK, arrestPass);
+				pass.noRedirect();
+				//trace("Pass in afloor");
+			}
+			
+			for each (var passa:PassengerG in Globals.airport.preline.passengerArray) {
+				CheckPassengerViolation(passa);
+				passa.addEventListener(MouseEvent.CLICK, arrestPass);
+				passa.noRedirect();
+				//trace("Pass in preline");
 			}
 		}
 		
@@ -167,12 +187,12 @@
 		
 		// Calculates the detection percent for a given passenger
 		private function PassengerConcealPercent(passG:PassengerG):Number {
-			var passDistance = int(Math.sqrt(Math.pow(_menu.UI.mouseX-passG.x,2)+Math.pow(_menu.UI.mouseY-passG.y,2)));
+			var passDistance = int(Math.sqrt(Math.pow(Globals.airport.afloor.mouseX-passG.x,2)+Math.pow(Globals.airport.afloor.mouseY-passG.y,2)));
+			
 
 			if(passDistance > MAX_DETECT_DISTANCE) {
 				return 0;
 			}
-			
 			var passConceal = passG.logic.getConcealment();
 			// the lower the concealment the farther away from the passenger
 			// the meter maxes out.
@@ -185,6 +205,23 @@
 			return 100-((passDistance-radiusForMaxMeter)/MAX_DETECT_DISTANCE*100);
 		}
 
+		// Arrests the passenger
+		private function arrestPass(e:Event):void {
+			trace("Pass arrested!");
+			var pass:PassengerG = e.currentTarget as PassengerG;
+			var ref:int = Globals.airport.afloor.isPassHere(pass);
+			if (ref != -1) {
+				Globals.airport.afloor.killPass(ref);
+			} else {
+				ref = Globals.airport.preline.isPassHere(pass);
+				if (ref != -1) {
+					Globals.airport.preline.killPass(ref);
+				} else {
+					trace("Something really wierd is going on...");
+				}
+			}
+		}
+		
 		// Adds some noise to the meters
 		private function meterNoise(event:Event):void {
 			var thisMC:MovieClip = event.target as MovieClip;

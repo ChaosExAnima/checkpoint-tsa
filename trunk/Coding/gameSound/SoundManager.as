@@ -1,7 +1,7 @@
 ﻿package gameSound {
  
 	import gameSound.SoundObject;
-	import gameControl.TheGame;
+	import gameControl.*;
 	import flash.net.SharedObject;
 	import flash.events.TimerEvent;
 
@@ -28,6 +28,8 @@
 		public static const MUSIC_HOTCOLD:String = "sounds/music/Music_HotCold.mp3";
 		
 		public function SoundManager():void {
+			Globals.soundManager = this;
+			
 			var so:SharedObject = SharedObject.getLocal("mute");
 			if(!so.size)
 			{
@@ -86,8 +88,13 @@
 		
 		public function setMusic(filename:String, loop=true):void
 		{
-			if(m_music)
-				m_music.transitionMusic(filename);
+			if(m_music) {
+				if (filename == MUSIC_HOTCOLD) {
+					m_music.transitionMusic(filename, true);
+				} else {
+					m_music.transitionMusic(filename);
+				}
+			}
 			else
 			{
 				m_music = new SoundObject(filename, this, loop, m_musicLevel);
@@ -118,6 +125,7 @@
 			var tmpArray:Array = new Array();
 			if (obj == m_music) {
 				_musicTransition = true;
+				_musicOverride = false;
 			} else {
 				while(m_soundArray.length)
 				{
@@ -169,8 +177,11 @@
 				}
 			}
 		}
+			
+		public function hotColdMusic():void {
+			_musicOverride = true;
+			setMusic(MUSIC_HOTCOLD, false);
+			
+		}
 	}
-	
-	
-	
 }
