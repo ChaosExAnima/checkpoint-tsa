@@ -81,6 +81,7 @@
 				m_snd = new Sound(req);
 				m_channel = m_snd.play();
 				m_channel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+				setSoundLevel(m_vol);
 			}
 			else
 			{

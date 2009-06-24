@@ -8,6 +8,7 @@
 	import gameGraphics.Legs;
 	import gameUI.UnselectedMenu;
 	import gameUI.RedirectMenu;
+	import gameControl.*;
 	
 	public class PassengerG extends Sprite
 	{
@@ -296,8 +297,11 @@
 		private function toggleSelected(e:MouseEvent):void {
 			if (!_redirect) {
 				trace("Redirect Menu created!");
-				_redirect = new RedirectMenu(this, MovieClip(root).UI); // NEEDS TO BE FIXED!
-				this.addChild(_redirect);
+				trace(Globals.menus);
+				_redirect = new RedirectMenu(this);
+				Globals.airport.addChild(_redirect);
+				_redirect.x = parent.x+this.x;
+				_redirect.y = parent.y+this.y;
 			} else {
 				_redirect = null;
 			}
@@ -307,7 +311,7 @@
 		public function noRedirect():void {
 			this.removeEventListener(MouseEvent.CLICK, toggleSelected);
 			if (_redirect) {
-				this.removeChild(_redirect);
+				_redirect.remove();
 				_redirect = null;
 				halt(false);
 			}

@@ -122,7 +122,7 @@
 						TheGame.incrementNumPass();
 						if(movingOn[i].parent)
 							movingOn[i].parent.removeChild(movingOn[i]);
-							
+						movingOn[i].logic.goToPlane();
 						movingOn[i] = null;
 					}
 				}

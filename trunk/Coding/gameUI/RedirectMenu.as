@@ -1,6 +1,7 @@
 ﻿package gameUI {
 	import gameGraphics.PassengerG;
 	import gameUI.Interface;
+	import gameControl.Globals;
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;	
 	import flash.events.MouseEvent;
@@ -10,9 +11,9 @@
 		private var _lineArray:Array = new Array();
 		private var _UI:Interface;
 		
-		public function RedirectMenu(person:PassengerG, UI:Interface):void {
+		public function RedirectMenu(person:PassengerG):void {
 			_person = person;
-			_UI = UI;
+			_UI = Globals.UI;
 			_lineArray.push(this.b_line1, this.b_line2, this.b_line3, this.b_line4, this.b_line5);
 			
 			while (_lineArray.length != _UI.getNumStations()) {
@@ -56,6 +57,12 @@
 					_person.halt(false);
 					parent.removeChild(this);
 				}
+			}
+		}
+		
+		public function remove():void {
+			if (parent) {
+				parent.removeChild(this);
 			}
 		}
 		
