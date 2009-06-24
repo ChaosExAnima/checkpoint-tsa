@@ -4,6 +4,7 @@
 <!------------------------------------------------------TICKET_CHECKER---------------------------------------------->
 	<unit name="TicketChecker" level="1" type="guard">
 		<name>Ticket Checker</name>
+		<description>Adds a ticket checker that redirects the passengers to the shortest line.</description>
 	 	<price>300</price>
 		<speed>0.25</speed>
 		<powerUpPrice>600</powerUpPrice>
@@ -12,6 +13,7 @@
 <!----------------------------------------------------------BAG_CHECKER--------------------------------------------->	 
 	<unit name="BagChecker" level="1" type="guard">
 		<name>Bag Checker</name>
+		<description>Searches for all types of prohibited items, but slowly.</description>
 		<price>20</price>
  	  	<accuracy>60</accuracy>
 		<speed>10</speed>
@@ -26,6 +28,7 @@
      </unit>
 	 <unit name="BagChecker" level="2" type="guard">
 	 	<name>Bag Checker</name>
+		<description>Gives guard additional training, improving the chance of finding a prohibited item.</description>
 		<price>40</price>
  	  	<accuracy>80</accuracy>
 		<speed>8</speed>
@@ -40,6 +43,7 @@
      </unit>
 	 <unit name="BagChecker" level="3" type="guard">
 	 	<name>Bag Checker</name>
+		<description>Trains the guard even further, decreasing the time it takes to search a bag.</description>
 		<price>80</price>
  	  	<accuracy>80</accuracy>
 		<speed>7</speed>
@@ -55,6 +59,7 @@
 <!----------------------------------------------------------WAND_WAVER--------------------------------------------------->	 
 	 <unit name="WandWaver" level="1" type="guard">
 	 	<name>Wand Waver</name>
+		<description>Searches passengers for guns, knives, and bombs with a hand metal detector.</description>
 		<price>20</price>
  	  	<accuracy>60</accuracy>
 		<speed>6</speed>
@@ -69,6 +74,7 @@
 	 
 	 <unit name="WandWaver" level="2" type="guard">
 	 	<name>Wand Waver</name>
+		<description>Improves the skill of the guard, increasing the chance of finding something.</description>
  		<price>40</price>
  	  	<accuracy>80</accuracy>
 		<speed>6</speed>
@@ -83,6 +89,7 @@
 	 
 	 <unit name="WandWaver" level="3" type="guard">
 	 	<name>Wand Waver</name>
+		<description>Further training of the guard improves the speed of the search.</description>
 		<price>80</price>
  	  	<accuracy>80</accuracy>
 		<speed>4</speed>
@@ -98,6 +105,7 @@
 <!----------------------------------------------------------DRUG_CANINE--------------------------------------------------->	 
 	  <unit name="DrugCanine" level="1" type="guard">
 	  	<name>Drug Dog</name>
+		<description>Sniffs out drugs quickly, but inaccurately.</description>
 		<price>50</price>
  	  	<accuracy>20</accuracy>
 		<speed>4</speed>
@@ -109,6 +117,7 @@
      </unit>
 	 <unit name="DrugCanine" level="2" type="guard">
 	 	<name>Drug Canine</name>
+		<description>Better at finding drug smugglers.</description>
 		<price>100</price>
  	  	<accuracy>40</accuracy>
 		<speed>4</speed>
@@ -120,6 +129,7 @@
      </unit>
 	 <unit name="DrugCanine" level="3" type="guard">
 	 	<name>Drug Pig</name>
+		<description>The ultimate in animal drug sniffing.</description>
 		<price>200</price>
  	  	<accuracy>50</accuracy>
 		<speed>4</speed>
@@ -132,6 +142,7 @@
 <!----------------------------------------------------------BOMB_CANINE--------------------------------------------------->
 	 <unit name="BombCanine" level="1" type="guard">
 	 	<name>Bomb Dog</name>
+		<description>Sniffs out explosives.</description>
 		<price>70</price>
  	  	<accuracy>40</accuracy>
 		<speed>4</speed>
@@ -143,6 +154,7 @@
      </unit>
 	 <unit name="BombCanine" level="2" type="guard">
 	 	<name>Bomb Canine</name>
+		<description>Improved nasal capabilities.</description>
 		<price>140</price>
  	  	<accuracy>60</accuracy>
 		<speed>4</speed>
@@ -154,6 +166,7 @@
      </unit>
 	 <unit name="BombCanine" level="3" type="guard">
 	 	<name>Bomb Pig</name>
+		<description>Highly trained bomb-sniffing animals.</description>
 		<price>280</price>
  	  	<accuracy>70</accuracy>
 		<speed>4</speed>
@@ -167,6 +180,7 @@
 	<!--"Cheapie METAL DETECTOR"-->
 	 <unit name="CheepieMetalDetector" level="1" type="slider">
 	 	<name>Metal Detector</name>
+		<description>cheapie metal text|upgrade 1 text|upgrade 2 text|upgrade 3 text</description>
 		<price>200</price>
 		<accuracy>55</accuracy>
 		<accuracyMin>45</accuracyMin>
@@ -192,6 +206,7 @@
 	<!--"SUPER METAL DETECTOR"-->	 
 	  <unit name="SuperMetalDetector" level="1" type="slider">
 	  	<name>Ultra Detector</name>
+		<description>tk</description>
 	    <price>600</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -218,6 +233,7 @@
 <!--"Cheapie XRAY"--> 
  	 <unit name="CheepieXrayMachine" level="1" type="slider">
 	 	<name>X-Ray Machine</name>
+		<description>tk</description>
 	    <price>400</price>
 		<accuracy>50</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -241,6 +257,7 @@
 <!--"SUPER XRAY"--> 
  	 <unit name="SuperXrayMachine" level="1" type="slider">
 	 	<name>Super Scanner</name>
+		<description>tk</description>
 	    <price>800</price>
 		<accuracy>40</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -264,6 +281,7 @@
 
  	 <unit name="SnifferMachine" level="1" type="slider"> 
 	 	<name>Sniffer</name>
+		<description>tk</description>
 	    <price>1800</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -282,6 +300,7 @@
 
  	 <unit name="VideoDisplay" level="1" type="entertainment"> 
 	 	<name>Video Display</name>
+		<description>tk</description>
 	    <price>300</price>
 		<speed>0</speed>
 		<moodChange>0.2</moodChange>
@@ -290,6 +309,7 @@
 	 
 	 <unit name="Clown" level="1" type="entertainment"> 
 	 	<name>Clown</name>
+		<description>tk</description>
 	    <price>1250</price>
 		<speed>0</speed>
 		<moodChange>0.5</moodChange>
