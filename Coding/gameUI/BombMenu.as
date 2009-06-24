@@ -209,6 +209,11 @@
 		private function arrestPass(e:Event):void {
 			trace("Pass arrested!");
 			var pass:PassengerG = e.currentTarget as PassengerG;
+			if (pass.logic.carriesWhat()) {
+				pass.logic.gotCaught();
+			} else {
+				TheGame.subtractReputation(10);
+			}
 			var ref:int = Globals.airport.afloor.isPassHere(pass);
 			if (ref != -1) {
 				Globals.airport.afloor.killPass(ref);
@@ -220,6 +225,8 @@
 					trace("Something really wierd is going on...");
 				}
 			}
+			TheGame.incrementNumPass();
+			TheGame.incrementArrests();
 		}
 		
 		// Adds some noise to the meters

@@ -2,7 +2,8 @@
 	import gameData.*;
 	import gameUI.*;
 	import gameSound.SoundManager;
-	import gameControl.TheGame;
+	import gameControl.*;
+	import gameGraphics.PassengerG;
 	import flash.display.MovieClip;
 	import flash.events.*;
 	import flash.ui.Mouse;
@@ -30,6 +31,7 @@
 			this.addChild(_curMenu);
 			_infoBox = new InfoBox(this);
 			this.addChild(_infoBox);
+			Globals.menus = this;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, createListeners);
 		}

@@ -4,6 +4,7 @@
 	import gameGraphics.*;
 	
 	public class Globals {
+		// Static vars that reference instances.
 		public static var soundManager:SoundManager;
 		public static var UI:Interface;
 		public static var menus:Menus;

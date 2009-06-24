@@ -179,9 +179,8 @@
 		}
 			
 		public function hotColdMusic():void {
-			_musicOverride = true;
+			//_musicOverride = true;
 			setMusic(MUSIC_HOTCOLD, false);
-			
 		}
 	}
 }
