@@ -33,7 +33,7 @@
 			var so:SharedObject = SharedObject.getLocal("mute");
 			if(!so.size)
 			{
-				// trace("create quality");
+				
 				so.data.mute = 0;
 				m_bMute = 1 == so.data.mute;
 			}
@@ -45,7 +45,7 @@
 			so = SharedObject.getLocal("music");
 			if(!so.size)
 			{
-				// trace("create quality");
+				
 				so.data.musicLevel = 75;
 				m_musicLevel = 75;
 			}

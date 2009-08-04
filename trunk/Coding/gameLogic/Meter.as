@@ -133,7 +133,6 @@
 			else if(m_cursorMC.currentFrame != 1)
 				m_cursorMC.gotoAndStop(1);
 			
-			trace(maxCurrViolation);
 			
 			m_meterMC.knife_mc.gotoAndStop(0);
 			m_meterMC.gun_mc.gotoAndStop(0);

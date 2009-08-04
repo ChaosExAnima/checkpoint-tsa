@@ -61,9 +61,7 @@
 		//Removes the passenger that triggered a RUN OUT OF TIME/MOOD event and
 		//removes event listeners to that passenger.
 		private function removePassenger(e:Event):void {
-			trace(passengers.length);
 			passengers = passengers.filter(findPass);
-			trace(passengers.length);
 			
 			function findPass(item:*, index:int, array:Array):Boolean {
 				if (e.target == item) {

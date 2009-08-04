@@ -17,7 +17,7 @@
 		public function addGuard():void {
 			MetalDetector(secCheck).addGuard();
 			var curFrame:int = unitForm.currentFrame;
-			trace(curFrame);
+	
 			if (curFrame <= 2) {
 				newGuard(new guard_idle());
 			} else if (curFrame == 3) {
