@@ -87,6 +87,11 @@
 				this.removeChild(lineOutline);
 			}
 		}
+		
+		public function resetStation():void {
+			lineOutline.x = 1220+108;
+			lineOutline.y = 340+56;
+		}
 			
 		// Shows stations to place units. 
 		public function showStations():void {

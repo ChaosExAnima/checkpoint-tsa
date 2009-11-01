@@ -3,13 +3,13 @@
 	import gameSound.SoundObject;
 	import gameControl.*;
 	import flash.net.SharedObject;
-	import flash.events.TimerEvent;
+	import flash.events.*;
 
 
 
 	// has an array of SoundObjects plus 1 SoundObject for music
 	
-	public class SoundManager
+	public class SoundManager extends EventDispatcher
     {
 		private var m_soundArray:Array = new Array();	
 		private var m_music:SoundObject;
@@ -26,6 +26,7 @@
 		public static const MUSIC_SAD:String = "sounds/music/Music_Sad.mp3";
 		public static const MUSIC_HAPPY:String = "sounds/music/Music_Happy.mp3";
 		public static const MUSIC_HOTCOLD:String = "sounds/music/Music_HotCold.mp3";
+		
 		
 		public function SoundManager():void {
 			Globals.soundManager = this;
@@ -181,6 +182,13 @@
 		public function hotColdMusic():void {
 			//_musicOverride = true;
 			setMusic(MUSIC_HOTCOLD, false);
+		}
+		
+		public function stopSound():void {
+			for each (var sound:SoundObject in m_soundArray) {
+				sound.dispatchEvent(new Event(SoundObject.STOP_SOUND));
+			}
+			m_music.dispatchEvent(new Event(SoundObject.STOP_SOUND));
 		}
 	}
 }
