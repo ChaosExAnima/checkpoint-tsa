@@ -180,7 +180,7 @@
 	<!--"Cheapie METAL DETECTOR"-->
 	 <unit name="CheepieMetalDetector" level="1" type="slider">
 	 	<name>Metal Detector</name>
-		<description>cheapie metal text|upgrade 1 text|upgrade 2 text|upgrade 3 text</description>
+		<description>Finds knives and guns quickly and accurately.|Hires a guard to help speed up the scanning.|Upgrades the gun recognition algorithms.|Fine-tunes the detection of pointy objects.</description>
 		<price>200</price>
 		<accuracy>55</accuracy>
 		<accuracyMin>45</accuracyMin>
@@ -206,7 +206,7 @@
 	<!--"SUPER METAL DETECTOR"-->	 
 	  <unit name="SuperMetalDetector" level="1" type="slider">
 	  	<name>Ultra Detector</name>
-		<description>tk</description>
+		<description>Uses sophisticated recognition systems to find guns, knives, and bombs.|Adds a guard to speed up the scanning process.</description>
 	    <price>600</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -233,7 +233,7 @@
 <!--"Cheapie XRAY"--> 
  	 <unit name="CheepieXrayMachine" level="1" type="slider">
 	 	<name>X-Ray Machine</name>
-		<description>tk</description>
+		<description>Finds guns, knives, and bombs, but takes time.|Improves the ability to detect guns and knives.|Finds bombs more accurately.</description>
 	    <price>400</price>
 		<accuracy>50</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -257,7 +257,7 @@
 <!--"SUPER XRAY"--> 
  	 <unit name="SuperXrayMachine" level="1" type="slider">
 	 	<name>Super Scanner</name>
-		<description>tk</description>
+		<description>Quickly and efficiently searches for guns, knives, and bombs.|Upgrades the software to better find guns and knives.|Augments the bomb scanner</description>
 	    <price>800</price>
 		<accuracy>40</accuracy>
 		<accuracyMin>30</accuracyMin>
@@ -281,7 +281,7 @@
 
  	 <unit name="SnifferMachine" level="1" type="slider"> 
 	 	<name>Sniffer</name>
-		<description>tk</description>
+		<description>Sensitive chemical sensors sniff out bombs or drugs with the greatest accuracy.|Improves the processing power for greater speed.|Recalibrates the sensors to detect narcotics.|Recalibrates the sensors to detect explosive devices.</description>
 	    <price>1800</price>
 		<accuracy>70</accuracy>
 		<accuracyMin>60</accuracyMin>
@@ -300,7 +300,7 @@
 
  	 <unit name="VideoDisplay" level="1" type="entertainment"> 
 	 	<name>Video Display</name>
-		<description>tk</description>
+		<description>Shows soothing video in order to calm the masses.</description>
 	    <price>300</price>
 		<speed>0</speed>
 		<moodChange>0.2</moodChange>
@@ -309,7 +309,7 @@
 	 
 	 <unit name="Clown" level="1" type="entertainment"> 
 	 	<name>Clown</name>
-		<description>tk</description>
+		<description>Antics distracts crowd from more mundane annoyances.</description>
 	    <price>1250</price>
 		<speed>0</speed>
 		<moodChange>0.5</moodChange>

@@ -66,7 +66,15 @@ public class Airport {
 	//removes a station from the airport, where 1 <= place <= 5
 	public static function removeStation(place:int):void {
 		stations[place-1] = null;
+		
 		nrStations--;
+	}
+	
+	public static function resetStations():void {
+		for (var i:uint = nrStations; i > 0; i--) {
+			removeStation(i+1);
+		}
+		trace("After reset: "+nrStations);
 	}
 	
 	public static function getNrStations():int {

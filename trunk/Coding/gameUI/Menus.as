@@ -60,18 +60,20 @@
 //----------------------------------POPUP DIALOG BOXES-------------------------------//
 		public function winMenu():void {
 			TheGame.pauseGame();
-			TheGame.setLevel(TheGame.getLevel()+1);
-			TheGame.resetNumPass();
-			TheGame.resetArrests();
-
+			
 			_winMenu.x = stage.stageWidth/2;
 			_winMenu.y = stage.stageHeight/2;
 			_winMenu.btn_continue.addEventListener(MouseEvent.CLICK, resumeGameHandler);
+			_winMenu.btn_quit.addEventListener(MouseEvent.CLICK, quitGameHandler);
 			this.addChild(_winMenu);
 		}
 		
-		private function resumeGameHandler(e:MouseEvent)
+		private function resumeGameHandler(e:MouseEvent):void
 		{
+			playClick();
+			TheGame.setLevel(TheGame.getLevel()+1);
+			TheGame.resetNumPass();
+			TheGame.resetArrests();
 			TheGame.startGame();
 			this.removeChild(_winMenu);
 		}
@@ -80,7 +82,33 @@
 			TheGame.pauseGame();
 			_loseMenu.x = stage.stageWidth/2;
 			_loseMenu.y = stage.stageHeight/2;
+			
+			
+			_loseMenu.btn_reset.addEventListener(MouseEvent.CLICK, restartGameHandler);
+			_loseMenu.btn_quit.addEventListener(MouseEvent.CLICK, quitGameHandler);
+			
 			this.addChild(_loseMenu);
+		}
+		
+		private function restartGameHandler(e:MouseEvent):void {
+			playClick();
+			TheGame.pauseGame();
+			TheGame.resetGame();
+			Globals.airport.resetLines();
+			TheGame.startGame();
+			this.removeChild(_loseMenu);
+		}
+		
+		private function quitGameHandler(e:MouseEvent):void {
+			playClick();
+			try {
+				TheGame.pauseGame();
+				Globals.airport.clearPasses();
+				Globals.soundManager.stopSound();
+				Load.gameLoader.quitGame();
+			} catch (e:Error) {
+				trace("Can't quit game!");
+			}
 		}
 			
 		private function newLineHandler(e:MouseEvent):void {
@@ -89,27 +117,29 @@
 			newLineBox.y = stage.stageHeight/2;
 			this.addChild(newLineBox);
 			
-			var b_confirm:Button = new Button();
+			/*var b_confirm:Button = new Button();
 			b_confirm.setStyle("upSkin", new Button_confirmUpSkin());
 			b_confirm.setStyle("downSkin", new Button_confirmDownSkin());
 			b_confirm.setStyle("overSkin", new Button_confirmOverSkin());
 			b_confirm.label = "";
 			b_confirm.x = 125;
-			b_confirm.y = -25;
+			b_confirm.y = -25;*/
 			
-			newLineBox.addChild(b_confirm);
+			//newLineBox.addChild(b_confirm);
 			
 			var price:int = Math.pow(2, _UI.getNumStations())*100;
 			newLineBox.t_price.text = "Buy a new line for $"+price+"?";
 			
 			if (!TheGame.affordable(price)) {
-				b_confirm.enabled = false;
+				newLineBox.b_confirm.enabled = false;
 			} else {
-				b_confirm.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) { _UI.addStation();
-																				   e.target.parent.parent.removeChild(newLineBox);});
+				newLineBox.b_confirm.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) { 
+																					playClick();
+																					_UI.addStation();
+																				   	e.target.parent.parent.removeChild(newLineBox);});
 			}
 			
-			newLineBox.b_cancel.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) {e.target.parent.parent.removeChild(newLineBox);});
+			newLineBox.b_cancel.addEventListener(MouseEvent.CLICK, function (e:MouseEvent) {playClick();e.target.parent.parent.removeChild(newLineBox);});
 		}
 		
 //----------------------------------OPTIONS MENU FUNCTIONS------------------------//

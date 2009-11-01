@@ -1,5 +1,5 @@
 ﻿package gameUI {
-	import gameControl.TheGame;
+	import gameControl.*;
 	import gameGraphics.*;
 	import gameLogic.*;
 	import flash.display.MovieClip;
@@ -25,16 +25,50 @@
 			TheGame.getGameTik().addEventListener(TimerEvent.TIMER, update);
 			
 			b_build.addEventListener(MouseEvent.CLICK, buildHandler);
+			b_build.addEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_build.addEventListener(MouseEvent.MOUSE_OUT, outHandler);
 			b_hotCold.addEventListener(MouseEvent.CLICK, hotColdHandler);
+			b_hotCold.addEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_hotCold.addEventListener(MouseEvent.MOUSE_OUT, outHandler);
 			b_options.addEventListener(MouseEvent.CLICK, optionsHandler);
+			b_options.addEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_options.addEventListener(MouseEvent.MOUSE_OUT, outHandler);
 		}
 		
 		// Cleans up listeners prior to removal
 		public function cleanUp():void {
 			TheGame.getGameTik().removeEventListener(TimerEvent.TIMER, update);
 			b_build.removeEventListener(MouseEvent.CLICK, buildHandler);
+			b_build.removeEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_build.removeEventListener(MouseEvent.MOUSE_OUT, outHandler);
 			b_hotCold.removeEventListener(MouseEvent.CLICK, hotColdHandler);
+			b_hotCold.removeEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_hotCold.removeEventListener(MouseEvent.MOUSE_OUT, outHandler);
 			b_options.removeEventListener(MouseEvent.CLICK, optionsHandler);
+			b_options.removeEventListener(MouseEvent.MOUSE_OVER, infoHandler);
+			b_options.removeEventListener(MouseEvent.MOUSE_OUT, outHandler);
+		}
+		
+		// Shows info text
+		private function infoHandler(e:MouseEvent):void {
+			var button:Object = e.target;
+			var text:String = "";
+			
+			if (button == b_build) {
+				text = "Buy new machines and hire new people.";
+			} else if (button == b_hotCold) {
+				text = "Search for people carrying prohibited objects.";
+			} else if (button == b_options) {
+				text = "Opens the game menu.";
+			}
+			
+			Globals.infoBox.addText(text);
+			
+		}
+		
+		// Clears info text
+		private function outHandler(e:MouseEvent):void {
+			Globals.infoBox.clearText();
 		}
 		
 		// Clears self and shows new build menu

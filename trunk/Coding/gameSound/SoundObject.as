@@ -7,9 +7,10 @@
 	import flash.media.SoundTransform;
 	import flash.utils.Timer;
     import flash.events.TimerEvent;
+	import flash.events.EventDispatcher;
 	
 	
-	public class SoundObject 
+	public class SoundObject extends EventDispatcher
     {
 		private var m_parent;
 		private var m_snd:Sound;
@@ -18,6 +19,8 @@
 		private var m_nextMusicFilename:String;
 		private var m_timer:Timer;
 		private var m_vol:int;
+		
+		public static const STOP_SOUND:String = "stop sound";
 		
 		
 		public function SoundObject(filename:String, myParent, bLoop:Boolean, vol:int = 100):void
@@ -31,6 +34,7 @@
 			m_channel = m_snd.play();
 			m_channel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
 			setSoundLevel(m_vol);
+			this.addEventListener(SoundObject.STOP_SOUND, stopSound);
 		}
 		
 		public function transitionMusic(filename:String, fastfade:Boolean = false):void
@@ -55,6 +59,7 @@
 				setSoundLevel(m_vol);
 			}
 			else {
+				this.removeEventListener(SoundObject.STOP_SOUND, stopSound);
 				m_parent.deleteSound(this);
 			}
 			
@@ -88,6 +93,13 @@
 				transform.volume -= 0.015;
 				m_channel.soundTransform = transform;
 			}
+		}
+		
+		private function stopSound(event:Event):void {
+			trace("Received STOP_SOUND event!");
+			m_channel.stop();
+			this.removeEventListener(SoundObject.STOP_SOUND, stopSound);
+			m_parent.deleteSound(this);
 		}
 	}
 	

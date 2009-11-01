@@ -85,5 +85,9 @@
 			}
 			_container.addChild(newText);
 		}
+		
+		public function closeUp():void {
+			activate(new MouseEvent(MouseEvent.CLICK));
+		}
 	}
 }

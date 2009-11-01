@@ -22,6 +22,10 @@
 				Guard(secCheck).level3Training();
 			}
 		}
+		
+		public override function sellText():String {
+			return ("Fires the guard.");
+		}
 	
 		public function getLevel():int {
 			return (Guard(secCheck).getTraining());

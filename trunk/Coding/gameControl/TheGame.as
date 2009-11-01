@@ -2,6 +2,7 @@
 
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.net.LocalConnection;
 	
 	/* This class controls the game, fires the levels, controls game time, losing and winning conditions,
 		money and reputation.
@@ -22,6 +23,7 @@
 		
 		public function TheGame() {
 			gameTik.start();
+			Globals.conn = new LocalConnection();
 		}
 		
 		//Adds the amount to the money
@@ -41,6 +43,14 @@
 			if(money<0) {
 				youLose();
 			}*/
+		}
+		
+		public static function resetGame():void {
+			money = 1000;
+			reputation = 50;
+			curLevel = 1;
+			resetNumPass();
+			resetArrests();
 		}
 		
 		//POST: Stops gameTik timer

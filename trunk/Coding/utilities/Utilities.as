@@ -4,6 +4,8 @@ public class Utilities {
 	import flash.geom.Point;
 	import flash.display.*;
 	
+	public static var nme:Sprite;
+	
 	public static function randRange(min, max):int {
 		return Math.round(Math.random()*(max-min))+min;
 	}
@@ -13,9 +15,12 @@ public class Utilities {
 	}
 	
 	public static function getDist(obj1:Sprite, obj2:Sprite):Number {
-		var pnt1:Point = new Point(obj1.x, obj1.y);
-		var pnt2:Point = new Point(obj2.x, obj2.y);
-		
+		var pnt1:Point = obj1.localToGlobal(new Point(obj1.x, obj1.y));
+		var pnt2:Point = obj2.localToGlobal(new Point(obj2.x, obj2.y));
+		if (!Utilities.nme)
+			Utilities.nme = obj2;
+		else if (Utilities.nme == obj2)
+			trace(obj2.name+" D: "+Point.distance(pnt1, pnt2));
 		return (Point.distance(pnt1, pnt2));
 	}
 	

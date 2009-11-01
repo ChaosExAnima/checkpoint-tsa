@@ -1,117 +1,118 @@
 ﻿<flash_project name="Checkpoint" version="1">
     <project_folder name="Code" expanded="true">
-        <project_folder name="gameGraphics" expanded="false">
-            <project_file path=".:Coding/gameGraphics/AirportG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/BagCheckerG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/BombCanineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/Bounds.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/CanineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/CheepieMetalDetectorG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/CheepieXRayMachineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/ClownG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/DrugCanineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/EntertainmentDisplayG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/Escalator.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/Floor.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/GameInfoG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/GraphPassFact.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/GuardG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/Legs.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/LineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/MetalDetectorG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/MoodUnitG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/PassColor.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/PassContainer.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/PassengerG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/SecurityCheckUnitG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/SliderMachineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/SnifferMachineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/StationG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/SuperMetalDetectorG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/SuperXRayMachineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/Torso.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/WandWaiverG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/XRayMachineG.as" filetype="as" />
-            <project_file path=".:Coding/gameGraphics/TicketCheckerG.as" filetype="as" />
+        <project_folder name="gameGraphics" expanded="true">
+            <project_file path="./Coding/gameGraphics/AirportG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/BagCheckerG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/BombCanineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/Bounds.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/CanineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/CheepieMetalDetectorG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/CheepieXRayMachineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/ClownG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/DrugCanineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/EntertainmentDisplayG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/Escalator.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/Floor.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/GameInfoG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/GraphPassFact.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/GuardG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/Legs.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/LineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/MetalDetectorG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/MoodUnitG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/PassColor.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/PassContainer.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/PassengerG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/SecurityCheckUnitG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/SliderMachineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/SnifferMachineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/StationG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/SuperMetalDetectorG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/SuperXRayMachineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/Torso.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/WandWaiverG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/XRayMachineG.as" filetype="as" />
+            <project_file path="./Coding/gameGraphics/TicketCheckerG.as" filetype="as" />
         </project_folder>
         <project_folder name="gameLogic" expanded="false">
-            <project_file path=".:Coding/gameLogic/Airport.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/BagChecker.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Bomb.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/BombCanine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Canine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/CheepieMetalDetector.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/CheepieXRayMachine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Clown.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/CPSlider.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/DrugCanine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Drugs.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/EntertainmentDisplay.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Guard.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Gun.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Knife.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Line.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/MetalDetector.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Meter.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/MoodUnit.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Passenger.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/PassengerFactory.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/PassengerSpriteStub.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/PassengerStub.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/ProhibitedObject.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/ProhibitedObjectFactory.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SecurityCheckUnit.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SecuritySlider.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SliderMachine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SnifferMachine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/Station.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SuperMetalDetector.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/SuperXRayMachine.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/TicketChecker.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/WaitingArea.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/WaitingAreaStub.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/WandWaver.as" filetype="as" />
-            <project_file path=".:Coding/gameLogic/XRayMachine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Airport.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/BagChecker.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Bomb.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/BombCanine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Canine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/CheepieMetalDetector.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/CheepieXRayMachine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Clown.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/CPSlider.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/DrugCanine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Drugs.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/EntertainmentDisplay.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Guard.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Gun.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Knife.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Line.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/MetalDetector.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Meter.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/MoodUnit.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Passenger.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/PassengerFactory.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/PassengerSpriteStub.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/PassengerStub.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/ProhibitedObject.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/ProhibitedObjectFactory.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SecurityCheckUnit.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SecuritySlider.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SliderMachine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SnifferMachine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/Station.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SuperMetalDetector.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/SuperXRayMachine.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/TicketChecker.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/WaitingArea.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/WaitingAreaStub.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/WandWaver.as" filetype="as" />
+            <project_file path="./Coding/gameLogic/XRayMachine.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameUI" expanded="false">
-            <project_file path=".:Coding/gameUI/BombMenu.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/BuildMenu.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/IMenu.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/InfoBox.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/Interface.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/Menus.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/MusicSlider.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/Options.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/RedirectMenu.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/SecuritySlider.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/SelectedMenu.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/UISlider.as" filetype="as" />
-            <project_file path=".:Coding/gameUI/UnselectedMenu.as" filetype="as" />
+        <project_folder name="gameUI" expanded="true">
+            <project_file path="./Coding/gameUI/BombMenu.as" filetype="as" />
+            <project_file path="./Coding/gameUI/BuildMenu.as" filetype="as" />
+            <project_file path="./Coding/gameUI/IMenu.as" filetype="as" />
+            <project_file path="./Coding/gameUI/InfoBox.as" filetype="as" />
+            <project_file path="./Coding/gameUI/Interface.as" filetype="as" />
+            <project_file path="./Coding/gameUI/Menus.as" filetype="as" />
+            <project_file path="./Coding/gameUI/MusicSlider.as" filetype="as" />
+            <project_file path="./Coding/gameUI/Options.as" filetype="as" />
+            <project_file path="./Coding/gameUI/RedirectMenu.as" filetype="as" />
+            <project_file path="./Coding/gameUI/SecuritySlider.as" filetype="as" />
+            <project_file path="./Coding/gameUI/SelectedMenu.as" filetype="as" />
+            <project_file path="./Coding/gameUI/UISlider.as" filetype="as" />
+            <project_file path="./Coding/gameUI/UnselectedMenu.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameControl" expanded="false">
-            <project_file path=".:Coding/gameControl/TheGame.as" filetype="as" />
-            <project_file path=".:Coding/gameControl/Globals.as" filetype="as" />
+        <project_folder name="gameControl" expanded="true">
+            <project_file path="./Coding/gameControl/TheGame.as" filetype="as" />
+            <project_file path="./Coding/gameControl/Globals.as" filetype="as" />
+            <project_file path="./Coding/gameControl/Load.as" filetype="as" />
         </project_folder>
         <project_folder name="gameSound" expanded="false">
-            <project_file path=".:Coding/gameSound/SoundManager.as" filetype="as" />
-            <project_file path=".:Coding/gameSound/SoundObject.as" filetype="as" />
+            <project_file path="./Coding/gameSound/SoundManager.as" filetype="as" />
+            <project_file path="./Coding/gameSound/SoundObject.as" filetype="as" />
         </project_folder>
         <project_folder name="gameData" expanded="false">
-            <project_file path=".:Coding/gameData/floorData.xml" filetype="xml" />
-            <project_file path=".:Coding/gameData/gameLevels.xml" filetype="xml" />
-            <project_file path=".:Coding/gameData/machines.xml" filetype="xml" />
-            <project_file path=".:Coding/gameData/names.xml" filetype="xml" />
-            <project_file path=".:Coding/gameData/passengerData.xml" filetype="xml" />
-            <project_file path=".:Coding/gameData/XMLgameData.as" filetype="as" />
-            <project_file path=".:Coding/gameData/XMLmachineData.as" filetype="as" />
+            <project_file path="./Coding/gameData/floorData.xml" filetype="xml" />
+            <project_file path="./Coding/gameData/gameLevels.xml" filetype="xml" />
+            <project_file path="./Coding/gameData/machines.xml" filetype="xml" />
+            <project_file path="./Coding/gameData/names.xml" filetype="xml" />
+            <project_file path="./Coding/gameData/passengerData.xml" filetype="xml" />
+            <project_file path="./Coding/gameData/XMLgameData.as" filetype="as" />
+            <project_file path="./Coding/gameData/XMLmachineData.as" filetype="as" />
         </project_folder>
-        <project_folder name="utilities" expanded="true">
-            <project_file path=".:Coding/utilities/Debugger.as" filetype="as" />
-            <project_file path=".:Coding/utilities/NameGen.as" filetype="as" />
-            <project_file path=".:Coding/utilities/SUtilities.as" filetype="as" />
-            <project_file path=".:Coding/utilities/Utilities.as" filetype="as" />
+        <project_folder name="utilities" expanded="false">
+            <project_file path="./Coding/utilities/Debugger.as" filetype="as" />
+            <project_file path="./Coding/utilities/NameGen.as" filetype="as" />
+            <project_file path="./Coding/utilities/SUtilities.as" filetype="as" />
+            <project_file path="./Coding/utilities/Utilities.as" filetype="as" />
         </project_folder>
-        <project_file path=".:Coding/Loader.fla" filetype="fla" profile="" />
-        <project_file path=".:Coding/Main.fla" filetype="fla" profile="" def_file="true" />
+        <project_file path="./Coding/Loader.fla" filetype="fla" profile="" />
+        <project_file path="./Coding/Main.fla" filetype="fla" profile="" def_file="true" />
     </project_folder>
 </flash_project>
