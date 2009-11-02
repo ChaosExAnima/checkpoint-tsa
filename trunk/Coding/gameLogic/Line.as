@@ -85,5 +85,10 @@
 			return station.getNumber();
 		}
 		
+		public function removeAllPassengers():void {
+			while (passengers.length != 0) {
+				popPassenger();
+			}
+		}
 	}
 }

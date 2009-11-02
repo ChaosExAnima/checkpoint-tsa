@@ -124,5 +124,13 @@
 			if (securityCheckUnits[index]==null) return true;
 			else return false;
 		}
+		
+		public function removeAllPassengers():void {
+			for (var i:uint = 0; i < 5; i++) {
+				if (securityCheckUnits[i]) {
+					securityCheckUnits[i].removePassenger(new Event(''));
+				}
+			}
+		}
 	}
 }
