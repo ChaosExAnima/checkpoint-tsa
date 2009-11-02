@@ -331,6 +331,9 @@
 					movingOn[i] = null;
 				}
 			}
+			
+			logic.removeAllPassengers();
+			station.logic.removeAllPassengers();
 		}
 		
 		private function removeListeners(pass:PassengerG):void {
