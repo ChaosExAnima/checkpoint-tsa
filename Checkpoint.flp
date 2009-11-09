@@ -73,7 +73,7 @@
             <project_file path="./Coding/gameLogic/WandWaver.as" filetype="as" />
             <project_file path="./Coding/gameLogic/XRayMachine.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameUI" expanded="true">
+        <project_folder name="gameUI" expanded="false">
             <project_file path="./Coding/gameUI/BombMenu.as" filetype="as" />
             <project_file path="./Coding/gameUI/BuildMenu.as" filetype="as" />
             <project_file path="./Coding/gameUI/IMenu.as" filetype="as" />
@@ -88,7 +88,7 @@
             <project_file path="./Coding/gameUI/UISlider.as" filetype="as" />
             <project_file path="./Coding/gameUI/UnselectedMenu.as" filetype="as" />
         </project_folder>
-        <project_folder name="gameControl" expanded="true">
+        <project_folder name="gameControl" expanded="false">
             <project_file path="./Coding/gameControl/TheGame.as" filetype="as" />
             <project_file path="./Coding/gameControl/Globals.as" filetype="as" />
             <project_file path="./Coding/gameControl/Load.as" filetype="as" />
