@@ -15,7 +15,7 @@
 		<name>Bag Checker</name>
 		<description>Searches for all types of prohibited items, but slowly.</description>
 		<price>20</price>
- 	  	<accuracy>60</accuracy>
+ 	  	<accuracy>20</accuracy>
 		<speed>10</speed>
 		<sellFor>0</sellFor>
 		<moodChange>2</moodChange>     	
@@ -30,7 +30,7 @@
 	 	<name>Bag Checker</name>
 		<description>Gives guard additional training, improving the chance of finding a prohibited item.</description>
 		<price>40</price>
- 	  	<accuracy>80</accuracy>
+ 	  	<accuracy>40</accuracy>
 		<speed>8</speed>
 		<sellFor>0</sellFor>
 		<moodChange>2</moodChange>  
@@ -45,7 +45,7 @@
 	 	<name>Bag Checker</name>
 		<description>Trains the guard even further, decreasing the time it takes to search a bag.</description>
 		<price>80</price>
- 	  	<accuracy>80</accuracy>
+ 	  	<accuracy>40</accuracy>
 		<speed>7</speed>
 		<sellFor>0</sellFor>
 		<moodChange>2</moodChange>
@@ -61,7 +61,7 @@
 	 	<name>Wand Waver</name>
 		<description>Searches passengers for guns, knives, and bombs with a hand metal detector.</description>
 		<price>20</price>
- 	  	<accuracy>60</accuracy>
+ 	  	<accuracy>20</accuracy>
 		<speed>6</speed>
 		<sellFor>0</sellFor>
 		<moodChange>1.5</moodChange>  
@@ -76,7 +76,7 @@
 	 	<name>Wand Waver</name>
 		<description>Improves the skill of the guard, increasing the chance of finding something.</description>
  		<price>40</price>
- 	  	<accuracy>80</accuracy>
+ 	  	<accuracy>40</accuracy>
 		<speed>6</speed>
 		<sellFor>0</sellFor>
 		<moodChange>1.5</moodChange>  
@@ -91,7 +91,7 @@
 	 	<name>Wand Waver</name>
 		<description>Further training of the guard improves the speed of the search.</description>
 		<price>80</price>
- 	  	<accuracy>80</accuracy>
+ 	  	<accuracy>40</accuracy>
 		<speed>4</speed>
 		<sellFor>0</sellFor>
 		<moodChange>1.5</moodChange>     
