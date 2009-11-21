@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<councourseFloor>
+	<item name="escalator">
+		<initialX></initialX>	
+		<initialY></initialY>
+		<endingX></endingX>
+		<endingY></endingY>
+		<moveSpeed>5</moveSpeed>
+	</item>
+	<item name="floor">
+		<gridCellW>10</gridCellW>
+		<gridCellH>10</gridCellH>
+		<floorW></floorW>
+		<floorH></floorH>
+	</item>
+	<item name="line">
+		
+	</item>
+</concourseFloor>
+<!--
+Concourse Floor
+constants
+escalators (x3)
+
+    * starting X - pixels (no current value)
+    * starting Y - pixels (no current value)
+    * ending X - pixels (no current value)
+    * ending X - pixels (no current value)
+    * movement speed - pixels/frame (current value: 5)
+
+main floor
+
+    * grid cell width - pixels (currently: 10) #FLOOR WIDTH MUST BE A MULTIPLE OF
+    * grid cell height - pixels (currently: 10) #FLOOR HEIGHT MUST BE A MULTIPLE OF
+    * floor width - pixels (no current value)
+    * floor height - pixels (no current value)
+
+lines
+
+    * no data yet
+-->

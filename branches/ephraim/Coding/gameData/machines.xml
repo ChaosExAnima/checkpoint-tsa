@@ -1,0 +1,318 @@
+<!-----------------------------------------------LAST UPDATED 11-01-2008 By Al--------------------------------------->
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<securityCheckUnits>
+<!------------------------------------------------------TICKET_CHECKER---------------------------------------------->
+	<unit name="TicketChecker" level="1" type="guard">
+		<name>Ticket Checker</name>
+		<description>Adds a ticket checker that redirects the passengers to the shortest line.</description>
+	 	<price>300</price>
+		<speed>0.25</speed>
+		<powerUpPrice>600</powerUpPrice>
+		<sellFor>150</sellFor>
+	 </unit>
+<!----------------------------------------------------------BAG_CHECKER--------------------------------------------->	 
+	<unit name="BagChecker" level="1" type="guard">
+		<name>Bag Checker</name>
+		<description>Searches for all types of prohibited items, but slowly.</description>
+		<price>20</price>
+ 	  	<accuracy>20</accuracy>
+		<speed>10</speed>
+		<sellFor>0</sellFor>
+		<moodChange>2</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>
+     </unit>
+	 <unit name="BagChecker" level="2" type="guard">
+	 	<name>Bag Checker</name>
+		<description>Gives guard additional training, improving the chance of finding a prohibited item.</description>
+		<price>40</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>8</speed>
+		<sellFor>0</sellFor>
+		<moodChange>2</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>   	
+     </unit>
+	 <unit name="BagChecker" level="3" type="guard">
+	 	<name>Bag Checker</name>
+		<description>Trains the guard even further, decreasing the time it takes to search a bag.</description>
+		<price>80</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>7</speed>
+		<sellFor>0</sellFor>
+		<moodChange>2</moodChange>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>drugs</offense>
+			<offense>gun</offense>			
+		</offenses>     	
+     </unit>
+<!----------------------------------------------------------WAND_WAVER--------------------------------------------------->	 
+	 <unit name="WandWaver" level="1" type="guard">
+	 	<name>Wand Waver</name>
+		<description>Searches passengers for guns, knives, and bombs with a hand metal detector.</description>
+		<price>20</price>
+ 	  	<accuracy>20</accuracy>
+		<speed>6</speed>
+		<sellFor>0</sellFor>
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>   	
+     </unit>
+	 
+	 <unit name="WandWaver" level="2" type="guard">
+	 	<name>Wand Waver</name>
+		<description>Improves the skill of the guard, increasing the chance of finding something.</description>
+ 		<price>40</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>6</speed>
+		<sellFor>0</sellFor>
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>   	
+     </unit>
+	 
+	 <unit name="WandWaver" level="3" type="guard">
+	 	<name>Wand Waver</name>
+		<description>Further training of the guard improves the speed of the search.</description>
+		<price>80</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>4</speed>
+		<sellFor>0</sellFor>
+		<moodChange>1.5</moodChange>     
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>	
+     </unit>
+ 
+<!----------------------------------------------------------DRUG_CANINE--------------------------------------------------->	 
+	  <unit name="DrugCanine" level="1" type="guard">
+	  	<name>Drug Dog</name>
+		<description>Sniffs out drugs quickly, but inaccurately.</description>
+		<price>50</price>
+ 	  	<accuracy>20</accuracy>
+		<speed>4</speed>
+		<sellFor>25</sellFor>
+		<moodChange>1.5</moodChange> 
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>    	
+     </unit>
+	 <unit name="DrugCanine" level="2" type="guard">
+	 	<name>Drug Canine</name>
+		<description>Better at finding drug smugglers.</description>
+		<price>100</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>4</speed>
+		<sellFor>50</sellFor>
+		<moodChange>1.5</moodChange>   
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>  	
+     </unit>
+	 <unit name="DrugCanine" level="3" type="guard">
+	 	<name>Drug Pig</name>
+		<description>The ultimate in animal drug sniffing.</description>
+		<price>200</price>
+ 	  	<accuracy>50</accuracy>
+		<speed>4</speed>
+		<sellFor>100</sellFor>
+		<moodChange>1.5</moodChange> 
+		<offenses>
+			<offense>drugs</offense>
+		</offenses>    	
+     </unit>
+<!----------------------------------------------------------BOMB_CANINE--------------------------------------------------->
+	 <unit name="BombCanine" level="1" type="guard">
+	 	<name>Bomb Dog</name>
+		<description>Sniffs out explosives.</description>
+		<price>70</price>
+ 	  	<accuracy>40</accuracy>
+		<speed>4</speed>
+		<sellFor>35</sellFor>
+		<moodChange>1.5</moodChange>  
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>   	
+     </unit>
+	 <unit name="BombCanine" level="2" type="guard">
+	 	<name>Bomb Canine</name>
+		<description>Improved nasal capabilities.</description>
+		<price>140</price>
+ 	  	<accuracy>60</accuracy>
+		<speed>4</speed>
+		<sellFor>70</sellFor>
+		<moodChange>1.5</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>
+     </unit>
+	 <unit name="BombCanine" level="3" type="guard">
+	 	<name>Bomb Pig</name>
+		<description>Highly trained bomb-sniffing animals.</description>
+		<price>280</price>
+ 	  	<accuracy>70</accuracy>
+		<speed>4</speed>
+		<sellFor>160</sellFor>
+		<moodChange>1.5</moodChange>     	
+		<offenses>
+			<offense>bomb</offense>
+		</offenses>
+     </unit>
+<!----------------------------------------------------------METAL_DETECTORS--------------------------------------------------->	 
+	<!--"Cheapie METAL DETECTOR"-->
+	 <unit name="CheepieMetalDetector" level="1" type="slider">
+	 	<name>Metal Detector</name>
+		<description>Finds knives and guns quickly and accurately.|Hires a guard to help speed up the scanning.|Upgrades the gun recognition algorithms.|Fine-tunes the detection of pointy objects.</description>
+		<price>200</price>
+		<accuracy>55</accuracy>
+		<accuracyMin>45</accuracyMin>
+		<accuracyMax>65</accuracyMax>
+		<speed>4</speed>
+		<speedMin>2</speedMin>
+		<speedMax>6</speedMax>		
+		<moodChange>0.5</moodChange>		
+		<sellFor>100</sellFor>		
+		<speedUpGuardPrice>50</speedUpGuardPrice>
+		<speedUpGuardSpeed>1</speedUpGuardSpeed>
+		<powerUpGunPrice>30</powerUpGunPrice>
+		<powerUpKnifePrice>30</powerUpKnifePrice>
+		<powerUpAccuracyMin>55</powerUpAccuracyMin>
+		<powerUpAccuracyMax>75</powerUpAccuracyMax>
+		<offenses>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
+	 </unit>
+	
+
+	<!--"SUPER METAL DETECTOR"-->	 
+	  <unit name="SuperMetalDetector" level="1" type="slider">
+	  	<name>Ultra Detector</name>
+		<description>Uses sophisticated recognition systems to find guns, knives, and bombs.|Adds a guard to speed up the scanning process.</description>
+	    <price>600</price>
+		<accuracy>70</accuracy>
+		<accuracyMin>60</accuracyMin>
+		<accuracyMax>80</accuracyMax>		
+		<speed>0</speed>
+		<speedMin>1</speedMin>
+		<speedMax>3</speedMax>			 	
+		<moodChange>0.5</moodChange>
+		<speedUpGuardPrice>75</speedUpGuardPrice>
+		<speedUpGuardSpeed>0.5</speedUpGuardSpeed> <!--??? MAKES IS FASTER BY 0.5 SECONDS !!!!!!-->
+		<powerUpGunPrice>0</powerUpGunPrice>
+		<powerUpKnifePrice>0</powerUpKnifePrice>
+		<powerUpAccuracyMin>0</powerUpAccuracyMin>
+		<powerUpAccuracyMax>0</powerUpAccuracyMax>
+		<sellFor>300</sellFor><!--????????? it"s supposed to be a Percent but above is fixed!!!!-->
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
+	 </unit>
+<!----------------------------------------------------------X_RAYS--------------------------------------------------->	 
+
+<!--"Cheapie XRAY"--> 
+ 	 <unit name="CheepieXrayMachine" level="1" type="slider">
+	 	<name>X-Ray Machine</name>
+		<description>Finds guns, knives, and bombs, but takes time.|Improves the ability to detect guns and knives.|Finds bombs more accurately.</description>
+	    <price>400</price>
+		<accuracy>50</accuracy>
+		<accuracyMin>30</accuracyMin>
+		<accuracyMax>80</accuracyMax>
+		<speed>6</speed>
+		<speedMin>4</speedMin>
+		<speedMax>10</speedMax>		
+		<moodChange>0.75</moodChange>
+		<powerUpGunKnifePrice>50</powerUpGunKnifePrice>
+		<powerUpBombPrice>50</powerUpBombPrice>
+		<powerUpAccuracyMin>40</powerUpAccuracyMin>
+		<powerUpAccuracyMax>60</powerUpAccuracyMax>	
+		<sellFor>200</sellFor>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
+	 </unit>
+	 
+<!--"SUPER XRAY"--> 
+ 	 <unit name="SuperXrayMachine" level="1" type="slider">
+	 	<name>Super Scanner</name>
+		<description>Quickly and efficiently searches for guns, knives, and bombs.|Upgrades the software to better find guns and knives.|Augments the bomb scanner</description>
+	    <price>800</price>
+		<accuracy>40</accuracy>
+		<accuracyMin>30</accuracyMin>
+		<accuracyMax>50</accuracyMax>
+		<speed>4</speed>
+		<speedMin>2</speedMin>
+		<speedMax>6</speedMax>		
+		<moodChange>0.75</moodChange>
+		<powerUpGunKnifePrice>100</powerUpGunKnifePrice>
+		<powerUpBombPrice>100</powerUpBombPrice>
+		<powerUpAccuracyMin>50</powerUpAccuracyMin>
+		<powerUpAccuracyMax>70</powerUpAccuracyMax>	
+		<sellFor>400</sellFor>
+		<offenses>
+			<offense>bomb</offense>
+			<offense>knife</offense>
+			<offense>gun</offense>			
+		</offenses>
+	 </unit>
+<!----------------------------------------------------------SNIFFER_MACHINE--------------------------------------------------->	
+
+ 	 <unit name="SnifferMachine" level="1" type="slider"> 
+	 	<name>Sniffer</name>
+		<description>Sensitive chemical sensors sniff out bombs or drugs with the greatest accuracy.|Improves the processing power for greater speed.|Recalibrates the sensors to detect narcotics.|Recalibrates the sensors to detect explosive devices.</description>
+	    <price>1800</price>
+		<accuracy>70</accuracy>
+		<accuracyMin>60</accuracyMin>
+		<accuracyMax>80</accuracyMax>
+		<speed>5</speed>
+		<speedMin>4</speedMin>
+		<speedMax>6</speedMax>		
+		<moodChange>1</moodChange>
+		<powerUpPrice>1000</powerUpPrice>
+		<powerUpSpeedMin>2</powerUpSpeedMin>
+		<powerUpSpeedMax>5</powerUpSpeedMax>		
+		<sellFor>900</sellFor>
+	 </unit>
+	 
+<!----------------------------------------------------------ENTERTAINMENT_ASSETS--------------------------------------------------->	
+
+ 	 <unit name="VideoDisplay" level="1" type="entertainment"> 
+	 	<name>Video Display</name>
+		<description>Shows soothing video in order to calm the masses.</description>
+	    <price>300</price>
+		<speed>0</speed>
+		<moodChange>0.2</moodChange>
+		<sellFor>0</sellFor><!--????????? it"s supposed to be a Percent but above is fixed!!!!-->
+	 </unit>
+	 
+	 <unit name="Clown" level="1" type="entertainment"> 
+	 	<name>Clown</name>
+		<description>Antics distracts crowd from more mundane annoyances.</description>
+	    <price>1250</price>
+		<speed>0</speed>
+		<moodChange>0.5</moodChange>
+		<sellFor>0</sellFor><!--????????? it"s supposed to be a Percent but above is fixed!!!!-->
+	 </unit>
+</securityCheckUnits>

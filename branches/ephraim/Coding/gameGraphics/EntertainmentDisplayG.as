@@ -1,0 +1,1 @@
+﻿package gameGraphics {		import gameLogic.EntertainmentDisplay;		/* Encapsulates the graphical representation of an entertainment display. */		public class EntertainmentDisplayG extends MoodUnitG {				public function EntertainmentDisplayG(xLoc:Number, yLoc:Number){			super(xLoc, yLoc, new EntertainmentDisplay(), new GEntertainmentDisplay());		}	}}

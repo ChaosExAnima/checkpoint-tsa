@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<passenger>
+	<footPrintW>40</footPrintR>
+	<footPrintH>20</footPrintH>
+	<footPrintX>-20</footPrintX>
+	<footPrintY>-10</footPrintY>
+	<gimmeDistance>30</gimmeDistance>
+	
+	<targetSpeedMin>2</targetSpeedMin>
+	<targetSpeedMax>7</targetSpeedMax>
+	<WBRmin>15</WBRmin>
+	<WBRmax>25</WBRmax>
+	<rerouteTimeMin>15</rerouteTimeMin>
+	<rerouteTimeMax>30</rerouteTimeMax>	
+</passenger>
+<!--
+Passenger
+constants
+
+    * foot print width - pixels (currently: 40)
+    * foot print height - pixels (currently: 20)
+    * foot print offset x - pixels (currently: -20)
+    * foot print offset y - pixels (currently: -10)
+    * gimme distance - pixels (currently: 30)
+
+ranges
+
+    * target speed - pixels/frame (currently: 2..7)
+    * wait before reroute - frames (currently: 15..25)
+    * reroute time - frames (currently: 15..30)
+-->
