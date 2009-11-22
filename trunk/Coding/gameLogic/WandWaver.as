@@ -22,8 +22,6 @@
 				  Number(XMLmachineData.getXML("WandWaver", "speed","3")),
 				  Number(XMLmachineData.getXML("WandWaver", "moodChange","3"))				  
 				  ); //READ IN FROM XML:
-		}
-
-		
+		}	
 	}
 }

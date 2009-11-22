@@ -47,7 +47,7 @@ public class PassengerFactory {
 	//If not, returns null.
 	private function randomStation():Station {
 		var nrStat:int = Airport.getNrStations();
-		trace("Stations: "+nrStat);
+		//trace("Stations: "+nrStat);
 		
 		if(nrStat==0) return null;
 		
