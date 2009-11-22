@@ -49,6 +49,7 @@
 			upgradeAccuracy = accuracyTraining3;
 			speed = TheGame.minToGameTime(speedTraining2);
 			mood = moodTraining2;
+			buy();
 		}
 	
 		//PRE: level=2
@@ -61,6 +62,7 @@
 			upgradeAccuracy = 0;
 			speed = TheGame.minToGameTime(speedTraining3);
 			mood = moodTraining3;
+			buy();
 		}
 		
 		public function getTraining():int {
