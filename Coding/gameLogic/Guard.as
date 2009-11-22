@@ -1,6 +1,9 @@
 ﻿package gameLogic {
 /* This class generalizes the idea of having a Guard. This will be exploited by BagChecker and WandWaver for instance.
 	*/
+	
+	import gameControl.TheGame;
+	
 	public class Guard extends SecurityCheckUnit{
 		
 		protected var trainingLevel:int = 1; 
@@ -44,7 +47,7 @@
 			accuracy = accuracyTraining2;
 			upgradePrice = priceTraining3;
 			upgradeAccuracy = accuracyTraining3;
-			speed = speedTraining2;
+			speed = TheGame.minToGameTime(speedTraining2);
 			mood = moodTraining2;
 		}
 	
@@ -56,7 +59,7 @@
 			accuracy = accuracyTraining3;
 			upgradePrice = 0;
 			upgradeAccuracy = 0;
-			speed = speedTraining3;
+			speed = TheGame.minToGameTime(speedTraining3);
 			mood = moodTraining3;
 		}
 		
