@@ -88,9 +88,11 @@
 			}
 		}
 		
-		public function resetStation():void {
-			lineOutline.x = 1220+108;
-			lineOutline.y = 340+56;
+		public function resetStation():void 
+		{
+
+			stations = uiAirport.lines;
+
 		}
 			
 		// Shows stations to place units. 
